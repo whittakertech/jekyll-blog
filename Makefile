@@ -25,7 +25,7 @@ serve: ## Start the development server
 	@echo "� Starting Jekyll development server..."
 	@echo "� Site will be available at: http://localhost:4000"
 	@echo "� LiveReload available at: http://localhost:35729"
-	docker-compose up
+	docker-compose up -d
 
 stop: ## Stop the development server
 	@echo "� Stopping Jekyll development server..."
@@ -34,7 +34,7 @@ stop: ## Stop the development server
 restart: ## Restart the development server (useful after config changes)
 	@echo "� Restarting Jekyll development server..."
 	docker-compose down
-	docker-compose up
+	docker-compose up -d
 
 clean: ## Clean up build artifacts and caches
 	@echo "� Cleaning up..."

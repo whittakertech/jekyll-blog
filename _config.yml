@@ -2,7 +2,12 @@ title: WhittakerTech Blog
 description: >-
   A technology blog covering web development, DevOps, and software engineering.
 baseurl: ""
-url: ""
+url: "https://whittakertech.com"
+
+repository: whittakertech/jekyll-blog
+github:
+  repository_name: jekyll-blog
+  owner_name: whittakertech
 
 remote_theme: pages-themes/midnight@v0.2.0
 

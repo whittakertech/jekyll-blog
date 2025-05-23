@@ -11,6 +11,7 @@ services:
     environment:
       - BUNDLE_PATH=/usr/local/bundle
       - JEKYLL_ENV=development
+      - PAGES_REPO_NWO=whittakertech/jekyll-blog
     stdin_open: true
     tty: true
     working_dir: /app
