@@ -1,0 +1,20 @@
+services:
+  jekyll:
+    build: .
+    ports:
+      - "4000:4000"
+      - "35729:35729"
+    volumes:
+      - .:/app
+      - bundle_cache:/usr/local/bundle
+      - node_modules:/app/node_modules
+    environment:
+      - BUNDLE_PATH=/usr/local/bundle
+      - JEKYLL_ENV=development
+    stdin_open: true
+    tty: true
+    working_dir: /app
+
+volumes:
+  bundle_cache:
+  node_modules:

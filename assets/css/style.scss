@@ -1,0 +1,51 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+/* Custom styles for blog */
+.post-meta {
+  color: #888;
+  font-size: 0.9em;
+  margin-bottom: 1em;
+}
+
+.post-list {
+  list-style: none;
+  padding: 0;
+}
+
+.post-list li {
+  margin-bottom: 2em;
+  padding-bottom: 1em;
+  border-bottom: 1px solid #333;
+}
+
+.post-list h3 {
+  margin-bottom: 0.5em;
+}
+
+.post-list h3 a {
+  color: #63c0f5;
+  text-decoration: none;
+}
+
+.post-list h3 a:hover {
+  text-decoration: underline;
+}
+
+.post-navigation {
+  margin-top: 2em;
+  padding-top: 1em;
+  border-top: 1px solid #333;
+}
+
+.post-navigation a {
+  color: #63c0f5;
+  text-decoration: none;
+  margin-right: 2em;
+}
+
+.post-navigation a:hover {
+  text-decoration: underline;
+}

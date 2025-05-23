@@ -1,0 +1,32 @@
+title: WhittakerTech Blog
+description: >-
+  A technology blog covering web development, DevOps, and software engineering.
+baseurl: ""
+url: ""
+
+remote_theme: pages-themes/midnight@v0.2.0
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-remote-theme
+
+markdown: kramdown
+highlighter: rouge
+
+# Collections
+collections:
+  posts:
+    output: true
+    permalink: /:year/:month/:day/:title/
+
+# Exclude from processing
+exclude:
+  - .idea/
+  - Dockerfile
+  - docker-compose.yml
+  - vendor/
+  - README.md
+  - Gemfile
+  - Gemfile.lock
