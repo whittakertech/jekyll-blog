@@ -4,8 +4,29 @@
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
     {% seo %}
+    <!-- Additional custom meta tags -->
+    {% if page.robots %}
+        <meta name="robots" content="{{ page.robots }}">
+    {% else %}
+        <meta name="robots" content="index, follow">
+    {% endif %}
+
+    <!-- Custom Open Graph overrides if needed -->
+    {% if page.og_title %}
+        <meta property="og:title" content="{{ page.og_title }}">
+    {% endif %}
+
+    {% if page.og_image %}
+        <meta property="og:image" content="{{ site.url }}{{ page.og_image }}">
+        <meta name="twitter:image" content="{{ site.url }}{{ page.og_image }}">
+    {% endif %}
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
 </head>
 <body>
 <div class="wrapper">

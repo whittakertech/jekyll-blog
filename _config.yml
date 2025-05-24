@@ -1,4 +1,4 @@
-title: WhittakerTech Blog
+title: WhittakerTech
 description: >-
   A technology blog covering web development, DevOps, and software engineering.
 baseurl: ""
@@ -24,7 +24,26 @@ highlighter: rouge
 collections:
   posts:
     output: true
-    permalink: /:year/:month/:day/:title/
+    permalink: /blog/:title/
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "Lee Whittaker"
+      robots: "index, follow"
+      sitemap: true
+      excerpt_separator: "<!--more-->"
+      schema_type: "BlogPosting"
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+      robots: "index, follow"
+      sitemap: true
 
 # Exclude from processing
 exclude:
