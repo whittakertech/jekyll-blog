@@ -49,3 +49,26 @@
 .post-navigation a:hover {
   text-decoration: underline;
 }
+
+.nav-menu{
+  display: flex;
+  justify-content: center;
+  padding: 0 20px;
+
+  & > .nav-item {
+    padding-left: 10px;
+    padding-right: 10px;
+
+    & > .nav-link.current {
+      border-bottom: 1px solid #fff;
+      color: #fff
+    }
+  }
+}
+
+.post-card {
+  border: 1px solid darkgrey;
+  border-radius: 1em;
+  padding: 1.5em;
+  margin-bottom: 3em;
+}

@@ -1,8 +1,16 @@
-title: WhittakerTech
+name: "WhittakerTech"
+tagline: "Game Development & Technical Services"
+title: "WhittakerTech - Game Development & Technical Services"
 description: >-
   A technology blog covering web development, DevOps, and software engineering.
 baseurl: ""
 url: "https://whittakertech.com"
+
+author:
+  name: "Lee Whittaker"
+  email: "lee@whittakertech.com"
+  twitter: "whittakertech"
+  linkedin: "lee-whittaker-dev"
 
 repository: whittakertech/jekyll-blog
 github:
@@ -20,11 +28,30 @@ plugins:
 markdown: kramdown
 highlighter: rouge
 
+# Critical: This matches your sitemap exactly
+permalink: /blog/:title/
+
+# Feed configuration for better SEO
+feed:
+  posts_limit: 20
+  excerpt_only: true
+
+# SEO optimization
+timezone: America/Denver  # Your timezone for proper dates
+
+# Social media defaults (customize as needed)
+twitter:
+  username: whittakertech
+  card: summary_large_image
+
 # Collections
 collections:
+  pages:
+    output: true
+    permalink: /:name/
   posts:
     output: true
-    permalink: /blog/:title/
+    permalink: /blog/:title/  # Redundant but explicit
 
 defaults:
   - scope:
@@ -44,6 +71,16 @@ defaults:
       layout: "page"
       robots: "index, follow"
       sitemap: true
+  - scope:
+      path: "blog"
+    values:
+      layout: "blog"
+      robots: "index, follow"
+      sitemap: true
+
+# Pagination for blog index
+paginate: 10
+paginate_path: "/blog/page:num/"
 
 # Exclude from processing
 exclude:
@@ -54,3 +91,7 @@ exclude:
   - README.md
   - Gemfile
   - Gemfile.lock
+  - .github/
+  - scripts/
+  - Makefile
+  - "*.sh"
