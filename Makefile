@@ -142,6 +142,71 @@ reset-gems: ## Reset and reinstall all gems
 	$(MAKE) bundle-install
 	@echo "✅ Gems reset complete!"
 
+# Add these to your existing Makefile
+
+new-draft: ## Create a new draft post
+	@if [ -z "$(TITLE)" ]; then \
+		echo "❌ Please specify a title: make new-draft TITLE=\"Your Draft Title\""; \
+		exit 1; \
+	fi
+	@SLUG=$$(echo "$(TITLE)" | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g' | sed 's/[^a-z0-9-]//g'); \
+	FILENAME="_drafts/$$SLUG.md"; \
+	echo "📝 Creating new draft: $$FILENAME"; \
+	mkdir -p _drafts; \
+	echo "---" > $$FILENAME; \
+	echo "layout: post" >> $$FILENAME; \
+	echo "title: \"$(TITLE)\"" >> $$FILENAME; \
+	echo "description: \"\"" >> $$FILENAME; \
+	echo "date: $$(date '+%Y-%m-%d %H:%M:%S %z')" >> $$FILENAME; \
+	echo "slug: \"$$SLUG\"" >> $$FILENAME; \
+	echo "canonical_url: \"https://whittakertech.com/blog/$$SLUG/\"" >> $$FILENAME; \
+	echo "categories: []" >> $$FILENAME; \
+	echo "tags: []" >> $$FILENAME; \
+	echo "published: false" >> $$FILENAME; \
+	echo "---" >> $$FILENAME; \
+	echo "" >> $$FILENAME; \
+	echo "Your draft content goes here..." >> $$FILENAME; \
+	echo "✅ Draft created: $$FILENAME"
+
+publish-draft: ## Move draft to posts (usage: make publish-draft SLUG=draft-slug)
+	@if [ -z "$(SLUG)" ]; then \
+		echo "❌ Please specify slug: make publish-draft SLUG=your-draft-slug"; \
+		exit 1; \
+	fi
+	@DATE=$$(date +%Y-%m-%d); \
+	if [ -f "_drafts/$(SLUG).md" ]; then \
+		sed 's/published: false/published: true/' "_drafts/$(SLUG).md" > "_posts/$$DATE-$(SLUG).md"; \
+		rm "_drafts/$(SLUG).md"; \
+		echo "✅ Published: _posts/$$DATE-$(SLUG).md"; \
+	else \
+		echo "❌ Draft not found: _drafts/$(SLUG).md"; \
+	fi
+
+serve-drafts: ## Serve site with drafts included
+	@echo "🚀 Starting Jekyll with drafts..."
+	docker-compose run --rm -p 4000:4000 jekyll bundle exec jekyll serve --host 0.0.0.0 --drafts --future
+
+preview-deploy: ## Deploy preview with drafts
+	@echo "📝 Deploying preview..."
+	git checkout -b drafts 2>/dev/null || git checkout drafts
+	git add .
+	git commit -m "Preview: $$(date)" || echo "No changes to commit"
+	git push origin drafts
+	@echo "✅ Preview deployed! Check GitHub Actions for preview URL"
+
+validate-content: ## Run content validation locally
+	@echo "🔍 Running content validation..."
+	@for file in _posts/*.md; do \
+		if [ -f "$$file" ]; then \
+			echo "Checking $$file..."; \
+			if ! grep -q "^title:" "$$file"; then echo "❌ Missing title in $$file"; exit 1; fi; \
+			if ! grep -q "^description:" "$$file"; then echo "❌ Missing description in $$file"; exit 1; fi; \
+			if ! grep -q "^slug:" "$$file"; then echo "❌ Missing slug in $$file"; exit 1; fi; \
+			echo "✅ $$file passed"; \
+		fi; \
+	done
+	@echo "✅ All validation passed!"
+
 # Quick shortcuts
 dev: serve ## Alias for serve
 up: serve ## Alias for serve

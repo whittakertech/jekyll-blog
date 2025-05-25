@@ -1,0 +1,134 @@
+# Content validation and quality checks
+name: Content Validation
+
+on:
+  push:
+    branches: [master, drafts]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+
+      - name: Validate front matter
+        run: |
+          echo "🔍 Validating front matter in posts..."
+          
+          # Check all posts have required fields
+          for file in _posts/*.md; do
+            if [ -f "$file" ]; then
+              echo "Checking $file..."
+          
+              # Check for required fields
+              if ! grep -q "^title:" "$file"; then
+                echo "❌ Missing title in $file"
+                exit 1
+              fi
+          
+              if ! grep -q "^description:" "$file"; then
+                echo "❌ Missing description in $file"
+                exit 1
+              fi
+          
+              if ! grep -q "^date:" "$file"; then
+                echo "❌ Missing date in $file"
+                exit 1
+              fi
+          
+              if ! grep -q "^slug:" "$file"; then
+                echo "❌ Missing slug in $file"
+                exit 1
+              fi
+          
+              if ! grep -q "^canonical_url:" "$file"; then
+                echo "❌ Missing canonical_url in $file"
+                exit 1
+              fi
+          
+              # Check description length (should be 150-160 chars for SEO)
+              desc_line=$(grep "^description:" "$file" | head -1)
+              desc_content=$(echo "$desc_line" | sed 's/description: *"//' | sed 's/"$//')
+              desc_length=${#desc_content}
+          
+              if [ $desc_length -lt 120 ] || [ $desc_length -gt 160 ]; then
+                echo "⚠️  Description in $file is $desc_length chars (recommended: 120-160)"
+              fi
+          
+              echo "✅ $file passed validation"
+            fi
+          done
+          
+          echo "✅ All front matter validation passed!"
+
+      - name: Validate Jekyll build
+        run: |
+          echo "🏗️ Testing Jekyll build..."
+          bundle exec jekyll build --strict_front_matter
+          echo "✅ Jekyll build successful!"
+
+      - name: Check for broken internal links
+        run: |
+          echo "🔗 Checking internal links..."
+          
+          # Build site first
+          bundle exec jekyll build
+          
+          # Simple check for common broken link patterns
+          if grep -r "](/[^)]*" _site/ | grep -E "\]\([^)]*\s+[^)]*\)"; then
+            echo "❌ Found potential broken internal links with spaces"
+            exit 1
+          fi
+          
+          echo "✅ Internal link check passed!"
+
+      - name: Validate markdown syntax
+        uses: articulate/actions-markdownlint@v1
+        with:
+          config: .markdownlint.json
+          files: '_posts/*.md _pages/*.md *.md'
+          ignore: 'vendor'
+        continue-on-error: true
+
+      - name: SEO validation
+        run: |
+          echo "🎯 Running SEO validation..."
+          
+          # Check that all posts have unique slugs
+          slugs=$(grep -r "^slug:" _posts/ | cut -d'"' -f2 | sort)
+          unique_slugs=$(echo "$slugs" | sort -u)
+          
+          if [ "$(echo "$slugs" | wc -l)" != "$(echo "$unique_slugs" | wc -l)" ]; then
+            echo "❌ Duplicate slugs found!"
+            echo "All slugs:"
+            echo "$slugs"
+            exit 1
+          fi
+          
+          # Check canonical URLs match expected pattern
+          for file in _posts/*.md; do
+            if [ -f "$file" ]; then
+              slug=$(grep "^slug:" "$file" | cut -d'"' -f2)
+              canonical=$(grep "^canonical_url:" "$file" | cut -d'"' -f2)
+              expected="https://whittakertech.com/blog/$slug/"
+          
+              if [ "$canonical" != "$expected" ]; then
+                echo "❌ Canonical URL mismatch in $file"
+                echo "   Expected: $expected"
+                echo "   Found: $canonical"
+                exit 1
+              fi
+            fi
+          done
+          
+          echo "✅ SEO validation passed!"

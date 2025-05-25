@@ -1,0 +1,21 @@
+# Preview-specific configuration overrides
+baseurl: "/jekyll-blog/preview"
+url: "https://whittakertech.github.io"
+
+# Show drafts and future posts in preview
+show_drafts: true
+future: true
+
+# Different robots directive for preview
+defaults:
+  - scope:
+      path: ""
+    values:
+      robots: "noindex, nofollow"
+
+# Preview-specific plugins or settings
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-remote-theme
