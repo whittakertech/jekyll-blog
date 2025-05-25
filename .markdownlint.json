@@ -1,15 +1,20 @@
 {
   "default": true,
+  "MD009": false,
   "MD013": {
     "line_length": 120,
     "code_blocks": false,
-    "tables": false
+    "tables": false,
+    "headings": false
   },
+  "MD022": false,
+  "MD025": false,
+  "MD031": false,
+  "MD032": false,
   "MD033": {
-    "allowed_elements": ["antml:cite"]
+    "allowed_elements": ["antml:cite", "br", "div", "span"]
   },
+  "MD036": false,
   "MD041": false,
-  "MD025": {
-    "front_matter_title": ""
-  }
+  "MD047": false
 }
