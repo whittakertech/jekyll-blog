@@ -5,15 +5,15 @@ title: "Database Concurrency Tests: Fix PostgreSQL Race Conditions"
 slug: "when-database-concurrency-tests-lie"
 canonical_url: "https://whittakertech.com/blog/when-database-concurrency-tests-lie/"
 description: > 
-  Debug PostgreSQL concurrency issues where RSpec tests pass but database logic fails. Real case study with FOR UPDATE 
+  Debug PostgreSQL concurrency issues where RSpec tests pass but database logic fails. Real case study with FOR UPDATE
   SKIP LOCKED and thread synchronization solutions.
 og_title: "When RSpec Tests Pass But Your Database Logic Fails"
 headline: > 
-  When Database Concurrency Tests Lie: How Passing RSpec Tests Hid Critical Race Conditions in a High-Stakes Legal 
+  When Database Concurrency Tests Lie: How Passing RSpec Tests Hid Critical Race Conditions in a High-Stakes Legal
   System
 categories: ["Ruby on Rails", "Software Development", "Database Architecture"]
-tags: ["Database concurrency", "PostgreSQL locking", "Race conditions", "RSpec testing", "FOR UPDATE SKIP LOCKED", 
-       "Thread synchronization", "Test reliability", "ActiveRecord", "Database transactions", "Production debugging", 
+tags: ["Database concurrency", "PostgreSQL locking", "Race conditions", "RSpec testing", "FOR UPDATE SKIP LOCKED",
+       "Thread synchronization", "Test reliability", "ActiveRecord", "Database transactions", "Production debugging",
        "Critical systems", "Queue management", "Polymorphic associations", "CI/CD pipeline", "Test-driven development"]
 ---
 
@@ -22,7 +22,7 @@ logic silently failed, preventing double-bookings in a high-stakes hearing sched
 
 ## The Challenge
 
-Picture this scenario: A legal firm's hearing scheduling system processes hundreds of weekly hearings across multiple 
+Picture this scenario: A legal firm's hearing scheduling system processes hundreds of weekly hearings across multiple
 jurisdictions. Multiple court clerks simultaneously assign hearing tasks from a shared queue, and the system must
 absolutely prevent the same hearing from being double-booked to different judges or courtrooms. When concurrency
 controls fail in legal proceedings, double-booked hearings can delay justice for months and cost firms thousands in
@@ -60,13 +60,13 @@ it "prevents double assignment under concurrency" do
 end
 ```
 
-ActiveRecord collections don't automatically refresh when the underlying database records change in separate 
+ActiveRecord collections don't automatically refresh when the underlying database records change in separate
 connections. The test was checking stale, in-memory data rather than the actual post-operation database state, creating
 an illusion of correctness while the real functionality remained untested.
 
 ### Silent Success Reporting
 
-The assignment method reported success based solely on whether exceptions occurred, not whether any meaningful work was 
+The assignment method reported success based solely on whether exceptions occurred, not whether any meaningful work was
 performed:
 
 ```ruby
@@ -90,13 +90,13 @@ def self.assign_to_user(to, by, count)
 end
 ```
 
-When no tasks were available for assignment, this method would complete its empty loop without errors and confidently 
-return `{ success: true }`. The calling code had no way to distinguish between "successfully assigned 5 tasks" and 
+When no tasks were available for assignment, this method would complete its empty loop without errors and confidently
+return `{ success: true }`. The calling code had no way to distinguish between "successfully assigned 5 tasks" and
 "successfully assigned 0 tasks because none were available."
 
 ### Complex Data Dependencies
 
-The task assignment relied on a sophisticated chain of database relationships and scopes. A single missing link would 
+The task assignment relied on a sophisticated chain of database relationships and scopes. A single missing link would
 result in zero tasks being found, but the failure was completely silent:
 
 ```ruby
@@ -303,7 +303,8 @@ it "prevents double assignment with database verification" do
     end
   end
   
-  thread1.join; thread2.join
+  thread1.join
+  thread2.join
   
   # Query fresh database state
   final_tasks = Task.where(id: task_ids).reload
@@ -325,8 +326,8 @@ def self.assign_to_user(to, by, count)
     transaction do
       available_for_assignment(count)
         .lock("FOR UPDATE SKIP LOCKED")
-        .each { |task| task.update!(assigned_to: to, 
-                                    assigned_by: by, 
+        .each { |task| task.update!(assigned_to: to,
+                                    assigned_by: by,
                                     assigned_at: Time.zone.now) }
     end
   rescue StandardError => error
@@ -430,7 +431,7 @@ developers about actual system behavior rather than environmental conditions.
 
 ### Production Safety
 
-By implementing proper database state verification, the team caught multiple additional edge cases where assignment 
+By implementing proper database state verification, the team caught multiple additional edge cases where assignment
 logic could silently fail. The enhanced error reporting now distinguishes between "no tasks available" and "assignment
 failed," preventing scenarios where operators would assume successful assignment when no work was actually performed.
 

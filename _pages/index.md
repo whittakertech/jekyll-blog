@@ -1,23 +1,27 @@
 ---
 layout: home
 title: Home
-description: "Unity development, Rails consulting, and custom software solutions for games and web applications"
-permalink: "/"
+description: >
+  Unity development, Rails consulting, and custom software solutions for games and web applications
+permalink: /
 ---
 
 # Game Development & Technical Services
 
-I'm a software engineer specializing in **Unity game development** and **Ruby on Rails consulting**. I help indie developers build better games and growing businesses solve complex technical challenges.
+I'm a software engineer specializing in **Unity game development** and **Ruby on Rails consulting**. I help indie
+developers build better games and growing businesses solve complex technical challenges.
 
 ## What I Do
 
 **Game Development**
+
 - Unity plugins and tools for the Asset Store
 - Custom game development and prototyping
 - Performance optimization and technical consulting
 - 3D assets and procedural generation systems
 
 **Technical Services**
+
 - Ruby on Rails application development and upgrades
 - Legacy system modernization and migration
 - International character encoding solutions
@@ -43,7 +47,8 @@ I'm a software engineer specializing in **Unity game development** and **Ruby on
 
 ## Let's Work Together
 
-Whether you need Unity development expertise or Rails consulting services, I'm here to help turn your technical challenges into solutions.
+Whether you need Unity development expertise or Rails consulting services, I'm here to help turn your technical
+challenges into solutions.
 
 **Ready to start?** [Get in touch](/contact/) to discuss your project.
 
