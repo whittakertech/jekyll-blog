@@ -2,10 +2,10 @@
 date: 2025-03-04 14:00:00 -0700
 title: "Ruby Rails Upgrade Guide: From Legacy 6.1 to Modern 7.1"
 og_title: "How We Rescued a Legacy Rails App from 118 Failures"
-headline: >
+headline: >-
   Navigating Ruby and Rails Upgrades: How We Rescued a Legacy Application from 118 Failing Tests and Critical
   Security Vulnerabilities
-description: >
+description: >-
   Complete guide to upgrading Ruby 3.0.7 to 3.2.7 and Rails 6.1 to 7.1. Real case study achieving 99.15% test success
   while eliminating security risks and technical debt.
 slug: "navigating-ruby-and-rails-upgrades"

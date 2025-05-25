@@ -2,10 +2,10 @@
 date: 2025-04-13 12:00:00 -0600
 title: "Rails Encoding Errors: ASCII-8BIT to UTF-8 Solutions Guide"
 og_title: "Fix Rails Encoding Errors That Block Deployment"
-headline: >
+headline: >-
   Solving Rails Encoding Errors: From ASCII-8BIT Nightmares to UTF-8 Success - A Complete International User Data
   Migration Guide
-description: >
+description: >-
   Fix persistent Rails encoding errors blocking international user migrations. Step-by-step solutions for ASCII-8BIT
   to UTF-8 conversion with real performance gains.
 slug: "solving-rails-encoding-errors"

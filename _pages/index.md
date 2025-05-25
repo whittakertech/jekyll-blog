@@ -32,8 +32,10 @@ developers build better games and growing businesses solve complex technical cha
 ## Recent Blog Posts
 
 {% for post in site.posts limit:3 %}
-### [{{ post.headline }}]({{ post.url }})
-*{{ post.date | date: "%B %d, %Y" }} | {{ post.categories | join: ", " }}*
+
+### [{{ post.headline | default: post.title | escape }}]({{ post.url | relative_url }})
+
+*{{ post.date | date: "%B %d, %Y" }} - {{ post.categories | join: ", " }}*
 
 {{ post.description | default: post.excerpt | strip_html | truncate: 150 }}
 

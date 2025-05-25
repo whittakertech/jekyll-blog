@@ -4,11 +4,11 @@ date: 2025-05-23 10:00:00 -0600
 title: "Database Concurrency Tests: Fix PostgreSQL Race Conditions"
 slug: "when-database-concurrency-tests-lie"
 canonical_url: "https://whittakertech.com/blog/when-database-concurrency-tests-lie/"
-description: > 
+description: >-
   Debug PostgreSQL concurrency issues where RSpec tests pass but database logic fails. Real case study with FOR UPDATE
   SKIP LOCKED and thread synchronization solutions.
 og_title: "When RSpec Tests Pass But Your Database Logic Fails"
-headline: > 
+headline: >-
   When Database Concurrency Tests Lie: How Passing RSpec Tests Hid Critical Race Conditions in a High-Stakes Legal
   System
 categories: ["Ruby on Rails", "Software Development", "Database Architecture"]

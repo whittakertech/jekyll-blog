@@ -2,10 +2,10 @@
 date: 2025-05-22 13:00:00 -0600
 title: "Strategic Code Modification: Custom Shopify Requirements"
 og_title: "Smart Code Changes Without Breaking Your Shopify Theme"
-headline: >
+headline: >-
   When Off-the-Shelf Meets Custom Requirements: How a Simple Prescription Product Request Became an Elegant Conditional
   Checkout Solution
-description: >
+description: >-
   Learn elegant code modification techniques through a real Shopify case study. Handle prescription vs regular products
   with conditional logic while preserving functionality.
 slug: "strategic-code-modification"
