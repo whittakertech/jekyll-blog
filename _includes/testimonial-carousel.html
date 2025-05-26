@@ -1,0 +1,29 @@
+{% assign topic_testimonials = "" | split: "" %}
+{% for person in site.data.testimonials %}
+{% if person.quotes[include.topic] %}
+{% assign topic_testimonials = topic_testimonials | push: person %}
+{% endif %}
+{% endfor %}
+
+<div class="mb-8" x-data="{ current: 0, total: {{ topic_testimonials.size }} }">
+  <h3>{{ include.title }}</h3>
+
+  {% for person in topic_testimonials %}
+  <div x-show="current === {{ forloop.index0 }}">
+    <blockquote>
+      <p>"{{ person.quotes[include.topic] }}"</p>
+      <footer>
+        <cite>
+          <span>{{ person.name }}</span><br>
+          <span>{{ person.title }}, {{ person.company }}</span>
+        </cite>
+      </footer>
+    </blockquote>
+  </div>
+  {% endfor %}
+  <div class="flex justify-between pt-4">
+    <button @click="current = current > 0 ? current - 1 : total - 1">Previous</button>
+    <span x-text="(current + 1) + ' of ' + total"></span>
+    <button @click="current = current < total - 1 ? current + 1 : 0">Next</button>
+  </div>
+</div>
