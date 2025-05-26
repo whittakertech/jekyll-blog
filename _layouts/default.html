@@ -35,7 +35,16 @@
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+        @theme {
+            --color-primary: #ffcc00;      /* Main brand yellow */
+            --color-primary-hover: #ffeb9b; /* Hover yellow */
+            --color-secondary: #63c0f5;    /* Blog blue */
+            --color-dark: #252525;         /* Background */
+            --color-text: #f0e7d5;         /* Main text */
+        }
+    </style>
     <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
 </head>
 <body>
