@@ -37,6 +37,10 @@ solving complex technical challenges for growing businesses.
   concurrency failures
 - **Streamlined prescription product workflows** for e-commerce brands expanding into regulated markets
 
+{::nomarkdown}
+{% include testimonial-carousel.html topic="impact" title="Client Impact" %}
+{:/nomarkdown}
+
 ## Technical Approach
 
 I believe in **systematic problem-solving over quick fixes**. Whether debugging encoding errors that crash international
