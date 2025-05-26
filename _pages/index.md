@@ -29,6 +29,16 @@ developers build better games and growing businesses solve complex technical cha
 
 ---
 
+## Testimonials
+
+{% include testimonial.html person="john" quote="technical" %}
+
+{% include testimonial.html person="jennifer" quote="technical" %}
+
+{% include testimonial.html person="matthew" quote="technical" %}
+
+---
+
 ## Recent Blog Posts
 
 {% for post in site.posts limit:3 %}

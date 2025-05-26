@@ -1,0 +1,22 @@
+{% assign person = site.data.testimonials | where: "slug", include.person | first %}
+{% assign quote_text = person.quotes[include.quote] %}
+
+<blockquote>
+  {% if include.show_topic and include.topic_title %}
+  <h4>
+    {{ include.topic_title }}
+  </h4>
+  {% endif %}
+
+  <p>
+    "{{ quote_text }}"
+  </p>
+
+  <footer>
+    <cite>
+      <span>{{ person.name }}</span><br>
+      <span>{{ person.title }}, {{ person.company }}</span>
+    </cite>
+  </footer>
+</blockquote>
+<br>
