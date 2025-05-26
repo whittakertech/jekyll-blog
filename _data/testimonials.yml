@@ -1,0 +1,114 @@
+- name: "Clayton Coleman"
+  slug: "clayton"
+  title: "COO & Director of Engineering"
+  company: "J-Mack Technologies"
+  relationship: "Direct Supervisor"
+  date: "2025-05-19"
+  categories: ["enterprise", "leadership"]
+  quotes:
+    leadership: >-
+      Project leadership formally recognized Mr. Lee Whittaker's contributions as he led his team to achieve their
+      milestones across multiple program increments while simultaneously mentoring other engineers into greater
+      capability.
+    impact: >-
+      Lee's contributions have significantly improved the efficiency and effectiveness of the Enterprise Program
+      Management Office (EPMO), Benefits and Memorial (BAM) Services Portfolio, enabling the delivery of critical
+      technology solutions to support the Veterans Benefits Administration (VBA) and National Cemetery Administration
+      (NCA).
+    technical: >-
+      Lee stood out as a highly motivated and skilled individual, possessing an impressive proficiency in Ruby on Rails
+      that made him a perfect fit for the engineering role we had available.
+    communication: >-
+      Lee's effective communication with customers and executives further enhances the value he brings to an
+      organization.
+
+- name: "Matthew Thornton"
+  slug: "matthew"
+  title: "Technical Lead"
+  company: "Booz Allen Hamilton"
+  relationship: "Peer Technical Lead"
+  date: "2025-05-18"
+  categories: ["enterprise", "technical"]
+  quotes:
+    technical: >-
+      Lee's knowledge in all of the many realms of software engineering, particularly with Ruby on Rails, Javascript
+      frameworks, and architectural best practices was very apparent and shone through within many of our technical
+      leadership meetings and planning activities.
+    leadership: >-
+      Lee absolutely raised the bar for our entire product line in that regard. He presented all of his findings and
+      desired path forward to our internal Architectural Review Board, and his presentation received glowing reviews.
+    impact: >-
+      Under Lee's leadership his team performed some of the fastest, issue-free development I think we've ever seen. His
+      thoughtfulness, foresight, and ability to hop into the trenches as needed to help anyone who is a bit stuck has
+      propelled his team towards completing with their work far ahead of what was previously forecasted.
+    communication: >-
+      Lee did a fantastic job communicating with the rest of our team about his progress, in asking questions and
+      eliminating potential blockers, and documenting his proposed technical solution.
+
+- name: "Jennifer Haymond"
+  slug: "jennifer"
+  title: "Director of HR"
+  company: "J-Mack Technologies"
+  relationship: "HR Leadership"
+  date: "2025-05-15"
+  categories: ["enterprise", "communication"]
+  quotes:
+    professional: >-
+      Lee has quickly established themselves as a valuable team member, demonstrating strong technical skills,
+      professionalism, and the ability to engage effectively with both colleagues and clients.
+    technical: >-
+      Lee brings over ten years of experience working with Ruby on Rails, and they've applied that expertise to our
+      client-facing projects with speed and precision. Their skillset also includes React, MySQL, and AWS, making them
+      a well-rounded full-stack developer capable of delivering scalable, high-quality solutions.
+    communication: >-
+      Beyond their technical strengths, Lee is comfortable interfacing directly with clients, translating complex needs
+      into actionable requirements, and ensuring that deliverables align with expectations. They communicate clearly and
+      thoughtfully, and their collaborative style makes them a trusted resource on any project.
+    impact: >-
+      Though their tenure with us has been under a year, Lee has made a lasting impact and shown the kind of initiative
+      and maturity that are rare even in more senior professionals.
+
+- name: "John Petersen"
+  slug: "john"
+  title: "Founder"
+  company: "PetersenWest"
+  relationship: "Long-term Colleague"
+  date: "2025-05-15"
+  categories: ["design", "leadership"]
+  quotes:
+    technical: >-
+      Lee brings over 10 years of hands-on Ruby on Rails experience and has a strong command of technologies like React,
+      MySQL, and AWS. He's the rare kind of developer who not only writes clean, efficient code but also deeply
+      understands design thinking and user experience.
+    leadership: >-
+      Lee's the kind of team member who quietly makes everyone around him better—steadily raising the bar without
+      needing the spotlight.
+    communication: >-
+      Clients love working with Lee because he listens well, communicates clearly, and always delivers on what he
+      promises.
+    professional: >-
+      Beyond his technical skillset, Lee is incredibly conscientious, reliable, and loyal. If you're looking for a
+      full-stack developer who can speak both 'code' and 'client,' lead with calm confidence, and bring a decade of
+      experience to your team, Lee is your guy.
+
+- name: "AmyLynn Hanson"
+  slug: "amylynn"
+  title: "Owner"
+  company: "Hello Dancer Photography"
+  relationship: "Long-term Client"
+  date: "2025-05-22"
+  categories: ["client", "communication"]
+  quotes:
+    technical: >-
+      Lee brings over ten years of hands-on experience with Ruby on Rails, coupled with a strong proficiency in modern
+      web technologies including React, MySQL, and AWS. His ability to architect and maintain scalable, high-performing
+      website applications is complemented by a deep understanding of full-stack development.
+    communication: >-
+      Lee is unafraid to express his thoughts of a project when working with clients. He is articulate, thoughtful, and
+      able to translate complex technical concepts into clear, client-friendly language.
+    impact: >-
+      Lee played a key role in the development of our bespoke website. This background has further enhanced his
+      creative mind and professional polish.
+    professional: >-
+      Lee consistently demonstrates quick and proficient coding practices, efficient problem-solving, and a keen
+      attention to detail—qualities that make him a standout in any technical team."
