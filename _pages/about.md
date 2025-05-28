@@ -2,7 +2,7 @@
 layout: page
 title: About Lee Whittaker
 permalink: /about/
-description: >
+description: >-
   Lee Whittaker - Unity game developer and Rails consultant helping indie developers and growing businesses solve
   complex technical challenges.
 ---
