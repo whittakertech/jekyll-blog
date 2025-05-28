@@ -129,6 +129,10 @@ Most importantly, the client maintained full control. They can easily identify p
 built-in features (tags, product types, or collections) without touching code. The solution scales with their business
 rather than constraining it.
 
+{::nomarkdown}
+{% include testimonial.html person="jennifer" quote="professional" %}
+{:/nomarkdown}
+
 ## Key Takeaways
 
 This project reinforced several important lessons for strategic code modification:
