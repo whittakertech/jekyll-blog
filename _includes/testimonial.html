@@ -3,15 +3,9 @@
 
 <blockquote>
   {% if include.show_topic and include.topic_title %}
-  <h4>
-    {{ include.topic_title }}
-  </h4>
+    <h4>{{ include.topic_title }}</h4>
   {% endif %}
-
-  <p>
-    "{{ quote_text }}"
-  </p>
-
+  <p>"{{ quote_text }}"</p>
   <footer>
     <cite>
       <span>{{ person.name }}</span><br>

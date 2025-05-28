@@ -29,13 +29,17 @@ developers build better games and growing businesses solve complex technical cha
 
 ---
 
-## Testimonials
+## What Clients Say
 
-{% include testimonial.html person="john" quote="technical" %}
+{::nomarkdown}
+{% include testimonial.html person="clayton" quote="impact" %}
+{:/nomarkdown}
 
-{% include testimonial.html person="jennifer" quote="technical" %}
+{::nomarkdown}
+{% include testimonial.html person="matthew" quote="leadership" %}
+{:/nomarkdown}
 
-{% include testimonial.html person="matthew" quote="technical" %}
+[See all testimonials →](/testimonials/)
 
 ---
 
