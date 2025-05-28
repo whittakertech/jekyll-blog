@@ -36,6 +36,10 @@ extended, and deployment confidence erodes when "simple" data operations become 
 targeting European or Latin American markets, proper character encoding isn't optional – it's fundamental to market
 viability.
 
+{::nomarkdown}
+{% include testimonial.html person="jennifer" quote="communication" %}
+{:/nomarkdown}
+
 ## The Obstacles
 
 Character encoding errors in Rails applications persist for several interconnected reasons that most development teams
@@ -249,6 +253,10 @@ international datasets, with search operations completing in under 2 seconds ins
 issues: Unicode-based SQL injection attempts, directory traversal attacks through malformed filenames, and data
 corruption that could expose sensitive information through encoding conversion errors.
 
+{::nomarkdown}
+{% include testimonial.html person="amylynn" quote="technical" %}
+{:/nomarkdown}
+
 **Global Market Readiness**: Applications properly handle international user data from day one, enabling confident
 expansion into European and Latin American markets. A SaaS platform successfully onboarded 10,000 Spanish-speaking
 users without a single encoding-related support ticket.
@@ -270,10 +278,14 @@ This project reinforced several critical principles for managing character encod
 
 1. **Encoding-First Design**: Configure UTF-8 at every layer from the start, rather than retrofitting after problems
    emerge
+
 2. **Defensive Input Handling**: Validate and sanitize all text input for proper encoding before processing
+
 3. **Environment Independence**: Use Unicode escape sequences and explicit encoding declarations to ensure consistent
    behavior across development environments
+
 4. **Graceful Degradation**: Implement fallback strategies for edge cases while maintaining application functionality
+
 5. **Security-Aware Validation**: Treat encoding validation as a security requirement, not just a display concern
 
 For organizations serious about global markets, proper encoding handling isn't just a technical requirement – it's a

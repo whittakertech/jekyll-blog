@@ -144,7 +144,17 @@ of IDE warnings that were slowing daily development work.
 **Risk Mitigation**: Moved from an unsupported Ruby version with potential security vulnerabilities to a current,
 actively maintained platform.
 
+The organization can now focus on feature development rather than infrastructure concerns, with a solid foundation for future growth.
+
+{::nomarkdown}
+{% include testimonial.html person="clayton" quote="impact" %}
+{:/nomarkdown}
+
 ## Key Principles for Legacy Upgrades
+
+{::nomarkdown}
+{% include testimonial.html person="matthew" quote="leadership" %}
+{:/nomarkdown}
 
 This project reinforced several critical principles for managing complex system upgrades:
 

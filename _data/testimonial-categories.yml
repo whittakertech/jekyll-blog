@@ -1,0 +1,30 @@
+categories:
+  - key: "technical"
+    display_name: "Technical Excellence"
+    description: "Deep expertise in Ruby on Rails, Unity development, and software architecture that delivers scalable, high-quality solutions."
+    icon: "🔧"
+    order: 1
+
+  - key: "leadership"
+    display_name: "Leadership & Mentorship"
+    description: "Proven ability to lead development teams, mentor engineers, and drive projects to successful completion while raising team capabilities."
+    icon: "👥"
+    order: 2
+
+  - key: "communication"
+    display_name: "Client Communication"
+    description: "Clear, thoughtful communication with stakeholders, translating complex technical concepts into actionable business requirements."
+    icon: "💬"
+    order: 3
+
+  - key: "impact"
+    display_name: "Business Impact"
+    description: "Measurable improvements in efficiency, performance, and delivery that directly contribute to organizational success."
+    icon: "📈"
+    order: 4
+
+  - key: "professional"
+    display_name: "Professional Excellence"
+    description: "Reliability, initiative, and professional maturity that makes every project and team interaction more successful."
+    icon: "⭐"
+    order: 5

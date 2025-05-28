@@ -2,7 +2,7 @@
 layout: page
 title: About Lee Whittaker
 permalink: /about/
-description: >
+description: >-
   Lee Whittaker - Unity game developer and Rails consultant helping indie developers and growing businesses solve
   complex technical challenges.
 ---
@@ -36,6 +36,10 @@ solving complex technical challenges for growing businesses.
 - **Exposed critical race conditions** in legal hearing scheduling systems where passing tests were hiding dangerous
   concurrency failures
 - **Streamlined prescription product workflows** for e-commerce brands expanding into regulated markets
+
+{::nomarkdown}
+{% include testimonial-carousel.html topic="impact" title="Client Impact" %}
+{:/nomarkdown}
 
 ## Technical Approach
 

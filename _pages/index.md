@@ -29,6 +29,20 @@ developers build better games and growing businesses solve complex technical cha
 
 ---
 
+## What Clients Say
+
+{::nomarkdown}
+{% include testimonial.html person="clayton" quote="impact" %}
+{:/nomarkdown}
+
+{::nomarkdown}
+{% include testimonial.html person="matthew" quote="leadership" %}
+{:/nomarkdown}
+
+[See all testimonials →](/testimonials/)
+
+---
+
 ## Recent Blog Posts
 
 {% for post in site.posts limit:3 %}

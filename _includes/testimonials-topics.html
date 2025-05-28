@@ -1,0 +1,11 @@
+{% assign sorted_categories = site.data.testimonial-categories.categories | sort: "order" %}
+
+<h2>Testimonials by Topic</h2>
+
+{% for category in sorted_categories %}
+    <h3>{{ category.icon}} {{ category.display_name }}</h3>
+    <p>{{ category.description }}</p>
+
+    {% include testimonial-carousel.html topic=category.key %}
+    {% unless forloop.last %}<hr>{% endunless %}
+{% endfor %}
