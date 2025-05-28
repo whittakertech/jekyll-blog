@@ -1,0 +1,26 @@
+{% assign sorted_categories = site.data.testimonial-categories.categories | sort: "order" %}
+
+<h2>Testimonials by Person</h2>
+
+{% for person in site.data.testimonials %}
+    <h3>{{ person.name }}</h3>
+    <p><em>{{ person.title }}, {{ person.company }}</em> • {{ person.relationship }}</p>
+    {% for quote in person.quotes %}
+        {% assign quote_key = quote[0] %}
+        {% assign quote_text = quote[1] %}
+        {% assign category = null %}
+        {% for cat in sorted_categories %}
+            {% if cat.key == quote_key %}
+                {% assign category = cat %}
+                {% break %}
+            {% endif %}
+        {% endfor %}
+        {% if category %}
+            {% capture header %}
+                {{ category.icon }} {{ category.display_name }}
+            {% endcapture %}
+            {% include accordion.html header=header content=quote_text %}
+        {% endif %}
+    {% endfor %}
+    {% unless forloop.last %}<hr>{% endunless %}
+{% endfor %}

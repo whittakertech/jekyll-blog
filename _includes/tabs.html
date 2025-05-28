@@ -30,7 +30,11 @@
          id="panel-{{ forloop.index0 }}"
          aria-labelledby="tab-{{ forloop.index0 }}"
          :tabindex="activeTab === {{ forloop.index0 }} ? '0' : '-1'">
-      {{ tab.content  }}
+      {% if tab.include %}
+        {% include {{ tab.include }} %}
+      {% elsif tab.content %}
+        {{ tab.content  }}
+      {% endif %}
     </div>
     {% endfor %}
   </div>
