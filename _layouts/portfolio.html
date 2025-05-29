@@ -1,0 +1,242 @@
+---
+layout: default
+---
+
+<div class="portfolio-page">
+    <!-- Hero Section -->
+    <header class="portfolio-hero text-white py-16">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <h1 class="text-5xl font-bold mb-6">{{ page.title }}</h1>
+                <p class="text-xl text-blue-100 mb-8">{{ page.subtitle }}</p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    {% for tech in page.technologies %}
+                    <span class="tech-badge bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium">{{ tech }}</span>
+                    {% endfor %}
+                </div>
+                {% if page.project_url %}
+                <div class="mt-8">
+                    <a href="{{ page.project_url }}" target="_blank" rel="noopener" class="bg-white/20 backdrop-blur-sm hover:bg-white/30 px-6 py-3 rounded-lg font-medium transition-all duration-300 inline-block">
+                        View Project
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+
+    <!-- Project Metadata -->
+    <section class="py-8 border-b">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-3 gap-6 text-center">
+                    <div>
+                        <h3 class="font-semibold text-gray-900 mb-2">Project Date</h3>
+                        <p class="text-gray-300">{{ page.date | date: "%B %Y" }}</p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-gray-900 mb-2">Categories</h3>
+                        <div class="flex flex-wrap justify-center gap-2">
+                            {% for category in page.categories %}
+                            <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">{{ category }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-gray-900 mb-2">Technologies</h3>
+                        <div class="flex flex-wrap justify-center gap-2">
+                            {% assign tag_limit = 5 %}
+                            {% for tag in page.tags limit: tag_limit %}
+                            <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">{{ tag }}</span>
+                            {% endfor %}
+                            {% if page.tags.size > tag_limit %}
+                            <span class="text-gray-500 text-sm">+{{ page.tags.size | minus: tag_limit }} more</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hero Image -->
+    {% if page.hero_image %}
+    <section class="py-8">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                {% include image_tag.html image_path=page.hero_image alt='Choir Site screenshot' suffix=page.hero_image_suffix %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- Main Content -->
+    <main>
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="prose prose-lg max-w-none">
+                    {{ content }}
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Navigation -->
+    {% assign portfolio_posts = site.portfolio | sort: 'date' | reverse %}
+    {% assign current_index = portfolio_posts | map: 'slug' | index: page.slug %}
+
+    {% comment %} Calculate indices with bounds checking {% endcomment %}
+    {% assign total_posts = portfolio_posts.size %}
+    {% assign next_index = current_index | plus: 1 %}
+    {% assign prev_index = current_index | minus: 1 %}
+
+    {% comment %} Only assign posts if indices are valid {% endcomment %}
+    {% assign next_post = null %}
+    {% assign prev_post = null %}
+
+    {% if next_index < total_posts %}
+    {% assign next_post = portfolio_posts[next_index] %}
+    {% endif %}
+
+    {% if prev_index >= 0 and current_index > 0 %}
+    {% assign prev_post = portfolio_posts[prev_index] %}
+    {% endif %}
+
+    {% if prev_post or next_post %}
+    <nav class="py-12 border-t">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-8">
+                    {% if prev_post %}
+                    <div class="text-left">
+                        <span class="text-sm text-gray-500 uppercase tracking-wide">Previous Project</span>
+                        <h3 class="text-xl font-semibold text-gray-900 mt-2">
+                            <a href="{{ prev_post.url }}" class="hover:text-primary transition-colors">
+                                {{ prev_post.title }}
+                            </a>
+                        </h3>
+                        <p class="text-gray-600 mt-1">{{ prev_post.subtitle }}</p>
+                    </div>
+                    {% endif %}
+
+                    {% if next_post %}
+                    <div class="text-right">
+                        <span class="text-sm text-gray-500 uppercase tracking-wide">Next Project</span>
+                        <h3 class="text-xl font-semibold text-gray-900 mt-2">
+                            <a href="{{ next_post.url }}" class="hover:text-primary transition-colors">
+                                {{ next_post.title }}
+                            </a>
+                        </h3>
+                        <p class="text-gray-600 mt-1">{{ next_post.subtitle }}</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+    {% endif %}
+
+    <!-- Call to Action -->
+    <section class="py-16 text-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl font-bold mb-4">Interested in working together?</h2>
+                <p class="text-blue-100 mb-8">
+                    Let's discuss how I can help with your {{ page.categories[0] | downcase }} project.
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="/portfolio/" class="bg-white/20 backdrop-blur-sm hover:bg-white/30 px-6 py-3 rounded-lg font-medium transition-all duration-300">
+                        View More Projects
+                    </a>
+                    <a href="/contact/" class="bg-white/20 backdrop-blur-sm hover:bg-white/30 px-6 py-3 rounded-lg font-medium transition-all duration-300">
+                        Get In Touch
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<style>
+    .gradient-bg {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .tech-badge {
+        transition: all 0.3s ease;
+    }
+
+    .tech-badge:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .portfolio-page .prose {
+        --tw-prose-headings: theme('colors.gray.900');
+        --tw-prose-links: theme('colors.primary');
+        --tw-prose-bold: theme('colors.gray.900');
+        --tw-prose-counters: theme('colors.gray.600');
+        --tw-prose-bullets: theme('colors.gray.400');
+        --tw-prose-quotes: theme('colors.gray.900');
+        --tw-prose-quote-borders: theme('colors.gray.300');
+        --tw-prose-code: theme('colors.gray.900');
+        --tw-prose-pre-code: theme('colors.gray.100');
+        --tw-prose-pre-bg: theme('colors.gray.900');
+    }
+
+    .portfolio-page .prose code {
+        background-color: theme('colors.gray.100');
+        padding: 0.25rem 0.375rem;
+        border-radius: 0.25rem;
+        font-size: 0.875em;
+    }
+
+    .portfolio-page .prose pre {
+        background-color: #1a1a1a;
+        border-radius: 0.5rem;
+        overflow-x: auto;
+    }
+
+    .portfolio-page .prose pre code {
+        background-color: transparent;
+        padding: 0;
+        border-radius: 0;
+        color: #e6e6e6;
+    }
+
+    .portfolio-page .prose h2 {
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid theme('colors.gray.200');
+    }
+
+    .portfolio-page .prose h3 {
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+        color: theme('colors.primary');
+    }
+
+    .portfolio-page .prose ul > li::marker {
+        color: theme('colors.primary');
+    }
+
+    .portfolio-page .prose blockquote {
+        border-left: 4px solid theme('colors.primary');
+        background-color: theme('colors.primary') / 0.05;
+        padding: 1rem 1.5rem;
+        border-radius: 0 0.5rem 0.5rem 0;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .portfolio-hero h1 {
+            font-size: 2.5rem;
+        }
+
+        .portfolio-hero p {
+            font-size: 1.125rem;
+        }
+    }
+</style>
+

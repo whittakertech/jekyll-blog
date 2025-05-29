@@ -1,0 +1,9 @@
+{% assign image_path = include.image_path %}
+{% assign suffix = include.suffix %}
+<img src="{{ image_path | append: '-1920w' | append: suffix | relative_url }}"
+     srcset="{{ image_path | append: '-320w' | append: suffix | relative_url }} 320w,
+             {{ image_path | append: '-640w' | append: suffix | relative_url }} 640w,
+             {{ image_path | append: '-1024w' | append: suffix | relative_url }} 1024w,
+             {{ image_path | append: '-1920w' | append: suffix | relative_url }} 1920w"
+     class="w-full rounded-lg shadow-lg"
+     alt="{{ include.alt }}">

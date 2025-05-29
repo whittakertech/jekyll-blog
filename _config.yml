@@ -52,6 +52,9 @@ collections:
   posts:
     output: true
     permalink: /blog/:title/  # Redundant but explicit
+  portfolio:
+    output: true
+    permalink: /portfolio/:title/
 
 defaults:
   - scope:
@@ -75,6 +78,12 @@ defaults:
       path: "blog"
     values:
       layout: "blog"
+      robots: "index, follow"
+      sitemap: true
+  - scope:
+      path: "portfolio"
+    values:
+      layout: "portfolio"
       robots: "index, follow"
       sitemap: true
 
