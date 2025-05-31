@@ -1,7 +1,7 @@
-# Jekyll Development Makefile for Docker
+# Jekyll Development Makefile with Tailwind CSS Support
 # Usage: make <target>
 
-.PHONY: help install build serve stop clean restart logs shell bundle-install bundle-update new-post deploy status
+.PHONY: help install build serve stop clean restart logs shell bundle-install bundle-update new-post deploy status build-css watch-css
 
 # Default target
 help: ## Show this help message
@@ -9,43 +9,59 @@ help: ## Show this help message
 	@echo ""
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
 
-# Development Commands
+# Installation and Setup
 install: ## Install dependencies and build container
-	@echo "� Installing dependencies..."
+	@echo "🔧 Installing dependencies..."
 	docker-compose build --no-cache
 	docker-compose run --rm jekyll bundle install
+	docker-compose run --rm jekyll npm install
 	@echo "✅ Installation complete!"
 
-build: ## Build the Jekyll site
-	@echo "�️  Building Jekyll site..."
+# CSS Build Commands
+build-css: ## Build Tailwind CSS (production)
+	@echo "🎨 Building Tailwind CSS for production..."
+	docker-compose run --rm jekyll npm run build:css-prod
+	@echo "✅ CSS build complete!"
+
+watch-css: ## Watch and rebuild Tailwind CSS
+	@echo "👀 Watching Tailwind CSS for changes..."
+	docker-compose run --rm jekyll npm run build:css
+
+build: ## Build the Jekyll site with CSS
+	@echo "🏗️  Building Jekyll site..."
+	$(MAKE) build-css
 	docker-compose run --rm jekyll bundle exec jekyll build
 	@echo "✅ Build complete!"
 
-serve: ## Start the development server
-	@echo "� Starting Jekyll development server..."
-	@echo "� Site will be available at: http://localhost:4000"
-	@echo "� LiveReload available at: http://localhost:35729"
-	docker-compose up -d
+# Development Commands
+serve: ## Start the development server with CSS watching
+	@echo "🚀 Starting Jekyll development server with Tailwind CSS..."
+	@echo "📱 Site will be available at: http://localhost:4000"
+	@echo "🎨 Tailwind CSS will rebuild automatically"
+	docker-compose up
+
+dev: ## Start development with CSS watching (alias for serve)
+	$(MAKE) serve
 
 stop: ## Stop the development server
-	@echo "� Stopping Jekyll development server..."
+	@echo "🛑 Stopping Jekyll development server..."
 	docker-compose down
 
 restart: ## Restart the development server (useful after config changes)
-	@echo "� Restarting Jekyll development server..."
+	@echo "🔄 Restarting Jekyll development server..."
 	docker-compose down
-	docker-compose up -d
+	$(MAKE) serve
 
 clean: ## Clean up build artifacts and caches
-	@echo "� Cleaning up..."
+	@echo "🧹 Cleaning up..."
 	docker-compose down
 	docker-compose run --rm jekyll bundle exec jekyll clean
-	rm -rf .jekyll-cache _site
+	rm -rf .jekyll-cache _site assets/css/output.css
 	@echo "✅ Cleanup complete!"
 
 # Dependency Management
 bundle-install: ## Install/update gems
-	@echo "� Installing gems..."
+	@echo "💎 Installing gems..."
 	docker-compose run --rm jekyll bundle install
 	@echo "✅ Gems installed!"
 
@@ -59,9 +75,19 @@ bundle-add: ## Add a new gem (usage: make bundle-add GEM=gem-name)
 		echo "❌ Please specify a gem: make bundle-add GEM=gem-name"; \
 		exit 1; \
 	fi
-	@echo "� Adding gem: $(GEM)"
+	@echo "📦 Adding gem: $(GEM)"
 	docker-compose run --rm jekyll bundle add $(GEM)
 	@echo "✅ Gem $(GEM) added!"
+
+npm-install: ## Install npm dependencies
+	@echo "📦 Installing npm dependencies..."
+	docker-compose run --rm jekyll npm install
+	@echo "✅ NPM dependencies installed!"
+
+npm-update: ## Update npm dependencies
+	@echo "⬆️  Updating npm dependencies..."
+	docker-compose run --rm jekyll npm update
+	@echo "✅ NPM dependencies updated!"
 
 # Content Management
 new-post: ## Create a new blog post (usage: make new-post TITLE="Post Title")
@@ -72,12 +98,15 @@ new-post: ## Create a new blog post (usage: make new-post TITLE="Post Title")
 	@DATE=$$(date +%Y-%m-%d); \
 	SLUG=$$(echo "$(TITLE)" | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g' | sed 's/[^a-z0-9-]//g'); \
 	FILENAME="_posts/$$DATE-$$SLUG.md"; \
-	echo "� Creating new post: $$FILENAME"; \
+	echo "📝 Creating new post: $$FILENAME"; \
 	mkdir -p _posts; \
 	echo "---" > $$FILENAME; \
 	echo "layout: post" >> $$FILENAME; \
 	echo "title: \"$(TITLE)\"" >> $$FILENAME; \
 	echo "date: $$(date '+%Y-%m-%d %H:%M:%S %z')" >> $$FILENAME; \
+	echo "slug: \"$$SLUG\"" >> $$FILENAME; \
+	echo "canonical_url: \"https://whittakertech.com/blog/$$SLUG/\"" >> $$FILENAME; \
+	echo "description: \"\"" >> $$FILENAME; \
 	echo "categories: []" >> $$FILENAME; \
 	echo "tags: []" >> $$FILENAME; \
 	echo "---" >> $$FILENAME; \
@@ -95,55 +124,20 @@ new-page: ## Create a new page (usage: make new-page TITLE="Page Title" PERMALIN
 		exit 1; \
 	fi
 	@SLUG=$$(echo "$(TITLE)" | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g' | sed 's/[^a-z0-9-]//g'); \
-	FILENAME="$$SLUG.md"; \
-	echo "� Creating new page: $$FILENAME"; \
+	FILENAME="_pages/$$SLUG.md"; \
+	echo "📄 Creating new page: $$FILENAME"; \
+	mkdir -p _pages; \
 	echo "---" > $$FILENAME; \
 	echo "layout: page" >> $$FILENAME; \
 	echo "title: \"$(TITLE)\"" >> $$FILENAME; \
 	echo "permalink: $(PERMALINK)" >> $$FILENAME; \
+	echo "description: \"\"" >> $$FILENAME; \
 	echo "---" >> $$FILENAME; \
 	echo "" >> $$FILENAME; \
 	echo "Your page content goes here..." >> $$FILENAME; \
 	echo "✅ Page created: $$FILENAME"
 
-# Debugging and Maintenance
-logs: ## Show Jekyll server logs
-	docker-compose logs -f jekyll
-
-shell: ## Open a shell in the Jekyll container
-	@echo "� Opening shell in Jekyll container..."
-	docker-compose run --rm jekyll sh
-
-status: ## Show container status
-	@echo "� Container Status:"
-	docker-compose ps
-
-# Production/Deployment
-deploy-build: ## Build for production (GitHub Pages)
-	@echo "� Building for production..."
-	JEKYLL_ENV=production docker-compose run --rm jekyll bundle exec jekyll build
-	@echo "✅ Production build complete!"
-
-# Setup and Reset
-fresh-start: ## Complete fresh start (removes everything)
-	@echo "⚠️  This will remove all containers, images, and volumes. Continue? [y/N]" && read ans && [ $${ans:-N} = y ]
-	@echo "�️  Removing all Docker resources..."
-	docker-compose down -v --rmi all
-	rm -rf .jekyll-cache _site Gemfile.lock
-	@echo "� Rebuilding from scratch..."
-	$(MAKE) install
-	@echo "✅ Fresh start complete!"
-
-reset-gems: ## Reset and reinstall all gems
-	@echo "� Resetting gems..."
-	rm -f Gemfile.lock
-	docker-compose down
-	docker-compose build --no-cache
-	$(MAKE) bundle-install
-	@echo "✅ Gems reset complete!"
-
-# Add these to your existing Makefile
-
+# Draft Management
 new-draft: ## Create a new draft post
 	@if [ -z "$(TITLE)" ]; then \
 		echo "❌ Please specify a title: make new-draft TITLE=\"Your Draft Title\""; \
@@ -184,16 +178,52 @@ publish-draft: ## Move draft to posts (usage: make publish-draft SLUG=draft-slug
 
 serve-drafts: ## Serve site with drafts included
 	@echo "🚀 Starting Jekyll with drafts..."
-	docker-compose run --rm -p 4000:4000 jekyll bundle exec jekyll serve --host 0.0.0.0 --drafts --future
+	docker-compose run --rm -p 4000:4000 jekyll bash -c "npm run build:css && bundle exec jekyll serve --host 0.0.0.0 --drafts --future"
 
-preview-deploy: ## Deploy preview with drafts
-	@echo "📝 Deploying preview..."
-	git checkout -b drafts 2>/dev/null || git checkout drafts
-	git add .
-	git commit -m "Preview: $$(date)" || echo "No changes to commit"
-	git push origin drafts
-	@echo "✅ Preview deployed! Check GitHub Actions for preview URL"
+# Debugging and Maintenance
+logs: ## Show Jekyll server logs
+	docker-compose logs -f jekyll
 
+shell: ## Open a shell in the Jekyll container
+	@echo "🐚 Opening shell in Jekyll container..."
+	docker-compose run --rm jekyll sh
+
+status: ## Show container status
+	@echo "📊 Container Status:"
+	docker-compose ps
+
+# Production/Deployment
+deploy-build: ## Build for production (GitHub Pages)
+	@echo "🚀 Building for production..."
+	JEKYLL_ENV=production docker-compose run --rm jekyll bash -c "npm run build:css-prod && bundle exec jekyll build"
+	@echo "✅ Production build complete!"
+
+# Setup and Reset
+fresh-start: ## Complete fresh start (removes everything)
+	@echo "⚠️  This will remove all containers, images, and volumes. Continue? [y/N]" && read ans && [ $${ans:-N} = y ]
+	@echo "🗑️  Removing all Docker resources..."
+	docker-compose down -v --rmi all
+	rm -rf .jekyll-cache _site Gemfile.lock node_modules package-lock.json assets/css/output.css
+	@echo "🔧 Rebuilding from scratch..."
+	$(MAKE) install
+	@echo "✅ Fresh start complete!"
+
+reset-gems: ## Reset and reinstall all gems
+	@echo "💎 Resetting gems..."
+	rm -f Gemfile.lock
+	docker-compose down
+	docker-compose build --no-cache
+	$(MAKE) bundle-install
+	@echo "✅ Gems reset complete!"
+
+reset-css: ## Reset and rebuild CSS
+	@echo "🎨 Resetting CSS..."
+	rm -f assets/css/output.css node_modules package-lock.json
+	$(MAKE) npm-install
+	$(MAKE) build-css
+	@echo "✅ CSS reset complete!"
+
+# Content Validation
 validate-content: ## Run content validation locally
 	@echo "🔍 Running content validation..."
 	@for file in _posts/*.md; do \
@@ -207,7 +237,23 @@ validate-content: ## Run content validation locally
 	done
 	@echo "✅ All validation passed!"
 
+# Development Quality Checks
+check-css: ## Check if Tailwind CSS is built
+	@if [ -f "assets/css/output.css" ]; then \
+		echo "✅ Tailwind CSS is built"; \
+		echo "📊 File size: $$(du -h assets/css/output.css | cut -f1)"; \
+	else \
+		echo "❌ Tailwind CSS not built. Run 'make build-css'"; \
+		exit 1; \
+	fi
+
+check-deps: ## Check if all dependencies are installed
+	@echo "🔍 Checking dependencies..."
+	@docker-compose run --rm jekyll bundle check || echo "❌ Gems missing - run 'make bundle-install'"
+	@docker-compose run --rm jekyll npm list --depth=0 || echo "❌ NPM packages missing - run 'make npm-install'"
+	@echo "✅ Dependency check complete!"
+
 # Quick shortcuts
-dev: serve ## Alias for serve
 up: serve ## Alias for serve
 down: stop ## Alias for stop
+css: build-css ## Alias for build-css
