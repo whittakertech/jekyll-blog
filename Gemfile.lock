@@ -17,8 +17,8 @@ GEM
     addressable (2.8.7)
       public_suffix (>= 2.0.2, < 7.0)
     base64 (0.2.0)
-    benchmark (0.4.0)
-    bigdecimal (3.1.9)
+    benchmark (0.4.1)
+    bigdecimal (3.2.1)
     coffee-script (2.4.1)
       coffee-script-source
       execjs
@@ -27,7 +27,7 @@ GEM
     commonmarker (0.23.11)
     concurrent-ruby (1.3.5)
     connection_pool (2.5.3)
-    csv (3.3.4)
+    csv (3.3.5)
     dnsruby (1.72.4)
       base64 (~> 0.2.0)
       logger (~> 1.6.5)
@@ -54,6 +54,7 @@ GEM
     ffi (1.17.2-x86_64-darwin)
     ffi (1.17.2-x86_64-linux-gnu)
     ffi (1.17.2-x86_64-linux-musl)
+    foreman (0.88.1)
     forwardable-extended (2.6.0)
     gemoji (4.1.0)
     github-pages (232)
@@ -303,6 +304,7 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
+  foreman
   github-pages
   tzinfo (>= 1, < 3)
   tzinfo-data
