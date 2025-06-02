@@ -41,12 +41,13 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
 
     <!-- Tailwind CSS compiled output -->
-    <link rel="stylesheet" href="{{ '/assets/css/output.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/output.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{ '/favicon.ico' | relative_url }}">
 
-    <link rel="preload" href="/assets/images/icons.svg" as="image" type="image/svg+xml">
+    <!-- Icons.svg -->
+    <link rel="preload" href="/assets/images/icons.svg?v={{ site.time | date: '%s' }}" as="image">
 </head>
 
 <body class="bg-dark text-text min-h-screen flex flex-col">

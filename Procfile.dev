@@ -1,0 +1,2 @@
+web: bundle exec jekyll serve --host 0.0.0.0 --livereload --incremental
+css: npm run build:css

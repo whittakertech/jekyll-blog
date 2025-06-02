@@ -18,9 +18,9 @@ services:
     # Enhanced command that builds CSS and starts Jekyll with live reload
     command: >
       sh -c "
+        bundle install &&
         npm install &&
-        npm run build:css &
-        bundle exec jekyll serve --host 0.0.0.0 --livereload --incremental
+        bundle exec foreman start -f Procfile.dev
       "
 
 volumes:

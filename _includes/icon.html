@@ -1,4 +1,18 @@
 {% assign size = include.size | default: 5 %}
-<svg class="w-5 h-5 {{ include.class }}">
+{% case size %}
+  {% when 3 %}
+    {% assign size_class = 'w-3 h-3' %}
+  {% when 4 %}
+    {% assign size_class = 'w-4 h-4' %}
+  {% when 5 %}
+    {% assign size_class = 'w-5 h-5' %}
+  {% when 6 %}
+    {% assign size_class = 'w-6 h-6' %}
+  {% when 8 %}
+    {% assign size_class = 'w-8 h-8' %}
+  {% else %}
+    {% assign size_class = 'w-5 h-5' %}
+{% endcase %}
+<svg xmlns="http://www.w3.org/2000/svg" class="{{ size_class }} {{ include.class }}">
   <use href="/assets/images/icons.svg#{{ include.name }}"></use>
 </svg>

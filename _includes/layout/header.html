@@ -23,9 +23,7 @@
       <div class="md:hidden">
         <button x-data @click="$dispatch('toggle-mobile-menu')"
                 class="text-text hover:text-primary p-2 rounded-md transition-colors">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
+          {% include icon.html name='hamburger-menu' size=6 %}
         </button>
       </div>
     </div>
