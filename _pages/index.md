@@ -1,5 +1,5 @@
 ---
-layout: home
+layout: default
 title: Home
 description: >
   Unity development, Rails consulting, and custom software solutions for games and web applications

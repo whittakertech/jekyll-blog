@@ -12,22 +12,19 @@
         @apply bg-dark text-text antialiased;
         font-family: 'Inter', system-ui, sans-serif;
     }
-
-    /* Improved focus styles for accessibility */
-    *:focus {
-        @apply ring-2 ring-primary/50 ring-offset-2 ring-offset-dark outline-none;
-    }
 }
 
 /* Custom component styles */
 @layer components {
     /* Navigation styles */
     .nav-link {
-        @apply px-4 py-2 rounded-md text-text hover:text-primary hover:bg-text/10 transition-colors duration-200 font-medium;
-    }
+        @apply px-4 py-2 rounded-md text-text hover:text-primary;
+        @apply hover:bg-text hover:bg-opacity-10 transition-colors duration-200;
+        @apply font-medium;
 
-    .nav-link.current {
-        @apply text-primary bg-primary/10 border-b-2 border-primary;
+        &.current {
+            @apply text-primary bg-primary/10 border-b-2 border-primary;
+        }
     }
 
     /* Button components */
@@ -58,15 +55,14 @@
 
     .post-card {
         @apply card hover:border-primary/30;
-    }
 
-    .post-card h3 {
-        @apply transition-colors duration-200;
-    }
+        h3 {
+            @apply transition-colors duration-200;
+        }
 
-    /* Group hover effect handled separately */
-    .post-card:hover h3 {
-        @apply text-primary;
+        &:hover h3 {
+            @apply text-primary;
+        }
     }
 
     /* Form components */
@@ -85,23 +81,24 @@
     /* Testimonial components */
     .testimonial {
         @apply card border-l-4 border-l-primary;
+
+        blockquote {
+            @apply text-text/90 italic text-lg leading-relaxed mb-4;
+        }
+
+        cite {
+            @apply text-sm text-text/70 not-italic;
+        }
     }
 
-    .testimonial blockquote {
-        @apply text-text/90 italic text-lg leading-relaxed mb-4;
-    }
-
-    .testimonial cite {
-        @apply text-sm text-text/70 not-italic;
-    }
 
     /* Code and syntax highlighting */
     .highlight {
         @apply rounded-lg my-6 overflow-hidden;
-    }
 
-    .highlight pre {
-        @apply p-4 overflow-x-auto;
+        pre {
+            @apply p-4 overflow-x-auto;
+        }
     }
 
     /* Blog post content */

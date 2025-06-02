@@ -8,8 +8,8 @@
     "not dead"
   ],
   "scripts": {
-    "build:css": "tailwindcss -i ./assets/css/input.css -o ./assets/css/output.css --watch",
-    "build:css-prod": "tailwindcss -i ./assets/css/input.css -o ./assets/css/output.css --minify",
+    "build:css": "tailwindcss -i ./assets/css/input.scss -o ./assets/css/output.css --watch",
+    "build:css-prod": "tailwindcss -i ./assets/css/input.scss -o ./assets/css/output.css --minify",
     "dev": "concurrently \"npm run build:css\" \"bundle exec jekyll serve --livereload\"",
     "build": "npm run build:css-prod && bundle exec jekyll build",
     "update-browserslist": "npx update-browserslist-db@latest"

@@ -18,7 +18,8 @@ RUN gem update --system && \
 RUN npm install -g @tailwindcss/cli@latest \
     @tailwindcss/typography@latest \
     @tailwindcss/forms@latest \
-    @tailwindcss/aspect-ratio@latest
+    @tailwindcss/aspect-ratio@latest \
+    @tailwindcss/language-server
 
 
 EXPOSE 4000

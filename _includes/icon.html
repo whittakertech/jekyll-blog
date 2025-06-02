@@ -1,0 +1,4 @@
+{% assign size = include.size | default: 5 %}
+<svg class="w-5 h-5 {{ include.class }}">
+  <use href="/assets/images/icons.svg#{{ include.name }}"></use>
+</svg>
