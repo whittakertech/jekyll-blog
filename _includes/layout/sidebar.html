@@ -1,0 +1,21 @@
+<aside class="sidebar">
+  <div class="rounded-lg shadow-md border border-gray-200 p-6">
+    <h3 class="text-lg font-bold text-text/70 mb-4">Join Our Newsletter</h3>
+    {% include forms/newsletter-signup.html %}
+  </div>
+  <div class="rounded-lg shadow-md border border-gray-200 p-6 my-3">
+    <h3 class="text-lg font-bold text-text mb-4">Most Popular</h3>
+    <div class="space-y-3">
+      {% assign popular_posts = site.posts | sort: 'date' | reverse %}
+      {% for post in popular_posts | limit: 3 %}
+      <a href="{{ post.url | relative_url }}" class="block group">
+        <h4 class="text-sm font-medium text-primary group-hover:text-primary-600 leading-tight">
+          {{ post.title }}
+        </h4>
+        <p class="text-xs text-gray-400 mt-1">{{ post.date | date: "%b %d, %Y" }}</p>
+      </a>
+      {% unless forloop.last %}<hr class="my-2 border-gray-200">{% endunless %}
+      {% endfor %}
+    </div>
+  </div>
+</aside>

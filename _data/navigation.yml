@@ -1,6 +1,4 @@
 main:
-  - name: "Home"
-    url: "/"
   - name: "Blog"
     url: "/blog/"
   - name: "About"
@@ -9,3 +7,17 @@ main:
     url: "/testimonials/"
   - name: "Contact"
     url: "/contact/"
+
+social:
+  - icon: "linkedin"
+    account: "lee-whittaker-dev"
+    url: "https://www.linkedin.com/in/lee-whittaker-dev/"
+  - icon: "github"
+    account: "WhittakerWeekly"
+    url: "https://github.com/whittakertech"
+  - icon: "stack-overflow"
+    account: "Okomikeruko"
+    url: "https://stackoverflow.com/users/3753960/okomikeruko"
+  - icon: "x"
+    account: "@whittakertech"
+    url: "https://x.com/whittakertech"
