@@ -1,0 +1,29 @@
+{
+  "name": "whittakertech-blog",
+  "version": "1.0.0",
+  "private": true,
+  "browserslist": [
+    "defaults",
+    "not IE 11",
+    "not dead"
+  ],
+  "scripts": {
+    "build:sass": "sass assets/scss/input.scss:assets/css/input.css --watch",
+    "build:tailwind": "tailwindcss -i ./assets/css/input.css -o ./assets/css/output.css --watch",
+    "build:css": "concurrently \"npm run build:sass\" \"npm run build:tailwind\"",
+    "build:css-prod": "sass assets/scss/input.scss:assets/css/input.css && tailwindcss -i ./assets/css/input.css -o ./assets/css/output.css --minify",
+    "dev": "concurrently \"npm run build:css\" \"bundle exec jekyll serve --livereload\"",
+    "build": "npm run build:css-prod && bundle exec jekyll build",
+    "update-browserslist": "npx update-browserslist-db@latest"
+  },
+  "devDependencies": {
+    "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@tailwindcss/forms": "^0.5.7",
+    "@tailwindcss/typography": "^0.5.10",
+    "autoprefixer": "^10.4.21",
+    "concurrently": "^8.2.2",
+    "postcss": "^8.5.4",
+    "sass": "^1.89.1",
+    "tailwindcss": "^3.4.17"
+  }
+}

@@ -15,6 +15,13 @@ services:
     stdin_open: true
     tty: true
     working_dir: /app
+    # Enhanced command that builds CSS and starts Jekyll with live reload
+    command: >
+      sh -c "
+        bundle install &&
+        npm install &&
+        bundle exec foreman start -f Procfile.dev
+      "
 
 volumes:
   bundle_cache:

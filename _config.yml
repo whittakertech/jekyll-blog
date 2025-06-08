@@ -17,19 +17,21 @@ github:
   repository_name: jekyll-blog
   owner_name: whittakertech
 
-remote_theme: pages-themes/midnight@v0.2.0
-
 plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
-  - jekyll-remote-theme
 
 markdown: kramdown
 highlighter: rouge
 
 # Critical: This matches your sitemap exactly
 permalink: /blog/:title/
+
+# Sass configuration for Tailwind integration
+sass:
+  sass_dir: assets/css
+  style: compressed
 
 # Feed configuration for better SEO
 feed:
@@ -104,3 +106,12 @@ exclude:
   - scripts/
   - Makefile
   - "*.sh"
+  - node_modules/
+  - package.json
+  - package-lock.json
+  - tailwind.config.js
+  - assets/css/input.css  # Exclude the input file, include the output
+
+# Include the compiled CSS
+include:
+  - assets/css/output.css

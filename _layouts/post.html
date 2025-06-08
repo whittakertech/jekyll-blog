@@ -2,31 +2,73 @@
 layout: default
 ---
 
-<article>
-    <header>
-        <h1>{{ page.headline }}</h1>
-        <p class="post-meta">
-            <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %d, %Y" }}</time>
-            {% if page.categories.size > 0 %}
-            in {{ page.categories | join: ", " }}
-            {% endif %}
-            {% if page.author %}
-                <br>
-                Written By: {{ page.author }}
-            {% endif %}
-        </p>
-    </header>
+<div class="container mx-auto px-6 py-8">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Main content area -->
+        <div class="lg:col-span-2">
 
-    <div class="post-content">
-        {{ content }}
+            <article>
+                <header>
+                    <h1>{{ page.headline }}</h1>
+                    <p class="post-meta">
+                        <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %d, %Y" }}</time>
+                        {% if page.categories.size > 0 %}
+                        in {{ page.categories | join: ", " }}
+                        {% endif %}
+                        {% if page.author %}
+                            <br>
+                            Written By: {{ page.author }}
+                        {% endif %}
+                    </p>
+                </header>
+
+                <div class="post-content">
+                    {{ content }}
+                </div>
+            </article>
+
+            <nav class="post-navigation grid grid-cols-2 gap-8">
+                <div class="col-span-1">
+                    {% if page.previous.url %}
+                    <a href="{{ page.previous.url | relative_url }}">&laquo; {{ page.previous.title }}</a>
+                    {% endif %}
+                </div>
+                <div class="col-span-1">
+                    {% if page.next.url %}
+                    <a href="{{ page.next.url | relative_url }}">{{ page.next.title }} &raquo;</a>
+                    {% endif %}
+                </div>
+            </nav>
+        </div>
+        <div class="lg:col-span-1">
+            {% include layout/sidebar.html %}
+        </div>
     </div>
-</article>
+</div>
 
-<nav class="post-navigation">
-    {% if page.previous.url %}
-    <a href="{{ page.previous.url | relative_url }}">&laquo; {{ page.previous.title }}</a>
-    {% endif %}
-    {% if page.next.url %}
-    <a href="{{ page.next.url | relative_url }}">{{ page.next.title }} &raquo;</a>
-    {% endif %}
-</nav>
+<!-- Schema markup for better SEO -->
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "{{ page.headline | default: page.title | escape }}",
+        "description": "{{ page.description | escape }}",
+        "image": "{{ site.url }}{{ page.hero_image | default: '/assets/images/default-blog.jpg' }}",
+        "datePublished": "{{ page.date | date_to_xmlschema }}",
+        "dateModified": "{{ page.last_modified_at | default: page.date | date_to_xmlschema }}",
+        "author": {
+            "@type": "Person",
+            "name": "{{ site.author.name }}",
+            "url": "{{ site.url }}/about/"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "{{ site.title }}",
+            "url": "{{ site.url }}"
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "{{ site.url }}{{ page.url }}"
+        }
+    }
+</script>

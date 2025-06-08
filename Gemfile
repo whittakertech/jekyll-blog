@@ -2,6 +2,8 @@ source "https://rubygems.org"
 
 gem "github-pages", group: :jekyll_plugins
 
+gem 'foreman'
+
 # GitHub Pages doesn't allow custom plugins, so these are included:
 # jekyll-feed, jekyll-sitemap, jekyll-seo-tag are already included in github-pages
 

@@ -1,0 +1,60 @@
+<footer class="main-footer">
+  <div class="container-custom py-8">
+    <div class="grid md:grid-cols-3 gap-2 mb-8">
+      <!-- Company Info -->
+      <div class="space-y-4">
+        <h3 class="text-lg font-semibold text-primary">{{ site.name }}</h3>
+        <p class="text-text/70">{{ site.description }}</p>
+        <div class="flex space-x-4">
+          {% include links/social.html %}
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="space-y-4">
+        <h3 class="text-lg font-semibold text-primary">Quick Links</h3>
+        <nav class="flex flex-col space-y-2">
+          {% for item in site.data.navigation.main %}
+          <a href="{{ item.url | relative_url }}"
+             class="text-text/70 hover:text-primary transition-colors">
+            {{ item.name }}
+          </a>
+          {% endfor %}
+        </nav>
+      </div>
+
+      <!-- Services
+      <div class="space-y-4">
+        <h3 class="text-lg font-semibold text-primary">Services</h3>
+        <nav class="flex flex-col space-y-2">
+          <a href="/contact/" class="text-text/70 hover:text-primary transition-colors">
+            Rails Consulting
+          </a>
+          <a href="/contact/" class="text-text/70 hover:text-primary transition-colors">
+            Legacy System Upgrades
+          </a>
+          <a href="/contact/" class="text-text/70 hover:text-primary transition-colors">
+            Performance Optimization
+          </a>
+          <a href="/contact/" class="text-text/70 hover:text-primary transition-colors">
+            Technical Audits
+          </a>
+        </nav>
+      </div>
+      -->
+
+      <div class="space-y-4">
+        <h3 class="text-lg font-semibold text-primary">Newsletter</h3>
+        <p class="text-text/70">Get notified for new content.</p>
+        {% include forms/newsletter-signup.html %}
+      </div>
+    </div>
+
+    <!-- Bottom Footer -->
+    <div class="pt-8 border-t border-text/20 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+      <p class="text-text/60 text-sm">
+        &copy; {{ site.time | date: '%Y' }} {{ site.name }}. All rights reserved.
+      </p>
+    </div>
+  </div>
+</footer>
