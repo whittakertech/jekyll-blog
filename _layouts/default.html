@@ -1,15 +1,8 @@
 <!DOCTYPE html>
 <html lang="{{ site.lang | default: 'en-US' }}">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MSFXKRLPJL"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-MSFXKRLPJL');
-    </script>
-    <!-- End Google tag -->
+    {% include trackers.html %}
+
 
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
