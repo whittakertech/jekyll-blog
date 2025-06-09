@@ -3,11 +3,7 @@
   <nav class="nav-container">
     <div class="flex items-center justify-between">
       <!-- Logo/Brand -->
-      <div class="flex items-center space-x-4">
-        <a href="{{ '/' | absolute_url }}" class="text-2xl font-bold text-primary hover:text-primary/80 transition-colors">
-          {{ site.name | default: site.github.repository_name }}
-        </a>
-      </div>
+      {% include logo.html %}
 
       <!-- Desktop Navigation -->
       <div class="hidden md:flex">
