@@ -1,6 +1,6 @@
 ---
 layout: post
-date: 2025-06-03 09:00:00 -0600
+date: 2025-07-04 09:00:00 -0600
 title: "Rails Docker Migration: Complete Configuration Reference"
 slug: "rails-docker-configuration-reference"
 canonical_url: "https://whittakertech.com/blog/rails-docker-configuration-reference/"
@@ -128,7 +128,7 @@ COPY package.json yarn.lock ./
 RUN yarn install
 
 # Copy application code
-COPY . .
+COPY ../_posts .
 
 # Set up file permissions
 RUN chown -R app:app /app
