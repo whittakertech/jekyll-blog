@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="uuid-b5c4b6a0-d618-411c-a5fc-8dc28adcf201" data-name="Logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 996.36 390.41">
+  <defs>
+    <style>
+      .uuid-6c15fa2a-9668-4306-818f-1cd4b2a342d7, .uuid-57bb5c40-13b2-4836-b698-0fa1675248db {
+        fill: #fafad2;
+      }
+
+      .uuid-57bb5c40-13b2-4836-b698-0fa1675248db {
+        font-family: Roboto-Regular, Roboto;
+        font-size: 92px;
+        letter-spacing: .03em;
+      }
+
+      .uuid-ddbb9d87-be09-4319-bf22-e9c8a89a2e79 {
+        fill: none;
+        stroke: #fafad2;
+        stroke-miterlimit: 10;
+        stroke-width: 15px;
+      }
+    </style>
+  </defs>
+  <polygon class="uuid-ddbb9d87-be09-4319-bf22-e9c8a89a2e79" points="330.6 288.47 169.05 381.75 7.5 288.47 7.5 101.93 169.05 8.66 330.6 101.93 330.6 288.47"/>
+  <g>
+    <path class="uuid-6c15fa2a-9668-4306-818f-1cd4b2a342d7" d="M249.65,116.87H87.63c-5.35,0-9.69,4.34-9.69,9.69v16.04h181.4v-16.04c0-5.35-4.34-9.69-9.69-9.69Z"/>
+    <path class="uuid-6c15fa2a-9668-4306-818f-1cd4b2a342d7" d="M77.94,267.74c0,5.35,4.34,9.69,9.69,9.69h162.02c5.35,0,9.69-4.34,9.69-9.69v-119.19H77.94v119.19ZM208.35,221.4c2.09,0,3.78,1.69,3.78,3.78s-1.69,3.78-3.78,3.78h-46.73c-2.09,0-3.78-1.69-3.78-3.78s1.69-3.78,3.78-3.78h46.73ZM130.07,184.3c-1.43-1.5-1.37-3.87.13-5.3,1.5-1.43,3.87-1.37,5.3.13l23.72,24.93-23.79,23.77c-.73.73-1.69,1.1-2.65,1.1s-1.92-.37-2.65-1.1c-1.46-1.46-1.46-3.84,0-5.3l18.61-18.6-18.68-19.63Z"/>
+  </g>
+  <text class="uuid-57bb5c40-13b2-4836-b698-0fa1675248db" transform="translate(372.82 224.89)"><tspan x="0" y="0">WhittakerTech</tspan></text>
+</svg>

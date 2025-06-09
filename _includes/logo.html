@@ -1,0 +1,32 @@
+<!-- Logo component with responsive sizing and proper fallbacks -->
+<div class="logo-container">
+    <!-- SVG logo (preferred) -->
+    <a href="{{ '/' | relative_url }}" class="logo-link" aria-label="WhittakerTech - Home">
+        <!-- Desktop/Tablet: Horizontal logo -->
+        <img src="{{ '/assets/images/logo/whittakertech-logo-horizontal.svg' | relative_url }}"
+             alt="WhittakerTech"
+             class="logo logo-horizontal hidden sm:block"
+             width="180"
+             height="40">
+
+        <!-- Mobile: Icon only or stacked version -->
+        <img src="{{ '/assets/images/logo/whittakertech-icon.svg' | relative_url }}"
+             alt="WhittakerTech"
+             class="logo logo-mobile block sm:hidden"
+             width="32"
+             height="32">
+    </a>
+</div>
+
+<!-- Fallback for browsers that don't support SVG -->
+<noscript>
+    <div class="logo-container">
+        <a href="{{ '/' | relative_url }}" class="logo-link" aria-label="WhittakerTech - Home">
+            <img src="{{ '/assets/images/logo/whittakertech-logo.png' | relative_url }}"
+                 alt="WhittakerTech"
+                 class="logo"
+                 width="120"
+                 height="40">
+        </a>
+    </div>
+</noscript>
