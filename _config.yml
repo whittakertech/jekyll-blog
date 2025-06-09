@@ -28,6 +28,11 @@ highlighter: rouge
 # Critical: This matches your sitemap exactly
 permalink: /blog/:title/
 
+trackers:
+  clarity_id: "rww60qbk1z"
+  ga_id: "G-MSFXKRLPJL"
+  hotjar_id: "6429836"
+
 # Sass configuration for Tailwind integration
 sass:
   sass_dir: assets/css
