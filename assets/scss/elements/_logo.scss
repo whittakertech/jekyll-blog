@@ -19,8 +19,6 @@
 .logo {
   display: block;
   max-height: 40px;
-  width: auto;
-  height: auto;
 }
 
 .logo-horizontal {
@@ -41,9 +39,7 @@
 
 /* Navigation Container */
 .nav-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  @apply flex items-center justify-between w-full;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
