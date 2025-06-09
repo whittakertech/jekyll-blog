@@ -250,3 +250,7 @@
 ::selection {
     @apply bg-primary/30 text-text;
 }
+
+main.flex-grow {
+    min-height: calc(100vh - 73px);
+}
