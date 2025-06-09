@@ -1,4 +1,26 @@
 {% if jekyll.environment == "production" %}
-  {% include trackers/ga4.html %}
-  {% include trackers/clarity.html %}
+<script>
+  window.addEventListener('load', function() {
+    // Load GA4 after page load
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '{{ site.trackers.ga_id }}');
+
+    // Create GA4 script element
+    const gaScript = document.createElement('script');
+    gaScript.async = true;
+    gaScript.src = 'https://www.googletagmanager.com/gtag/js?id={{ site.trackers.ga_id }}';
+    document.head.appendChild(gaScript);
+
+    // Load Clarity after page load
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "{{ site.trackers.clarity_id }}");
+
+    console.log('📊 Analytics loaded after page complete');
+  });
+</script>
 {% endif %}

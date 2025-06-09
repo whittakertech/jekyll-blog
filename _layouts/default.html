@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ site.lang | default: 'en-US' }}">
 <head>
-  {% include trackers.html %}
-
-
   <meta charset='utf-8'>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,8 +29,6 @@
   <!-- Preconnect for performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Alpine.js for interactive components -->
-  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
 
   <!-- Tailwind CSS compiled output -->
   <link rel="stylesheet" href="{{ '/assets/css/output.css' | relative_url }}?v={{ site.time | date: '%s' }}">
@@ -79,6 +74,9 @@
   </svg>
 </button>
 
-<script src="/assets/js/script.js"></script>
+<!-- Alpine.js for interactive components -->
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
+<script defer src="{{ '/assets/js/script.js' | relative_url }}"></script>
+{% include trackers.html %}
 </body>
 </html>
