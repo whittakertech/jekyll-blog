@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="uuid-37648685-b84b-444d-95c4-bd5803db8be4" data-name="Logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 615 481">
+  <path id="uuid-c56e97ba-e105-4eec-a600-1d1ea74fa2fa" data-name="hexagon" d="M138,98v195l169,98,169-98V98L307,0l-169,98ZM461,284l-154,89-154-89V106L307,17l154,89v178Z"/>
+  <path id="uuid-f96aafbf-5a66-4785-b603-de29f68409a2" data-name="top-bar" d="M216,125v16h181v-16c0-5-4-1-1-1h-162c-5,0-1,4-1,1Z"/>
+  <path id="uuid-6655e919-a95f-4138-83e7-8e61eb42ae94" data-name="code-box" d="M216,266c0,5,4,1,1,1h162c5,0,1-4,1-1v-119h-181v119ZM347,219c2,0,4,2,4,4s-2,4-4,4h-47c-2,0-4-2-4-4s2-4,4-4h47ZM268,182c-1-2-1-4,0-5,2-1,4-1,5,0l24,25-24,24c0,0-2,1-3,1s-2,0-3-1c-1-1-1-4,0-5l19-19-19-2Z"/>
+</svg>
