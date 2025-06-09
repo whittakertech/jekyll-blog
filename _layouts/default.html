@@ -1,48 +1,48 @@
 <!DOCTYPE html>
 <html lang="{{ site.lang | default: 'en-US' }}">
 <head>
-    {% include trackers.html %}
+  {% include trackers.html %}
 
 
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset='utf-8'>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    {% include layout/favicon.html %}
+  {% include layout/favicon.html %}
 
-    {% seo %}
+  {% seo %}
 
-    <!-- Additional custom meta tags -->
-    {% if page.robots %}
-        <meta name="robots" content="{{ page.robots }}">
-    {% else %}
-        <meta name="robots" content="index, follow">
-    {% endif %}
+  <!-- Additional custom meta tags -->
+  {% if page.robots %}
+  <meta name="robots" content="{{ page.robots }}">
+  {% else %}
+  <meta name="robots" content="index, follow">
+  {% endif %}
 
-    <!-- Custom Open Graph overrides if needed -->
-    {% if page.og_title %}
-        <meta property="og:title" content="{{ page.og_title }}">
-    {% endif %}
+  <!-- Custom Open Graph overrides if needed -->
+  {% if page.og_title %}
+  <meta property="og:title" content="{{ page.og_title }}">
+  {% endif %}
 
-    {% if page.og_image %}
-        <meta property="og:image" content="{{ site.url }}{{ page.og_image }}">
-        <meta name="twitter:image" content="{{ site.url }}{{ page.og_image }}">
-    {% endif %}
+  {% if page.og_image %}
+  <meta property="og:image" content="{{ site.url }}{{ page.og_image }}">
+  <meta name="twitter:image" content="{{ site.url }}{{ page.og_image }}">
+  {% endif %}
 
-    <!-- Preconnect for performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Alpine.js for interactive components -->
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Alpine.js for interactive components -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
 
-    <!-- Tailwind CSS compiled output -->
-    <link rel="stylesheet" href="{{ '/assets/css/output.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+  <!-- Tailwind CSS compiled output -->
+  <link rel="stylesheet" href="{{ '/assets/css/output.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{ '/favicon.ico' | relative_url }}">
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="{{ '/favicon.ico' | relative_url }}">
 
-    <!-- Icons.svg -->
-    <link rel="preload" href="/assets/images/icons.svg?v={{ site.time | date: '%s' }}" as="image">
+  <!-- Icons.svg -->
+  <link rel="preload" href="/assets/images/icons.svg?v={{ site.time | date: '%s' }}" as="image">
 </head>
 
 <body class="bg-dark text-text min-h-screen flex flex-col">
@@ -50,12 +50,12 @@
 
 <!-- Main Content -->
 <main class="flex-grow">
-    <div class="container-custom section-padding">
-        <!-- Content -->
-        <div class="animate-fade-in-up">
-            {{ content }}
-        </div>
+  <div class="container-custom section-padding">
+    <!-- Content -->
+    <div class="animate-fade-in-up">
+      {{ content }}
     </div>
+  </div>
 </main>
 
 <!-- Footer -->
@@ -74,9 +74,9 @@
         x-transition:leave-end="opacity-0 transform scale-90"
         class="fixed bottom-8 right-8 z-50 p-3 bg-primary text-dark rounded-full shadow-lg hover:bg-primary/90 transition-colors duration-200 no-print"
         aria-label="Scroll to top">
-    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
-    </svg>
+  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+  </svg>
 </button>
 
 <script src="/assets/js/script.js"></script>
