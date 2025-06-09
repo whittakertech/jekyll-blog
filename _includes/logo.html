@@ -1,35 +1,32 @@
 <!-- Logo component with responsive sizing and proper fallbacks -->
 <div class="logo-container">
-  <!-- SVG logo (preferred) -->
-  <a href="{{ '/' | relative_url }}" class="logo-link" aria-label="WhittakerTech - Home">
-    <!-- Desktop/Tablet: Horizontal logo -->
-    <img src="{{ '/assets/images/logo/whittakertech-logo-horizontal.svg' | relative_url }}"
-         alt="WhittakerTech"
-         class="logo logo-horizontal hidden sm:block w-full h-full"
-         width="180"
-         height="40">
+    <!-- SVG logo (preferred) -->
+    <a href="{{ '/' | relative_url }}" class="logo-link" aria-label="WhittakerTech - Home">
+        <!-- Desktop/Tablet: Horizontal logo -->
+        <img src="{{ '/assets/images/logo/whittakertech-logo-horizontal.svg' | relative_url }}"
+             alt="WhittakerTech"
+             class="logo logo-horizontal hidden sm:block w-full h-full"
+             width="180"
+             height="40">
 
-    <!-- Mobile: Icon only or stacked version -->
-    <svg width="32" height="25" viewBox="0 0 615 481"
-         style="display: block; fill: #fafad2;"
-         class="sm:hidden"
-         aria-label="WhittakerTech">
-      <path d="M138,98v195l169,98,169-98V98L307,0l-169,98ZM461,284l-154,89-154-89V106L307,17l154,89v178Z"/>
-      <path d="M216,125v16h181v-16c0-5-4-1-1-1h-162c-5,0-1,4-1,1Z"/>
-      <path d="M216,266c0,5,4,1,1,1h162c5,0,1-4,1-1v-119h-181v119ZM347,219c2,0,4,2,4,4s-2,4-4,4h-47c-2,0-4-2-4-4s2-4,4-4h47ZM268,182c-1-2-1-4,0-5,2-1,4-1,5,0l24,25-24,24c0,0-2,1-3,1s-2,0-3-1c-1-1-1-4,0-5l19-19-19-2Z"/>
-    </svg>
-  </a>
+        <!-- Mobile: Icon only or stacked version -->
+        <img src="{{ '/assets/images/logo/whittakertech-icon.svg' | relative_url }}"
+             alt="WhittakerTech"
+             class="logo logo-mobile block sm:hidden"
+             width="50"
+             height="64">
+    </a>
 </div>
 
 <!-- Fallback for browsers that don't support SVG -->
 <noscript>
-  <div class="logo-container">
-    <a href="{{ '/' | relative_url }}" class="logo-link" aria-label="WhittakerTech - Home">
-      <img src="{{ '/assets/images/logo/whittakertech-logo.png' | relative_url }}"
-           alt="WhittakerTech"
-           class="logo"
-           width="120"
-           height="40">
-    </a>
-  </div>
+    <div class="logo-container">
+        <a href="{{ '/' | relative_url }}" class="logo-link" aria-label="WhittakerTech - Home">
+            <img src="{{ '/assets/images/logo/whittakertech-logo.png' | relative_url }}"
+                 alt="WhittakerTech"
+                 class="logo"
+                 width="120"
+                 height="40">
+        </a>
+    </div>
 </noscript>
