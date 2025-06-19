@@ -1,8 +1,9 @@
+# .github/workflows/scheduled-publish.yml
 name: Scheduled Draft Publishing
 
 on:
   schedule:
-    - cron: '*/60 * * * *'
+    - cron: '0 */6 * * *'  # Every 6 hours (fixed cron syntax)
   workflow_dispatch:
 
 permissions:
@@ -13,20 +14,105 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Jekyll Publish Drafts
-        uses: soywiz/github-action-jekyll-publish-drafts@master
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          jekyll_path: ./
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Trigger Deploy Workflow
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+
+      - name: Check for ready drafts
+        id: check_drafts
         run: |
-          curl -L \
-            -X POST \
-            -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-            -H "X-GitHub-Api-Version: 2022-11-28" \
-            https://api.github.com/repos/${{ github.repository }}/actions/workflows/deploy.yml/dispatches \
-            -d '{"ref":"master"}'
+          # Look for drafts with dates in the past
+          current_date=$(date +%s)
+          drafts_to_publish=""
+          
+          echo "Checking for drafts ready to publish..."
+          
+          if [ -d "_drafts" ]; then
+            for draft in _drafts/*.md; do
+              if [ -f "$draft" ]; then
+                echo "Checking draft: $draft"
+                
+                # Extract date from front matter
+                draft_date=$(grep -m 1 "^date:" "$draft" | sed 's/date: *//' | tr -d '"' | xargs)
+                
+                if [ -n "$draft_date" ]; then
+                  echo "Found date: $draft_date"
+                  draft_timestamp=$(date -d "$draft_date" +%s 2>/dev/null || echo 0)
+                  
+                  if [ $draft_timestamp -le $current_date ] && [ $draft_timestamp -gt 0 ]; then
+                    drafts_to_publish="$drafts_to_publish $draft"
+                    echo "✅ Draft ready for publishing: $draft"
+                  else
+                    echo "⏳ Draft not ready yet: $draft"
+                  fi
+                else
+                  echo "⚠️ No date found in: $draft"
+                fi
+              fi
+            done
+          else
+            echo "No _drafts directory found"
+          fi
+          
+          draft_count=$(echo $drafts_to_publish | wc -w)
+          echo "Total drafts ready: $draft_count"
+          
+          echo "drafts_found=$draft_count" >> $GITHUB_OUTPUT
+          echo "draft_files=$drafts_to_publish" >> $GITHUB_OUTPUT
+
+      - name: Publish ready drafts
+        if: steps.check_drafts.outputs.drafts_found > 0
+        run: |
+          echo "Publishing ${{ steps.check_drafts.outputs.drafts_found }} ready drafts..."
+          
+          for draft in ${{ steps.check_drafts.outputs.draft_files }}; do
+            if [ -f "$draft" ]; then
+              # Extract filename without path and extension
+              filename=$(basename "$draft" .md)
+              today=$(date +%Y-%m-%d)
+              
+              # Create new filename
+              new_file="_posts/${today}-${filename}.md"
+              
+              echo "Moving $draft to $new_file"
+              
+              # Update published status and move file
+              sed 's/published: false/published: true/' "$draft" > "$new_file"
+              
+              # Remove the draft
+              rm "$draft"
+              
+              echo "✅ Published: $new_file"
+            fi
+          done
+
+      - name: Commit and push published posts
+        if: steps.check_drafts.outputs.drafts_found > 0
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          
+          # Stage the changes
+          git add _posts/ _drafts/
+          
+          # Create commit message
+          commit_msg="Auto-publish ready drafts (${{ steps.check_drafts.outputs.drafts_found }} posts)"
+          git commit -m "$commit_msg"
+          
+          # Push changes
+          git push
+          
+          echo "✅ Successfully published ${{ steps.check_drafts.outputs.drafts_found }} drafts"
+          echo "🚀 Deploy workflow will trigger automatically from this push"
+
+      - name: Summary
+        if: steps.check_drafts.outputs.drafts_found == 0
+        run: |
+          echo "ℹ️ No drafts ready for publishing at this time"
