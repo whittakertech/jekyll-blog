@@ -9,6 +9,8 @@ category: engineering
 tags: [rails, performance, aws, s3, paperclip, sidekiq, architecture]
 ---
 
+# Processing 1,361 Images in 2 Minutes: How We Transformed a Rails Bottleneck into an Asynchronous Pipeline
+
 For years, a single architectural flaw quietly haunted one of our legacy Rails systems: **every uploaded image was being downloaded, decoded, processed, and saved inside the web dyno**. That meant every S3 fetch, every Paperclip decode, every write—even for 30MB images—ran *synchronously* in a request cycle.
 
 The result?
