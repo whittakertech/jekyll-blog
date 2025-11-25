@@ -1,15 +1,20 @@
 ---
 layout: post
+date: 2025-10-25 09:00:00 -0600
 title: "Processing 1,361 Images in 2 Minutes: How We Transformed a Rails Bottleneck into an Asynchronous Pipeline"
-description: "How we rebuilt a legacy Paperclip + S3 upload system into an asynchronous image pipeline that cut processing time from 11 hours to 2 minutes without scaling dynos."
-date: 2025-10-25
 slug: "processing-1361-images-in-2-minutes"
 canonical_url: "https://whittakertech.com/blog/processing-1361-images-in-2-minutes/"
-category: engineering
-tags: [rails, performance, aws, s3, paperclip, sidekiq, architecture]
+description: >-
+  How we rebuilt a legacy synchronous Paperclip + S3 image pipeline into a fully asynchronous architecture—cutting
+  processing time from 11 hours to 2 minutes without scaling dynos or increasing infrastructure costs.
+og_title: "Rails Image Processing at Scale: 11 Hours Cut to 2 Minutes"
+headline: >-
+  Processing 1,361 Images in 2 Minutes: The Architectural Shift That Turned a Slow Rails Pipeline into a High-Throughput,
+  Asynchronous System
+categories: ["Ruby on Rails", "Performance Engineering", "Async Architecture"]
+tags: ["Rails", "Paperclip", "AWS S3", "Sidekiq", "Performance", "Architecture", "Image Processing", "Concurrency",
+       "Async Pipelines", "DevOps", "Heroku", "Optimization"]
 ---
-
-# Processing 1,361 Images in 2 Minutes: How We Transformed a Rails Bottleneck into an Asynchronous Pipeline
 
 For years, a single architectural flaw quietly haunted one of our legacy Rails systems: **every uploaded image was being downloaded, decoded, processed, and saved inside the web dyno**. That meant every S3 fetch, every Paperclip decode, every write—even for 30MB images—ran *synchronously* in a request cycle.
 
