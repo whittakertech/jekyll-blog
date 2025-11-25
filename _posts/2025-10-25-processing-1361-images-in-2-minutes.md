@@ -3,8 +3,8 @@ layout: post
 title: "Processing 1,361 Images in 2 Minutes: How We Transformed a Rails Bottleneck into an Asynchronous Pipeline"
 description: "How we rebuilt a legacy Paperclip + S3 upload system into an asynchronous image pipeline that cut processing time from 11 hours to 2 minutes without scaling dynos."
 date: 2025-10-25
-slug: processing-1361-images-in-2-minutes
-canonical_url: https://whittakertech.com/blog/processing-1361-images-in-2-minutes
+slug: "processing-1361-images-in-2-minutes"
+canonical_url: "https://whittakertech.com/blog/processing-1361-images-in-2-minutes/"
 category: engineering
 tags: [rails, performance, aws, s3, paperclip, sidekiq, architecture]
 ---
