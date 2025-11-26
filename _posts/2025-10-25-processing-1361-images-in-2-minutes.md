@@ -36,7 +36,7 @@ What follows is the story of how we turned a fragile, synchronous pipeline into 
 
 ---
 
-# 🚨 The Bottleneck: Paperclip + S3 + Rails Requests
+## 🚨 The Bottleneck: Paperclip + S3 + Rails Requests
 
 Photographers uploaded images directly to S3 using presigned URLs. Good.  
 But then the browser told Rails:
@@ -64,7 +64,7 @@ It was an architectural problem.
 
 ---
 
-# 💡 The Breakthrough: *Stop Processing in the Request Cycle*
+## 💡 The Breakthrough: *Stop Processing in the Request Cycle*
 
 We realized something obvious in hindsight:
 
@@ -86,7 +86,7 @@ But we weren’t done yet.
 
 ---
 
-# ⚙️ The Hidden Gotcha: Paperclip Cannot Ingest Raw Binary
+## ⚙️ The Hidden Gotcha: Paperclip Cannot Ingest Raw Binary
 
 Our worker downloaded files from S3 like this:
 
@@ -117,7 +117,7 @@ And then—just a bit quietly—something clicked.
 
 ---
 
-# 🌟 The Technical Revelation: `response_target:`  
+## 🌟 The Technical Revelation: `response_target:`  
 
 AWS SDK has a parameter that saves the S3 object *directly to disk*, bypassing memory entirely:
 
@@ -160,7 +160,7 @@ Workers processed images sequentially, predictably, and without thrash.
 
 ---
 
-# 🗑️ Smart Cleanup: Delete Old S3 Keys Only for Updates
+## 🗑️ Smart Cleanup: Delete Old S3 Keys Only for Updates
 
 We added a simple rule:
 
@@ -182,7 +182,7 @@ That kept S3 tidy without risking premature deletion.
 
 ---
 
-# 📈 The Results: 300× Faster, 80% Less Memory, 100% Uptime
+## 📈 The Results: 300× Faster, 80% Less Memory, 100% Uptime
 
 After deploying the asynchronous pipeline with direct-to-disk S3 ingestion, our metrics changed dramatically.
 
@@ -202,7 +202,7 @@ This is the kind of improvement that feels almost unfair—like we found a secre
 
 ---
 
-# 🚀 What Makes This Work
+## 🚀 What Makes This Work
 
 ### 1. **Requests stay light**
 Controllers only enqueue jobs, never process files.
@@ -224,7 +224,7 @@ Rails applications like calm.
 
 ---
 
-# 🧭 Lessons for Any Engineering Team
+## 🧭 Lessons for Any Engineering Team
 
 If you’re handling large uploads—or lots of them—and your web tier is showing memory pressure or timeouts during upload peaks, remember:
 
