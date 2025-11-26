@@ -1,6 +1,6 @@
 ---
 layout: post
-date: 2025-10-25 09:00:00 -0600
+date: 2025-11-25 09:00:00 -0600
 title: "Processing 1,361 Images in 2 Minutes: How We Transformed a Rails Bottleneck into an Asynchronous Pipeline"
 slug: "processing-1361-images-in-2-minutes"
 canonical_url: "https://whittakertech.com/blog/processing-1361-images-in-2-minutes/"
