@@ -3,85 +3,116 @@ layout: page
 title: About Lee Whittaker
 permalink: /about/
 description: >-
-  Lee Whittaker - Unity game developer and Rails consultant helping indie developers and growing businesses solve
-  complex technical challenges.
+  Lee Whittaker — Fractional CTO, Rails architect, and performance engineer building scalable systems and
+  accelerating delivery for teams that need clarity, stability, and measurable results.
 ---
 
-I'm a software engineer who bridges the gap between **game development** and **enterprise software solutions**. With
-expertise spanning Unity development and Ruby on Rails consulting, I help indie developers build better games while
-solving complex technical challenges for growing businesses.
+I'm a systems-focused engineer and Fractional CTO specializing in **Rails architecture, DevOps reliability, and
+performance optimization**. I help teams stabilize critical systems, accelerate delivery, and build technical
+foundations that can grow confidently.
 
-## What I Bring to Your Project
+While my background includes Unity development, my work today centers on **architecting large Rails applications,
+resolving complex infrastructure issues, and transforming fragile pipelines into predictable, scalable systems**.
 
-**Game Development Expertise**
+---
 
-- **Unity Asset Store Publisher**: Creating tools and plugins that thousands of developers rely on
-- **Procedural Generation**: Building maze generators, 3D assets, and algorithmic content systems
-- **Performance Optimization**: Helping teams achieve smooth framerates and efficient resource usage
-- **Rapid Prototyping**: Turning game concepts into playable experiences quickly
+## What I Bring to Your Organization
 
-**Enterprise Development & Consulting**
+### **Senior Rails Architecture & System Design**
 
-- **Legacy System Rescue**: Upgrading critical Rails applications from end-of-life Ruby 3.0.7 to modern, supported
-  versions
-- **International Scaling**: Solving UTF-8 encoding challenges that block global market expansion
-- **Database Concurrency**: Debugging race conditions and implementing proper locking mechanisms for high-stakes systems
-- **Strategic Code Modification**: Enhancing existing systems without breaking functionality
+- **Complex System Rescue** — resolving failures rooted in architecture, not symptoms  
+- **Concurrency & Data Integrity** — eliminating race conditions with proper locks, transactions, and workflows  
+- **Performance Optimization** — increasing throughput, reducing memory use, and removing chokepoints  
+- **Scalable Job Pipelines** — designing asynchronous systems that digest thousands of tasks reliably  
+- **DevOps Maturity** — Docker, CI/CD, observability, and deployment stability with measurable improvements  
+
+### **Technical Leadership & Delivery Acceleration**
+
+- **Sprint Compression** — helping teams deliver 10-day workloads in 4 days through architecture clarity  
+- **Developer Experience (DX)** — building internal tools and patterns that remove friction and guide best practices  
+- **Documentation & Clarity** — 4+1 architecture, system maps, and durable reference materials  
+- **Mentorship & Reform** — uplifting teams by removing systemic chaos, not blaming individuals  
+
+---
 
 ## Recent Impact
 
-- **Rescued a community choir management system** from 118 failing tests and security vulnerabilities, achieving 99.15%
-  test success while upgrading to modern Rails
-- **Eliminated international encoding errors** that were preventing e-commerce platforms from accepting global customers
-- **Exposed critical race conditions** in legal hearing scheduling systems where passing tests were hiding dangerous
-  concurrency failures
-- **Streamlined prescription product workflows** for e-commerce brands expanding into regulated markets
+- **Increased image-processing throughput by 1100%**, enabling 1,361 images processed in 2 minutes  
+- **Reduced memory consumption by 60%** by moving from Buildpacks to a modern Docker architecture  
+- **Resolved silent concurrency corruption** inside a legal hearing scheduling system where tests were passing but data was failing  
+- **Stabilized a legacy choir-management system**, rescuing 118 failing tests, modernizing Ruby & Rails, and restoring long-term maintainability  
+- **Fixed UTF-8 internationalization failures** that blocked global customer onboarding  
+- **Designed async pipelines and CI/CD flows** that eliminated deployment instability  
 
 {::nomarkdown}
 {% include testimonial-carousel.html topic="impact" title="Client Impact" %}
 {:/nomarkdown}
 
-## Technical Approach
+---
 
-I believe in **systematic problem-solving over quick fixes**. Whether debugging encoding errors that crash international
-deployments or building Unity tools that handle edge cases gracefully, I focus on solutions that work reliably across
-different environments and scale with your business needs.
+## How I Work
 
-My writing here reflects this approach—real case studies from actual client work, showing both the technical solutions
-and the business impact they delivered.
+I approach engineering the same way I approach architecture:  
+**identify constraints, model the system, resolve the root cause, and ensure it's durable.**
 
-## The WhittakerTech Vision
+Whether it’s:
+- rewriting an unsafe job pipeline,  
+- hardening Docker-based deployments,  
+- untangling a high-risk code path, or  
+- mapping an entire feature into 4+1 architecture views…
 
-I'm building WhittakerTech as a **hybrid technology company** that serves both the gaming community and enterprise
-clients. This dual focus lets me bring gaming industry innovation to business problems while applying enterprise-grade
-reliability to game development challenges.
+I focus on solutions that scale, survive new requirements, and reduce long-term cost.
 
-**Current Projects:**
-- Unity Asset Store plugins and tools
-- Rails consulting for scaling businesses
-- Game development tutorials and educational content
-- Open-source contributions to the developer community
-
-## Let's Work Together
-
-**For Game Developers:**
-
-- Need Unity plugins or custom tools?
-- Stuck on performance optimization or complex game mechanics?
-- Want to learn procedural generation or advanced Unity techniques?
-
-**For Growing Businesses:**
-
-- Rails application showing its age?
-- International expansion blocked by technical issues?
-- Complex integrations that need custom solutions?
-
-**Ready to collaborate?** [Get in touch](/contact/) and let's turn your technical challenges into competitive
-advantages.
+My writing on this site reflects that philosophy:  
+**real failures, real constraints, real fixes, and real metrics.**
 
 ---
 
-*Building games and solving problems, one line of code at a time.*
+## The WhittakerTech Vision
+
+WhittakerTech is my ecosystem of tools, engines, and products built on a simple idea:
+
+**Great engineering comes from clarity, modularity, and repeatable systems.**
+
+Current initiatives include:
+- **Ensemblize** — scheduling, communication, and organizational tools  
+- **Subscribify** — SSOT subscription management across internal and external services  
+- **Red Lily Music** — a DSL and UI for composing and exporting music via LilyPond  
+- **Nicodemus** — auto-documentation through reflection, metadata, and knowledge graph extraction  
+- **Spectra Galaxy** — design-system engine, tokens, and UI primitives for all WhittakerTech apps  
+
+Each project advances the ecosystem — modular Rails engines that can be reused, extended, and combined.
+
+---
+
+## Who I Help
+
+### **For Companies & Teams**
+- Legacy Rails systems needing modernization  
+- Systems suffering from concurrency failures or scaling bottlenecks  
+- Organizations requiring a Fractional CTO to guide architecture and delivery  
+- Teams needing DevOps clarity and CI/CD reliability  
+- Products preparing for growth, audits, or investor scrutiny  
+
+### **For Indie Builders & Founders**
+- 0–1 product acceleration  
+- Technical leadership without a full-time CTO  
+- Architecture guidance for long-term sustainability  
+- Clarity on data models, pipelines, and cost-efficient infrastructure  
+
+If your technical challenges feel tangled, risky, or expensive…  
+I bring the calm and clarity to straighten them out.
+
+---
+
+## Let's Talk
+
+Whether your Rails application is showing its age, your pipeline is fragile, or your team needs architectural guidance, I’m here to help you move faster with confidence.
+
+**Ready to work together?**  
+[Get in touch](/contact/) and let’s build something stable, scalable, and exceptional.
+
+---
 
 **Connect with me:**
 
