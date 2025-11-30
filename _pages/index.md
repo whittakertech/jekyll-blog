@@ -2,30 +2,47 @@
 layout: default
 title: Home
 description: >
-  Unity development, Rails consulting, and custom software solutions for games and web applications
+  Fractional CTO, Rails architect, and performance engineer delivering scalable systems, stable pipelines, and
+  measurable results for growing companies.
 permalink: /
 ---
 
-# Game Development & Technical Services
+# Fractional CTO & Rails Architecture Services  
+### Stable Systems • Scalable Infrastructure • Measurable Results
 
-I'm a software engineer specializing in **Unity game development** and **Ruby on Rails consulting**. I help indie
-developers build better games and growing businesses solve complex technical challenges.
+I’m **Lee Whittaker**, a systems-focused engineer and Fractional CTO specializing in **Rails architecture, DevOps
+reliability**, and **performance optimization**. I help teams stabilize critical systems, eliminate scaling bottlenecks,
+and accelerate delivery with clarity and confidence.
+
+---
 
 ## What I Do
 
-**Game Development**
+### **Rails Architecture & Technical Leadership**
 
-- Unity plugins and tools for the Asset Store
-- Custom game development and prototyping
-- Performance optimization and technical consulting
-- 3D assets and procedural generation systems
+- Fractional CTO guidance for teams without senior technical direction  
+- Performance optimization & memory reductions  
+- Concurrency and database integrity fixes  
+- Infrastructure modernization (Docker, CI/CD, observability)  
+- Rescue of fragile or legacy Rails applications  
+- Architecture mapping using 4+1, system views, and operational analysis  
 
-**Technical Services**
+### **Complex System Rescue & Modernization**
 
-- Ruby on Rails application development and upgrades
-- Legacy system modernization and migration
-- International character encoding solutions
-- Custom e-commerce integrations and Shopify development
+- Debugging asynchronous pipelines & job processing failures  
+- Eliminating race conditions in high-stakes environments  
+- Internationalization / UTF-8 character encoding corrections  
+- Stabilizing fragile deployments and resolving CI/CD inconsistencies  
+
+---
+
+## Recent Impact
+
+- **1,361 images processed in 2 minutes** after redesigning an async pipeline  
+- **60% memory reduction** through modern Docker-based architecture  
+- **118 failing tests resolved** while upgrading a legacy Rails system  
+- **High-risk concurrency bugs eliminated** in a legal scheduling platform  
+- **Global UTF-8 failures corrected**, restoring international customer onboarding  
 
 ---
 
@@ -43,13 +60,13 @@ developers build better games and growing businesses solve complex technical cha
 
 ---
 
-## Recent Blog Posts
+## Recent Writing
 
 {% for post in site.posts limit:3 %}
 
 ### [{{ post.headline | default: post.title | escape }}]({{ post.url | relative_url }})
 
-*{{ post.date | date: "%B %d, %Y" }} - {{ post.categories | join: ", " }}*
+*{{ post.date | date: "%B %d, %Y" }} — {{ post.categories | join: ", " }}*
 
 {{ post.description | default: post.excerpt | strip_html | truncate: 150 }}
 
@@ -63,11 +80,12 @@ developers build better games and growing businesses solve complex technical cha
 
 ## Let's Work Together
 
-Whether you need Unity development expertise or Rails consulting services, I'm here to help turn your technical
-challenges into solutions.
+If your Rails application is fragile, slow, aging, or preparing to scale, I can help you stabilize the foundation and
+deliver reliably again.
 
-**Ready to start?** [Get in touch](/contact/) to discuss your project.
+**Ready to start?**  
+[Get in touch](/contact/) and let’s strengthen your system.
 
 ---
 
-*Building games and solving problems, one line of code at a time.*
+*Clear architecture. Stable systems. Confident delivery.*
