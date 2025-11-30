@@ -3,72 +3,86 @@ layout: page
 title: Let's Work Together
 permalink: /contact/
 description: >
-  Get in touch with Lee Whittaker for Unity game development, Rails consulting, and custom software solutions.
+  Get in touch with Lee Whittaker for Rails architecture, performance optimization, and fractional CTO consulting.
 ---
 
-Whether you need Unity development expertise, Rails consulting, or custom software solutions, I'm here to help turn your
-technical challenges into competitive advantages.
+Whether your Rails system is slowing down, becoming difficult to change, or approaching an important growth stage,
+I help teams stabilize their foundations and deliver with confidence.  
+If you need architectural clarity, system rescue, or technical leadership, I’m here to support you.
+
+---
 
 ## What I Can Help With
 
-**Game Development Projects**
+### **Rails Architecture & System Stabilization**
+- Infrastructure modernization (Docker, CI/CD, observability)
+- Memory reduction, performance tuning, and bottleneck elimination
+- Concurrency fixes, transactional integrity, and race-condition resolution
+- Scalable background job pipelines and async architecture
+- Database optimization and query performance
 
-- Unity plugins and Asset Store tools
-- Custom game development and rapid prototyping
-- Performance optimization and technical consulting
-- Procedural generation and algorithmic content systems
+### **Fractional CTO Support**
+- Architecture audits using 4+1 system modeling
+- Technical strategy for 0–1 and 1–N product stages
+- Codebase modernization and domain alignment
+- Developer workflow improvements and DX optimization
+- Documentation, onboarding, and internal knowledge systems
 
-**Enterprise & Web Development**
+### **Legacy & High-Stakes Systems**
+- Rescue of fragile or outdated Rails applications
+- Removing scaling, encoding, and deployment failures
+- Stabilizing codebases with inconsistent tests or unpredictable behavior
+- Preparing for audits, investor scrutiny, or rapid growth
 
-- Ruby on Rails application development and upgrades
-- Legacy system modernization and security updates
-- International scaling and character encoding solutions
-- Custom e-commerce integrations and Shopify development
+---
 
-**Technical Consulting**
+## Ideal Project Types
 
-- Database concurrency and performance optimization
-- Code architecture reviews and strategic refactoring
-- Development workflow improvements and CI/CD setup
-- Technical debt assessment and migration planning
+### **Perfect Fit**
+- Complex Rails problems requiring deep architectural insight  
+- Systems with reliability concerns or unknown failure modes  
+- Projects where correctness, stability, and performance matter  
+- Companies needing senior leadership without hiring a full-time CTO  
+- Systems approaching scale, regulatory pressure, or mission-critical use  
 
-## Project Types
+### **Let’s Discuss**
+- Large greenfield products needing long-term architectural guidance  
+- High-urgency deadlines where stability must be restored quickly  
+- Multi-team technical alignment or platform refactoring  
 
-**Perfect Fit Projects:**
+### **Not a Fit**
+- Simple websites or brochure-style projects  
+- No-architecture “just code this fast” environments  
+- WordPress, Wix, or non-Rails CMS work  
 
-- Complex technical challenges that require deep expertise
-- Systems that need to work reliably across different environments
-- Projects where getting it right the first time matters
-- Situations where you need both technical skills and business understanding
-
-**Let's Discuss:**
-
-- Large-scale rewrites or greenfield projects
-- Projects with extremely tight deadlines
-- Simple website builds or basic WordPress sites
+---
 
 ## How I Work
 
-**Discovery Call (Free 30 minutes)**
+### **Discovery Call (Free, 30 Minutes)**
+During our first conversation, we’ll:
+- Clarify your challenges, constraints, and goals  
+- Identify the parts of your system at risk  
+- Establish timeline, scope, and success metrics  
+- Determine whether I’m the right fit for your situation  
 
-- Understand your specific challenges and goals
-- Assess technical requirements and constraints
-- Discuss timeline, budget, and success metrics
-- Determine if we're a good fit for collaboration
+### **Project Approach**
+- **Clarity First** — Architecture, data flows, and failure modes explained simply  
+- **Incremental Delivery** — Visible progress throughout the engagement  
+- **Documentation** — Durable artifacts your team can rely on  
+- **Knowledge Transfer** — I ensure your developers understand the architecture  
+- **Systems Thinking** — Solutions that survive new requirements and scale naturally  
 
-**Project Approach**
+---
 
-- **Clear Communication**: Regular updates and transparent progress reporting
-- **Incremental Delivery**: Working solutions delivered throughout the project, not just at the end
-- **Documentation**: Comprehensive documentation so your team can maintain and extend the work
-- **Knowledge Transfer**: Ensuring your team understands the solutions and can work with them confidently
+## Response Time & Availability
 
-## Response Time
+I respond to inquiries within **24 hours** on business days.  
+For active clients with urgent issues, I aim for **same-day support**.
 
-I typically respond to project inquiries within **24 hours** on business days. For urgent technical issues with
-existing clients, I aim for same-day response.
+Currently accepting new projects beginning **Q3 2025**.
 
-Currently accepting new projects with start dates in **Q3 2025**.
+---
 
 ## Get In Touch
 
@@ -80,17 +94,18 @@ Currently accepting new projects with start dates in **Q3 2025**.
 
 ## Before You Reach Out
 
-To help me understand your project and provide the most helpful response, please include:
+Including these details will help me understand your situation quickly:
 
-- **Project Overview**: What are you trying to build or solve?
-- **Technical Context**: What technologies are involved? Current system details?
-- **Timeline**: When do you need this completed?
-- **Budget Range**: What's your anticipated investment level?
-- **Success Metrics**: How will we know the project succeeded?
+- **System Overview** — What does your application do? Who relies on it?  
+- **Technical Context** — Rails version, hosting, background jobs, dependencies  
+- **Current Problems** — Symptoms, outages, performance issues, data risks  
+- **Timeline** — Desired start date and urgency  
+- **Budget Range** — A working range helps me propose the correct engagement  
+- **Definition of Success** — What outcome matters most to your team?  
 
-Don't worry about having all the details figured out—I'm happy to help you think through requirements and approach
-during our initial conversation.
+If you don’t have all the answers yet, that’s okay.  
+We can structure your needs together during our call.
 
 ---
 
-*Looking forward to hearing about your project and exploring how we can work together to make it successful.*
+*I look forward to learning about your system and helping you bring stability, clarity, and confidence back to your engineering efforts.*
