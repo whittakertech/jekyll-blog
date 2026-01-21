@@ -1,0 +1,22 @@
+---
+layout: default
+---
+
+<article class="product-page">
+  <header class="product-header">
+    <h1>{{ page.title }}</h1>
+    {% if page.tagline %}
+    <p class="tagline">{{ page.tagline }}</p>
+    {% endif %}
+  </header>
+
+  <section class="product-body">
+    {{ content }}
+  </section>
+
+  <footer class="product-footer">
+    <p>
+      <a href="{{ '/products/' | relative_url }}">Back to Products</a>
+    </p>
+  </footer>
+</article>

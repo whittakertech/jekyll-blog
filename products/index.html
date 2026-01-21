@@ -1,0 +1,25 @@
+---
+layout: default
+title: "Products"
+---
+
+<section class="products-index">
+  <header class="page-header">
+    <h1>WhittakerTech Products</h1>
+    <p>A curated collection of frameworks, engines, and tools built for reliability and long-term maintainability.</p>
+  </header>
+
+  <div class="product-grid">
+    {% assign products = site.products | sort: 'title' %}
+    {% for product in products %}
+    <article class="product-card">
+      <a href="{{ product.url | relative_url }}">
+        <h2>{{ product.title }}</h2>
+        {% if product.description %}
+        <p>{{ product.description }}</p>
+        {% endif %}
+      </a>
+    </article>
+    {% endfor %}
+  </div>
+</section>

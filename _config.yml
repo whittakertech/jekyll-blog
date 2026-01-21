@@ -1,6 +1,6 @@
 name: "WhittakerTech"
-tagline: "Game Development & Technical Services"
-title: "WhittakerTech - Game Development & Technical Services"
+tagline: "Software Development & Technical Services"
+title: "WhittakerTech - Software Development & Technical Services"
 description: >-
   A technology blog covering web development, DevOps, and software engineering.
 baseurl: ""
@@ -62,6 +62,10 @@ collections:
   portfolio:
     output: true
     permalink: /portfolio/:title/
+  products:
+    output: true
+    permalink: /products/:slug/
+    sort_by: title
 
 defaults:
   - scope:
