@@ -1,20 +1,20 @@
-# Main deployment workflow for production site
 name: Deploy to GitHub Pages
 
 on:
   push:
     branches: [master]
+  # Rebuild after scheduled drafts become due; this workflow deploys them itself.
+  schedule:
+    - cron: '17 * * * *'
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
 concurrency:
-  group: "pages"
+  group: pages
   cancel-in-progress: false
 
 jobs:
@@ -24,28 +24,41 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.2'
           bundler-cache: true
 
+      - name: Publish due drafts
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: |
+          count=$(ruby scripts/publish_due_drafts.rb)
+          if [ "$count" -gt 0 ]; then
+            git config user.email "action@github.com"
+            git config user.name "GitHub Action"
+            git add -A -- _posts _drafts
+            git commit -m "Publish $count scheduled post(s)"
+            git push
+          fi
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
       - name: Install Node dependencies
         run: npm ci
 
-      - name: Build CSS (SCSS → Tailwind)
+      - name: Build CSS
         run: npm run build:css-prod
         env:
           NODE_ENV: production
 
       - name: Setup Pages
-        uses: actions/configure-pages@v4
+        id: pages
+        uses: actions/configure-pages@v5
 
       - name: Build with Jekyll
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
