@@ -21,6 +21,32 @@ jobs:
           ruby-version: '3.2'
           bundler-cache: true
 
+      - name: Check scheduled publishing behavior
+        run: |
+          tmp=$(mktemp -d)
+          mkdir -p "$tmp/_drafts"
+          cat > "$tmp/_drafts/due.md" <<'POST'
+          ---
+          date: "2001-01-01 09:00:00 -0600"
+          published: false
+          title: Due
+          ---
+          Content
+          POST
+          cat > "$tmp/_drafts/future.md" <<'POST'
+          ---
+          date: "2099-01-01 09:00:00 -0600"
+          published: false
+          title: Future
+          ---
+          Content
+          POST
+          (cd "$tmp" && ruby "$GITHUB_WORKSPACE/scripts/publish_due_drafts.rb")
+          test -f "$tmp/_posts/2001-01-01-due.md"
+          test ! -f "$tmp/_drafts/due.md"
+          test -f "$tmp/_drafts/future.md"
+          grep -q '^published: true$' "$tmp/_posts/2001-01-01-due.md"
+
       - name: Validate front matter
         run: |
           echo "🔍 Validating front matter in posts..."
