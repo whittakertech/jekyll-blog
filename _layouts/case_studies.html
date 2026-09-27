@@ -1,0 +1,30 @@
+---
+layout: base
+---
+
+<div class="container-custom section-padding animate-fade-in-up">
+  <section class="case-studies-index">
+    <header class="page-header">
+      <h1>{{ page.heading | default: page.title }}</h1>
+      {% if page.intro %}
+      <p>{{ page.intro }}</p>
+      {% endif %}
+    </header>
+
+    {{ content }}
+
+    <div class="case-study-grid">
+      {% assign case_studies = site.portfolio | sort: 'title' %}
+      {% for case_study in case_studies %}
+      <article class="case-study-card">
+        <a href="{{ case_study.url | relative_url }}">
+          <h2>{{ case_study.title }}</h2>
+          {% if case_study.subtitle %}
+          <p>{{ case_study.subtitle }}</p>
+          {% endif %}
+        </a>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+</div>

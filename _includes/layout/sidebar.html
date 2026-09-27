@@ -9,7 +9,7 @@
       {% assign popular_posts = site.posts | sort: 'date' | reverse %}
       {% for post in popular_posts | limit: 3 %}
       <a href="{{ post.url | relative_url }}" class="block group">
-        <h4 class="text-sm font-medium text-primary group-hover:text-primary-600 leading-tight">
+        <h4 class="text-sm font-medium text-primary group-hover:text-primary/80 leading-tight">
           {{ post.title }}
         </h4>
         <p class="text-xs text-gray-400 mt-1">{{ post.date | date: "%b %d, %Y" }}</p>

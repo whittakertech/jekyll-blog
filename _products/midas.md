@@ -1,5 +1,5 @@
 ---
-layout: products
+layout: product
 title: "Midas"
 tagline: "Unified multi-currency monetary management for Rails"
 description: "A Rails engine providing a single source of truth for currency values using a polymorphic Coin ledger."

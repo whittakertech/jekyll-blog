@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ site.lang | default: 'en-US' }}">
+<html lang="{{ site.lang | default: 'en-US' }}" data-theme="dark">
 <head>
   <meta charset='utf-8'>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -31,13 +31,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <!-- Tailwind CSS compiled output -->
-  <link rel="stylesheet" href="{{ '/assets/css/output.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+  <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="{{ '/favicon.ico' | relative_url }}">
 
   <!-- Icons.svg -->
-  <link rel="preload" href="/assets/images/icons.svg?v={{ site.time | date: '%s' }}" as="image">
+  <link rel="preload" href="{{ '/assets/images/icons.svg' | relative_url }}?v={{ site.time | date: '%s' }}" as="image">
 </head>
 
 <body class="bg-dark text-text min-h-screen flex flex-col">
@@ -45,12 +45,7 @@
 
 <!-- Main Content -->
 <main class="flex-grow">
-  <div class="container-custom section-padding">
-    <!-- Content -->
-    <div class="animate-fade-in-up">
-      {{ content }}
-    </div>
-  </div>
+  {{ content }}
 </main>
 
 <!-- Footer -->

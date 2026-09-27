@@ -17,7 +17,6 @@
 }
 
 .logo {
-  display: block;
   max-height: 48px;
 }
 
@@ -52,21 +51,6 @@
 
 .nav-item {
   margin: 0;
-}
-
-.nav-link {
-  color: var(--color-text);
-  text-decoration: none;
-  font-weight: 500;
-  padding: 0.5rem 0;
-  border-bottom: 2px solid transparent;
-  transition: all 0.2s ease;
-}
-
-.nav-link:hover,
-.nav-link.current {
-  color: var(--color-primary);
-  border-bottom-color: var(--color-primary);
 }
 
 /* Mobile responsive adjustments */

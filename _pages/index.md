@@ -1,20 +1,18 @@
 ---
-layout: default
+layout: home
 title: Home
 description: >
-  Fractional CTO, Rails architect, and performance engineer delivering scalable systems, stable pipelines, and measurable results for growing teams.
+  Ruby and Rails tools, engineering writing, and the work behind WhittakerTech.
 permalink: /
----
-
-# Fractional CTO & Rails Architecture for Rails Teams  
-### Stable Systems • Scalable Infrastructure • Measurable Results
-
-I’m **Lee Whittaker**, a systems-focused engineer and Fractional CTO specializing in **Rails architecture, DevOps reliability, and performance optimization**.  
-
-I help product teams and growing companies **stabilize fragile systems, eliminate scaling bottlenecks, and ship with confidence**—without needing a full-time CTO on staff.
-
-[Work with me →](/contact/)
-
+hero:
+  eyebrow: WHITTAKERTECH / RUBY & RAILS
+  title: Ruby and Rails tools,
+  accent: with the work behind them.
+  intro: Explore the gems, applications, and engineering decisions that make up WhittakerTech.
+  primary_label: Explore products
+  primary_url: /products/
+  secondary_label: Read the writing
+  secondary_url: /blog/
 ---
 
 ## How I Help
