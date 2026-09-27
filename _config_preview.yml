@@ -1,21 +1,11 @@
-# Preview-specific configuration overrides
-baseurl: "/jekyll-blog/preview"
-url: "https://whittakertech.github.io"
-
-# Show drafts and future posts in preview
+# Builds in Actions produce a downloadable artifact, not a hosted Pages site.
+baseurl: ""
+url: "http://localhost:8000"
 show_drafts: true
 future: true
 
-# Different robots directive for preview
 defaults:
   - scope:
       path: ""
     values:
       robots: "noindex, nofollow"
-
-# Preview-specific plugins or settings
-plugins:
-  - jekyll-feed
-  - jekyll-sitemap
-  - jekyll-seo-tag
-  - jekyll-remote-theme
