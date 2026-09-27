@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: base
 ---
 
 <div class="portfolio-page">
@@ -71,7 +71,7 @@ layout: default
     {% endif %}
 
     <!-- Main Content -->
-    <main>
+    <div>
         <div class="container mx-auto px-6">
             <div class="max-w-4xl mx-auto">
                 <div class="prose prose-lg max-w-none">
@@ -79,7 +79,7 @@ layout: default
                 </div>
             </div>
         </div>
-    </main>
+    </div>
 
     <!-- Navigation -->
     {% assign portfolio_posts = site.portfolio | sort: 'date' | reverse %}
