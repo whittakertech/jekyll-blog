@@ -39,7 +39,7 @@ jobs:
       - name: Install Node dependencies
         run: npm ci
 
-      - name: Build CSS (SCSS → Tailwind)
+      - name: Build CSS (Tailwind)
         run: npm run build:css-prod
         env:
           NODE_ENV: production

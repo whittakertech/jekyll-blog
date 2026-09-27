@@ -60,7 +60,7 @@
 
   /* Links */
   a {
-    @apply text-primary hover:text-primary-100 transition-colors;
+    @apply text-primary hover:text-primary/80 transition-colors;
 
     &:hover {
       @apply underline;
