@@ -33,11 +33,6 @@ trackers:
   ga_id: "G-MSFXKRLPJL"
   hotjar_id: "6429836"
 
-# Sass configuration for Tailwind integration
-sass:
-  sass_dir: assets/css
-  style: compressed
-
 # Feed configuration for better SEO
 feed:
   posts_limit: 20
@@ -126,9 +121,7 @@ exclude:
   - node_modules/
   - package.json
   - package-lock.json
-  - tailwind.config.js
-  - assets/css/input.css  # Exclude the input file, include the output
-
-# Include the compiled CSS
-include:
-  - assets/css/output.css
+  # Tailwind sources; only the compiled assets/css/site.css is published
+  - assets/css/main.css
+  - assets/css/tokens/
+  - assets/css/elements/

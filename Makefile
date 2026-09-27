@@ -56,7 +56,7 @@ clean: ## Clean up build artifacts and caches
 	@echo "🧹 Cleaning up..."
 	docker-compose down
 	docker-compose run --rm jekyll bundle exec jekyll clean
-	rm -rf .jekyll-cache _site assets/css/output.css
+	rm -rf .jekyll-cache _site assets/css/site.css
 	@echo "✅ Cleanup complete!"
 
 # Dependency Management
@@ -232,7 +232,7 @@ fresh-start: ## Complete fresh start (removes everything)
 	@echo "⚠️  This will remove all containers, images, and volumes. Continue? [y/N]" && read ans && [ $${ans:-N} = y ]
 	@echo "🗑️  Removing all Docker resources..."
 	docker-compose down -v --rmi all
-	rm -rf .jekyll-cache _site Gemfile.lock node_modules package-lock.json assets/css/output.css
+	rm -rf .jekyll-cache _site Gemfile.lock node_modules package-lock.json assets/css/site.css
 	@echo "🔧 Rebuilding from scratch..."
 	$(MAKE) install
 	@echo "✅ Fresh start complete!"
@@ -247,7 +247,7 @@ reset-gems: ## Reset and reinstall all gems
 
 reset-css: ## Reset and rebuild CSS
 	@echo "🎨 Resetting CSS..."
-	rm -f assets/css/output.css node_modules package-lock.json
+	rm -f assets/css/site.css node_modules package-lock.json
 	$(MAKE) npm-install
 	$(MAKE) build-css
 	@echo "✅ CSS reset complete!"
@@ -268,9 +268,9 @@ validate-content: ## Run content validation locally
 
 # Development Quality Checks
 check-css: ## Check if Tailwind CSS is built
-	@if [ -f "assets/css/output.css" ]; then \
+	@if [ -f "assets/css/site.css" ]; then \
 		echo "✅ Tailwind CSS is built"; \
-		echo "📊 File size: $$(du -h assets/css/output.css | cut -f1)"; \
+		echo "📊 File size: $$(du -h assets/css/site.css | cut -f1)"; \
 	else \
 		echo "❌ Tailwind CSS not built. Run 'make build-css'"; \
 		exit 1; \
