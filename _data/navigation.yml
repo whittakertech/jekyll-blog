@@ -1,14 +1,10 @@
 main:
-  - name: "Blog"
+  - name: "Products"
+    url: "/products/"
+  - name: "Writing"
     url: "/blog/"
   - name: "About"
     url: "/about/"
-  - name: "Products"
-    url: "/products/"
-  - name: "Testimonials"
-    url: "/testimonials/"
-  - name: "Contact"
-    url: "/contact/"
 
 social:
   - icon: "linkedin"

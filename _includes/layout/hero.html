@@ -1,0 +1,35 @@
+<section class="site-hero relative overflow-hidden py-20 md:py-32">
+  <div class="pointer-events-none absolute inset-0 opacity-20"
+       style="background: radial-gradient(circle at 50% 50%, var(--wt-color-brand), transparent 50%);">
+  </div>
+
+  <div class="container-custom relative z-10">
+    <div class="mx-auto max-w-4xl text-center">
+      <p class="mb-6 inline-block rounded-full border border-primary px-4 py-2 text-sm text-primary">
+        WHITTAKERTECH / RUBY &amp; RAILS
+      </p>
+
+      <h1 class="mb-6 text-4xl font-bold leading-tight tracking-tight text-text md:text-6xl">
+        Ruby and Rails tools,
+        <span class="text-primary">with the work behind them.</span>
+      </h1>
+
+      <p class="mx-auto mb-10 max-w-2xl text-lg text-text/70 md:text-xl">
+        Explore the gems, applications, and engineering decisions that make up WhittakerTech.
+      </p>
+
+      <div class="flex flex-col justify-center gap-4 sm:flex-row">
+        <a href="{{ '/products/' | relative_url }}"
+           class="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-8 py-4 font-medium text-dark transition-colors hover:bg-primary/90">
+          Explore products
+          {% include icon.html name='arrow-northeast' size=5 %}
+        </a>
+
+        <a href="{{ '/blog/' | relative_url }}"
+           class="inline-flex items-center justify-center rounded-lg border border-primary px-8 py-4 font-medium text-text transition-colors hover:bg-primary/10">
+          Read the writing
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

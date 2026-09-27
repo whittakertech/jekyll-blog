@@ -1,0 +1,104 @@
+/* Typography Elements */
+/* Base typography styles for consistent hierarchy */
+
+@layer base {
+  /* Heading hierarchy */
+  h1 {
+    @apply text-4xl font-bold mb-6 leading-tight;
+  }
+
+  h2 {
+    @apply text-3xl font-bold mb-5 leading-tight;
+  }
+
+  h3 {
+    @apply text-2xl font-semibold mb-4 leading-snug;
+  }
+
+  h4 {
+    @apply text-xl font-semibold mb-3 leading-snug;
+  }
+
+  h5 {
+    @apply text-lg font-medium mb-2 leading-normal;
+  }
+
+  h6 {
+    @apply text-base font-medium mb-2 leading-normal;
+  }
+
+  /* Section spacing */
+  h2:not(:first-child) {
+    @apply mt-8;
+  }
+
+  h3:not(:first-child) {
+    @apply mt-6;
+  }
+
+  h4:not(:first-child) {
+    @apply mt-4;
+  }
+
+  /* Paragraph spacing */
+  p {
+    @apply mb-4 leading-relaxed;
+  }
+
+  /* Text elements */
+  strong, b {
+    @apply font-semibold;
+  }
+
+  em, i {
+    @apply italic;
+  }
+
+  small {
+    @apply text-sm text-text/80;
+  }
+
+  /* Links */
+  a {
+    @apply text-primary hover:text-primary-100 transition-colors;
+
+    &:hover {
+      @apply underline;
+    }
+  }
+
+  /* Lists */
+  ul, ol {
+    @apply mb-4 pl-6;
+  }
+
+  li {
+    @apply mb-1;
+  }
+
+  ul li {
+    @apply list-disc;
+  }
+
+  ol li {
+    @apply list-decimal;
+  }
+
+  /* Code elements */
+  code {
+    @apply bg-gray-800 px-2 py-1 rounded text-sm font-mono;
+  }
+
+  pre {
+    @apply bg-gray-900 p-4 rounded-lg overflow-x-auto mb-4;
+
+    code {
+      @apply bg-transparent p-0;
+    }
+  }
+
+  /* Blockquotes */
+  blockquote {
+    @apply border-l-4 border-primary pl-4 italic text-text/90 my-4;
+  }
+}

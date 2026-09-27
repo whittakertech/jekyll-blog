@@ -1,0 +1,86 @@
+@import "tailwindcss" source(none);
+@import "./tokens";
+@import "./elements";
+@config "../../tailwind.config.js";
+@theme inline {
+  --color-primary: var(--wt-color-brand);
+  --color-dark: var(--wt-color-neutral-0);
+  --color-text: var(--wt-color-neutral-900);
+  --color-canvas: var(--wt-color-neutral-0);
+  --font-sans: var(--wt-font-sans);
+  --font-mono: var(--wt-font-mono);
+}
+@source "../..";
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-dark text-text antialiased;
+    font-family: "Inter", system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply w-full max-w-6xl mx-auto px-6;
+  }
+
+  .main-header {
+    @apply border-b border-white/10 bg-canvas text-white;
+  }
+
+  .main-footer {
+    @apply border-t border-white/10 bg-canvas text-white;
+  }
+
+  .section-padding {
+    @apply py-12;
+  }
+
+  @media (min-width: 48rem) {
+    .section-padding { @apply py-16; }
+  }
+
+  @media (min-width: 64rem) {
+    .section-padding { @apply py-20; }
+  }
+
+  .nav-link {
+    @apply px-4 py-2 rounded-md text-text font-medium transition-colors duration-200;
+
+    &:hover {
+      @apply text-primary bg-text/10;
+    }
+
+    &.current {
+      @apply text-primary bg-primary/10 border-b-2 border-primary;
+    }
+  }
+
+  .post-card {
+    @apply card;
+
+    h3 {
+      @apply transition-colors duration-200;
+    }
+
+    &:hover {
+      @apply border-primary/30;
+    }
+
+    &:hover h3 {
+      @apply text-primary;
+    }
+  }
+}
+
+@utility card {
+  @apply bg-dark/50 backdrop-blur-sm border border-text/20 rounded-xl p-6 shadow-lg transition-shadow duration-300;
+
+  &:hover {
+    @apply shadow-xl;
+  }
+}

@@ -1,0 +1,69 @@
+/* Logo Styles */
+.logo-container {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.logo-link {
+  display: inline-block;
+  line-height: 0;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.logo-link:hover {
+  opacity: 0.8;
+}
+
+.logo {
+  max-height: 48px;
+}
+
+.logo-horizontal {
+  max-width: 180px;
+}
+
+/* Dark theme logo (if you have dark backgrounds) */
+@media (prefers-color-scheme: dark) {
+  .logo-link img {
+    filter: brightness(0.9);
+  }
+}
+
+/* Navigation Container */
+.nav-container {
+  @apply flex items-center justify-between w-full;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Existing nav-menu styles updated */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 1.5rem;
+}
+
+.nav-item {
+  margin: 0;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 640px) {
+  .nav-container {
+    padding: 0 1rem;
+  }
+
+  .nav-menu {
+    gap: 1rem;
+  }
+
+  .nav-menu .nav-item .nav-link {
+    font-size: 0.9rem;
+  }
+}

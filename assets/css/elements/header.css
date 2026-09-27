@@ -1,0 +1,7 @@
+header {
+  a {
+    &:hover {
+      text-decoration-line: none;
+    }
+  }
+}
