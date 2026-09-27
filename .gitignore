@@ -1,6 +1,5 @@
 # Jekyll
 _site
-.sass-cache
 .jekyll-cache
 .jekyll-metadata
 vendor
@@ -9,8 +8,8 @@ vendor
 node_modules/
 npm-debug.log*
 
-# Tailwind CSS
-assets/css/output.css
+# Tailwind CSS (built from assets/css/main.css)
+assets/css/site.css
 
 # Editor files
 .vscode/
@@ -62,6 +61,5 @@ jspm_packages/
 .yarn-integrity
 
 gitdiff.*
-/assets/css/output.css.map
 /tmp/
 /.idea/

@@ -1,5 +1,5 @@
 ---
-layout: portfolio
+layout: case_study
 title: "Choir Site"
 subtitle: "Ruby on Rails Choir Management System"
 description: >-

@@ -14,16 +14,11 @@ WORKDIR /app
 RUN gem update --system && \
     gem install jekyll:4.3.3 bundler:2.5.6
 
-# Install Tailwind CSS and dependencies
-RUN npm install -g @tailwindcss/cli@latest \
-    @tailwindcss/typography@latest \
-    @tailwindcss/forms@latest \
-    @tailwindcss/aspect-ratio@latest \
-    @tailwindcss/language-server
-
+# Tailwind CSS and its plugins come from package.json; docker-compose runs
+# npm install against the mounted project before starting.
 
 EXPOSE 4000
 
 # CMD ["bundle", "exec", "jekyll", "serve", "--host", "0.0.0.0", "--livereload"]
 # Enhanced CMD that builds Tailwind CSS and starts Jekyll
-CMD ["sh", "-c", "npm run build:css && bundle exec jekyll serve --host 0.0.0.0 --livereload --incremental"]
+CMD ["sh", "-c", "npm run build:css-prod && bundle exec jekyll serve --host 0.0.0.0 --livereload --incremental"]

@@ -1,0 +1,35 @@
+:root {
+  color-scheme: light;
+  --wt-color-brand: #14b8a6;
+  /*--wt-color-accent: #7048e8;*/
+  --wt-color-neutral-0: #ffffff;
+  --wt-color-neutral-50: #f5f7fa;
+  --wt-color-neutral-100: #f5f2ec;
+  --wt-color-neutral-300: #b3bdc9;
+  --wt-color-neutral-500: #6b7785;
+  --wt-color-neutral-700: #39434f;
+  --wt-color-neutral-900: #11151c;
+  --wt-color-semantic-info: #758ce6;
+  --wt-color-semantic-success: #2f9e44;
+  --wt-color-semantic-warning: #e8590c;
+  --wt-color-semantic-danger: #e03131;
+  --wt-color-product-heimdall-color: #3A3F44;
+  --wt-color-product-heimdall-color-dark: #5B6168;
+  --wt-color-product-midas-color: #9C7810;
+  --wt-color-product-midas-color-dark: #F0C24A;
+  --wt-color-product-oscar-color: #0F7B4E;
+  --wt-color-product-poly-color: #D46A8F;
+  --wt-color-product-sesame-color: #A9843F;
+  --wt-color-product-sesame-color-dark: #D8C08A;
+  --wt-font-sans: Inter, system-ui, sans-serif;
+  --wt-font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --wt-color-neutral-0: #11151c;
+  --wt-color-neutral-100: #6b7785;
+  --wt-color-neutral-300: #b3bdc9;
+  --wt-color-neutral-500: #f5f2ec;
+  --wt-color-neutral-900: #ffffff;
+}

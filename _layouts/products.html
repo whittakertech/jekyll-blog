@@ -1,22 +1,30 @@
 ---
-layout: default
+layout: base
 ---
 
-<article class="product-page">
-  <header class="product-header">
-    <h1>{{ page.title }}</h1>
-    {% if page.tagline %}
-    <p class="tagline">{{ page.tagline }}</p>
-    {% endif %}
-  </header>
+<div class="container-custom section-padding animate-fade-in-up">
+  <section class="products-index">
+    <header class="page-header">
+      <h1>{{ page.heading | default: page.title }}</h1>
+      {% if page.intro %}
+      <p>{{ page.intro }}</p>
+      {% endif %}
+    </header>
 
-  <section class="product-body">
     {{ content }}
-  </section>
 
-  <footer class="product-footer">
-    <p>
-      <a href="{{ '/products/' | relative_url }}">Back to Products</a>
-    </p>
-  </footer>
-</article>
+    <div class="product-grid">
+      {% assign products = site.products | sort: 'title' %}
+      {% for product in products %}
+      <article class="product-card">
+        <a href="{{ product.url | relative_url }}">
+          <h2>{{ product.title }}</h2>
+          {% if product.description %}
+          <p>{{ product.description }}</p>
+          {% endif %}
+        </a>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+</div>

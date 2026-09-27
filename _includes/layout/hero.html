@@ -1,0 +1,35 @@
+<section class="site-hero relative overflow-hidden py-20 md:py-32">
+  <div class="pointer-events-none absolute inset-0 opacity-20"
+       style="background: radial-gradient(circle at 50% 50%, var(--wt-color-brand), transparent 50%);">
+  </div>
+
+  <div class="container-custom relative z-10">
+    <div class="mx-auto max-w-4xl text-center">
+      <p class="mb-6 inline-block rounded-full border border-primary px-4 py-2 text-sm text-primary">
+        {{ include.hero.eyebrow | escape }}
+      </p>
+
+      <h1 class="mb-6 text-4xl font-bold leading-tight tracking-tight text-text md:text-6xl">
+        {{ include.hero.title | escape }}
+        <span class="text-primary">{{ include.hero.accent | escape }}</span>
+      </h1>
+
+      <p class="mx-auto mb-10 max-w-2xl text-lg text-text/70 md:text-xl">
+        {{ include.hero.intro | escape }}
+      </p>
+
+      <div class="flex flex-col justify-center gap-4 sm:flex-row">
+        <a href="{{ include.hero.primary_url | relative_url }}"
+           class="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-8 py-4 font-medium text-dark transition-colors hover:bg-primary/90">
+          {{ include.hero.primary_label | escape }}
+          {% include icon.html name='arrow-northeast' size=5 %}
+        </a>
+
+        <a href="{{ include.hero.secondary_url | relative_url }}"
+           class="inline-flex items-center justify-center rounded-lg border border-primary px-8 py-4 font-medium text-text transition-colors hover:bg-primary/10">
+          {{ include.hero.secondary_label | escape }}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
