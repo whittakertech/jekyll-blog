@@ -1,7 +1,8 @@
 @import "tailwindcss" source(none);
 @import "./tokens";
 @import "./elements";
-@config "../../tailwind.config.js";
+@plugin "@tailwindcss/typography";
+@plugin "@tailwindcss/forms";
 @theme inline {
   --color-primary: var(--wt-color-brand);
   --color-dark: var(--wt-color-neutral-0);
@@ -9,6 +10,14 @@
   --color-canvas: var(--wt-color-neutral-0);
   --font-sans: var(--wt-font-sans);
   --font-mono: var(--wt-font-mono);
+}
+@theme {
+  --animate-fade-in-up: fade-in-up 0.3s ease-out;
+
+  @keyframes fade-in-up {
+    from { transform: translateY(1rem); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
 }
 @source "../..";
 
@@ -83,4 +92,25 @@
   &:hover {
     @apply shadow-xl;
   }
+}
+
+@utility prose {
+  --tw-prose-body: var(--color-text);
+  --tw-prose-headings: var(--color-text);
+  --tw-prose-lead: var(--wt-color-neutral-500);
+  --tw-prose-links: var(--color-primary);
+  --tw-prose-bold: var(--color-text);
+  --tw-prose-counters: var(--wt-color-neutral-500);
+  --tw-prose-bullets: var(--color-primary);
+  --tw-prose-hr: var(--wt-color-neutral-300);
+  --tw-prose-quotes: var(--color-text);
+  --tw-prose-quote-borders: var(--color-primary);
+  --tw-prose-captions: var(--wt-color-neutral-500);
+  --tw-prose-code: var(--color-text);
+  /* Code blocks stay dark in both themes to suit the syntax palette */
+  --tw-prose-pre-code: #f5f2ec;
+  --tw-prose-pre-bg: #11151c;
+  --tw-prose-th-borders: var(--wt-color-neutral-300);
+  --tw-prose-td-borders: var(--wt-color-neutral-300);
+  max-width: none;
 }
