@@ -25,6 +25,9 @@
 #   rubygems_versions  - https://rubygems.org/api/v1/versions/<gem>.json
 #   github             - https://api.github.com/repos/<owner>/<repo>
 #
+# Homepage orderings (newest, latest_update, top_downloads) are published to
+# site.data.product_rankings; see #rankings.
+#
 # A failed fetch logs a warning and leaves that value nil, so an API outage
 # never blocks publishing. Set GITHUB_TOKEN to avoid GitHub's anonymous
 # rate limit.
@@ -50,17 +53,54 @@ module WhittakerTech
       return unless products
 
       site.data["products"] ||= {}
+      entries = []
 
       products.docs.each do |doc|
         sources = doc.data["sources"]
         next unless sources.is_a?(Hash)
 
         slug = doc.data["slug"] || doc.basename_without_ext
-        site.data["products"][slug] = fetch_sources(sources)
+        data = fetch_sources(sources)
+        site.data["products"][slug] = data
+
+        entries << {
+          "slug" => slug,
+          "title" => doc.data["title"],
+          "tagline" => doc.data["tagline"],
+          "url" => doc.url,
+          "stats" => data["stats"]
+        }
       end
+
+      site.data["product_rankings"] = rankings(entries)
     end
 
     private
+
+    # Homepage orderings, computed from stats. Products missing the relevant
+    # stat are left out; ties break by slug so builds are deterministic.
+    #
+    #   newest         - latest first_release_at
+    #   latest_update  - latest latest_release_at
+    #   top_downloads  - up to TOP_DOWNLOADS entries, most downloads first
+    TOP_DOWNLOADS = 5
+
+    def rankings(entries)
+      {
+        "newest" => latest_by(entries, "first_release_at"),
+        "latest_update" => latest_by(entries, "latest_release_at"),
+        "top_downloads" => entries
+          .select { |entry| entry["stats"]["downloads"] }
+          .sort_by { |entry| [-entry["stats"]["downloads"], entry["slug"]] }
+          .first(TOP_DOWNLOADS)
+      }
+    end
+
+    def latest_by(entries, stat)
+      entries
+        .select { |entry| entry["stats"][stat] }
+        .min_by { |entry| [-Time.parse(entry["stats"][stat]).to_f, entry["slug"]] }
+    end
 
     def fetch_sources(sources)
       data = {}
