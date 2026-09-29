@@ -19,6 +19,8 @@ github:
 
 plugins:
   - jekyll-feed
+  - jekyll-get-json
+  - jekyll-paginate
   - jekyll-sitemap
   - jekyll-seo-tag
 
