@@ -68,24 +68,6 @@ These aren’t theoretical exercises—they’re **real systems**, in production
 
 ---
 
-## Recent Writing
-
-I document real-world case studies from my work—what broke, why it mattered, how we fixed it, and the outcomes.
-
-{% for post in site.posts limit:3 %}
-
-### [{{ post.headline | default: post.title | escape }}]({{ post.url | relative_url }})
-
-*{{ post.date | date: "%B %d, %Y" }} — {{ post.categories | join: ", " }}*
-
-{{ post.description | default: post.excerpt | strip_html | truncate: 150 }}
-
-<br>
-
-{% endfor %}
-
-[View all posts →](/blog/)
-
 ---
 
 ## Who I Work With
