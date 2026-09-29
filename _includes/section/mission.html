@@ -1,0 +1,53 @@
+<section class="relative overflow-hidden py-24 md:py-32">
+  <div class="container-custom relative z-10">
+
+    <div class="grid gap-12 lg:grid-cols-2 lg:gap-25 mb-16">
+      <div>
+        <h2 class="mb-6 text-3xl font-bold leading-tight tracking-tight text-text md:text-5xl">
+          Software should become <em class="text-primary">boring.</em>
+        </h2>
+
+        <p class="mb-6 text-xl">
+          Reliable software doesn't demand your attention.
+          It does what it says it does, handles the strange cases,
+          and quietly gets out of your way.
+        </p>
+
+        <p class="text-md">
+          At Whittaker<span class="text-primary">Tech</span>, we build tools that put
+          complexity where it belongs &mdash; inside the software &mdash; so you can
+          focus on your work, not the machinery behind it.
+        </p>
+      </div>
+
+      <div>
+        <img alt=""
+             src="/assets/images/missioin-hero.png"
+             class="w-full object-cover object-center">
+      </div>
+    </div>
+
+    <div class="grid gap-12 md:grid-cols-3">
+      {% include mission-principle.html
+        icon="reliable"
+        title="Reliable"
+        heading="Boring code you don't have to think about"
+        copy="We build software that does what it says it does, handles the edge cases, and keeps working — so your day stays focused on what matters."
+      %}
+
+      {% include mission-principle.html
+        icon="modular"
+        title="Modular"
+        heading="Small pieces with clear boundaries"
+        copy="Components should be understandable alone, composable together, and replaceable without unraveling the system."
+      %}
+
+      {% include mission-principle.html
+        icon="understandable"
+        title="Understandable"
+        heading="Code should explain itself"
+        copy="Prefer clarity to cleverness: familiar patterns, intentional abstractions, and documentation where the code can't tell the whole story."
+      %}
+    </div>
+  </div>
+</section>
