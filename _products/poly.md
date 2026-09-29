@@ -10,11 +10,13 @@ categories:
   - associations
 links:
   github: "https://github.com/whittakertech/poly"
+  rubygems: "https://rubygems.org/gems/poly"
   docs: "https://poly.whittakertech.com"
 card:
   kicker: Rails primitives
   headline: Make polymorphism predictable.
 sources:
+  rubygems: poly
   github: whittakertech/poly
 features:
   - title: Type-safe joins
