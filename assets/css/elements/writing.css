@@ -1,0 +1,254 @@
+.writing-section {
+  padding: clamp(4rem, 8vw, 7rem) 0 2rem;
+  color: #f5f2ec;
+}
+
+.writing-heading {
+  margin-bottom: 1.75rem;
+}
+
+.writing-eyebrow,
+.writing-meta {
+  margin: 0;
+  color: #22d3d3;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.writing-heading h2 {
+  margin: 0.35rem 0 0.25rem;
+  color: #f5f2ec;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.5rem, 5vw, 3.75rem);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+}
+
+.writing-intro {
+  margin: 0;
+  color: #a3adb8;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+}
+
+.writing-grid {
+  display: grid;
+  gap: 1.75rem;
+}
+
+.writing-card {
+  min-width: 0;
+}
+
+.writing-image {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  align-items: flex-end;
+  justify-content: flex-start;
+  border: 1px solid rgb(255 255 255 / 12%);
+  border-radius: 0.5rem;
+  background:
+    radial-gradient(ellipse at 72% 35%, rgb(34 211 211 / 45%), transparent 32%),
+    radial-gradient(ellipse at 32% 80%, rgb(147 51 234 / 48%), transparent 38%),
+    linear-gradient(125deg, #0b2834 0%, #172a41 48%, #11121d 100%);
+  color: #f5f2ec;
+  text-decoration: none;
+}
+
+.writing-image::before,
+.writing-image::after {
+  position: absolute;
+  content: "";
+  pointer-events: none;
+}
+
+.writing-image::before {
+  inset: 0;
+  background:
+    linear-gradient(90deg, transparent 49.8%, rgb(255 255 255 / 8%) 50%, transparent 50.2%),
+    linear-gradient(0deg, transparent 49.8%, rgb(255 255 255 / 8%) 50%, transparent 50.2%);
+  background-size: 4rem 4rem;
+  mask-image: linear-gradient(135deg, transparent 15%, #000 100%);
+}
+
+.writing-image::after {
+  width: 14rem;
+  height: 14rem;
+  top: 12%;
+  right: 12%;
+  border: 1px solid rgb(103 232 249 / 35%);
+  border-radius: 50%;
+  box-shadow: 0 0 0 2rem rgb(103 232 249 / 5%), 0 0 0 4rem rgb(103 232 249 / 4%);
+}
+
+.writing-image img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 400ms ease;
+}
+
+.writing-image:hover img {
+  transform: scale(1.03);
+}
+
+.writing-image--featured {
+  aspect-ratio: 1.7;
+}
+
+.writing-image--secondary {
+  aspect-ratio: 2.8;
+}
+
+.writing-art-label {
+  position: relative;
+  z-index: 1;
+  padding: 1.25rem;
+  color: rgb(245 242 236 / 75%);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+}
+
+.writing-art-label span {
+  color: #22d3d3;
+}
+
+.writing-card-copy {
+  padding: 0.85rem 0 0;
+}
+
+.writing-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: #a3adb8;
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+}
+
+.writing-meta span:first-child {
+  color: #22d3d3;
+}
+
+.writing-card h3 {
+  margin: 0.35rem 0 0.25rem;
+  color: #f5f2ec;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.35rem, 2.2vw, 1.8rem);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.writing-card h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.writing-card h3 a:hover,
+.writing-footer a:hover {
+  color: #22d3d3;
+}
+
+.writing-description-row,
+.writing-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.writing-description,
+.writing-description-row p {
+  margin: 0;
+  color: #a3adb8;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.writing-arrow {
+  flex: none;
+  color: #22d3d3;
+  font-size: 1.5rem;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.writing-secondary {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.writing-secondary .writing-card h3 {
+  margin: 0.35rem 0 0.25rem;
+  font-size: clamp(1.25rem, 1.8vw, 1.6rem);
+}
+
+.writing-footer {
+  margin-top: 1.25rem;
+  padding: 0.75rem 0 0;
+  border-top: 1px solid rgb(255 255 255 / 8%);
+}
+
+.writing-footer a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #22d3d3;
+  font-size: 1.1rem;
+  text-decoration: none;
+}
+
+.writing-footer a span {
+  font-size: 1.4rem;
+}
+
+@media (min-width: 48rem) {
+  .writing-grid {
+    grid-template-columns: 1.4fr 1fr;
+    align-items: stretch;
+  }
+
+  .writing-card--featured {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .writing-card--featured .writing-card-copy {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .writing-card--featured .writing-description-row {
+    margin-top: auto;
+    padding-top: 0.35rem;
+  }
+
+  .writing-secondary {
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 47.999rem) {
+  .writing-image--featured {
+    aspect-ratio: 1.55;
+  }
+
+  .writing-image--secondary {
+    aspect-ratio: 2.4;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .writing-image img {
+    transition: none;
+  }
+}

@@ -1,0 +1,68 @@
+{% assign recent_posts = site.posts | sort: "date" | reverse | slice: 0, 3 %}
+{% assign featured_post = recent_posts[0] %}
+{% assign secondary_posts = recent_posts | slice: 1, 2 %}
+{% if recent_posts.size > 0 %}
+<section class="writing-section">
+  <div class="container-custom">
+    <header class="writing-heading">
+      <p class="writing-eyebrow">The Writing</p>
+      <h2>Ideas from the work.</h2>
+      <p class="writing-intro">Notes on Rails, architecture, and building software that becomes boring for the right reasons.</p>
+    </header>
+
+    <div class="writing-grid">
+      <article class="writing-card writing-card--featured">
+        <a class="writing-image writing-image--featured" href="{{ featured_post.url | relative_url }}" aria-label="Read {{ featured_post.title | escape }}">
+          {% if featured_post.hero_image %}
+            <img src="{{ featured_post.hero_image | relative_url }}" alt="" loading="lazy">
+          {% else %}
+            <span class="writing-art-label" aria-hidden="true">WT <span>/</span> FIELD NOTES</span>
+          {% endif %}
+        </a>
+        <div class="writing-card-copy">
+          <p class="writing-meta">
+            <span>{{ featured_post.categories | first | default: "Writing" }}</span>
+            <span aria-hidden="true">·</span>
+            <time datetime="{{ featured_post.date | date_to_xmlschema }}">{{ featured_post.date | date: "%b %-d, %Y" }}</time>
+          </p>
+          <h3><a href="{{ featured_post.url | relative_url }}">{{ featured_post.card_title | default: featured_post.title | truncate: 72 | escape }}</a></h3>
+          <div class="writing-description-row">
+            <p>{{ featured_post.description | default: featured_post.excerpt | strip_html | normalize_whitespace | truncate: 150 }}</p>
+            <a class="writing-arrow" href="{{ featured_post.url | relative_url }}" aria-label="Read {{ featured_post.title | escape }}">→</a>
+          </div>
+        </div>
+      </article>
+
+      <div class="writing-secondary">
+        {% for post in secondary_posts %}
+          <article class="writing-card">
+            <a class="writing-image writing-image--secondary" href="{{ post.url | relative_url }}" aria-label="Read {{ post.title | escape }}">
+              {% if post.hero_image %}
+                <img src="{{ post.hero_image | relative_url }}" alt="" loading="lazy">
+              {% else %}
+                <span class="writing-art-label" aria-hidden="true">WT <span>/</span> FIELD NOTES</span>
+              {% endif %}
+            </a>
+            <div class="writing-card-copy">
+              <p class="writing-meta">
+                <span>{{ post.categories | first | default: "Writing" }}</span>
+                <span aria-hidden="true">·</span>
+                <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time>
+              </p>
+              <div class="writing-title-row">
+                <h3><a href="{{ post.url | relative_url }}">{{ post.card_title | default: post.title | truncate: 64 | escape }}</a></h3>
+                <a class="writing-arrow" href="{{ post.url | relative_url }}" aria-label="Read {{ post.title | escape }}">→</a>
+              </div>
+              <p class="writing-description">{{ post.description | default: post.excerpt | strip_html | normalize_whitespace | truncate: 120 }}</p>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    </div>
+
+    <footer class="writing-footer">
+      <a href="{{ '/blog/' | relative_url }}">View all writing <span aria-hidden="true">→</span></a>
+    </footer>
+  </div>
+</section>
+{% endif %}
