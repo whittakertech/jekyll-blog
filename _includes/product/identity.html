@@ -1,0 +1,46 @@
+{% comment %}
+  A product's identity: icon (or monogram), title and kicker.
+  Shared by product tiles and the product-page masthead.
+  Params:
+    product - a product document or site.data.product_rankings entry
+    size    - "sm" (compact tiles), "md" (big tile) or "lg" (masthead)
+    tag     - heading element for the title (default "h3")
+  Variables are prefixed pi_ because include assigns leak into the caller.
+{% endcomment %}
+{% assign pi_product = include.product %}
+{% assign pi_tag = include.tag | default: "h3" %}
+{% case include.size %}
+  {% when "sm" %}
+    {% assign pi_gap = "gap-3" %}
+    {% assign pi_icon_class = "h-9 w-9 rounded-lg text-base" %}
+    {% assign pi_icon_size = 5 %}
+    {% assign pi_title_class = "truncate font-semibold leading-tight text-lg" %}
+    {% assign pi_kicker_class = "truncate text-[0.625rem] tracking-[0.12em]" %}
+  {% when "lg" %}
+    {% assign pi_gap = "gap-4 md:gap-5" %}
+    {% assign pi_icon_class = "h-14 w-14 rounded-2xl text-2xl md:h-16 md:w-16 md:text-3xl" %}
+    {% assign pi_icon_size = 8 %}
+    {% assign pi_title_class = "text-4xl font-bold leading-none tracking-tight md:text-6xl" %}
+    {% assign pi_kicker_class = "mt-2 md:text-sm md:tracking-[0.3em]" %}
+  {% else %}
+    {% assign pi_gap = "gap-4" %}
+    {% assign pi_icon_class = "" %}
+    {% assign pi_icon_size = 6 %}
+    {% assign pi_title_class = "truncate font-semibold leading-tight text-2xl lg:text-3xl" %}
+    {% assign pi_kicker_class = "truncate" %}
+{% endcase %}
+<div class="flex min-w-0 items-center {{ pi_gap }}">
+  <span class="product-tile-icon {{ pi_icon_class }}" aria-hidden="true">
+    {% if pi_product.card.icon %}
+      {% include icon.html name=pi_product.card.icon size=pi_icon_size %}
+    {% else %}
+      {{ pi_product.title | slice: 0 }}
+    {% endif %}
+  </span>
+  <div class="min-w-0">
+    <{{ pi_tag }} class="mb-0 {{ pi_title_class }}">{{ pi_product.title }}</{{ pi_tag }}>
+    {% if pi_product.card.kicker %}
+    <p class="product-tile-kicker {% unless include.size == 'lg' %}mt-0.5{% endunless %} {{ pi_kicker_class }}">{{ pi_product.card.kicker }}</p>
+    {% endif %}
+  </div>
+</div>

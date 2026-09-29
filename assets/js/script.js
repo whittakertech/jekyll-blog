@@ -143,3 +143,33 @@ async function hydrateProduct(element) {
 document
     .querySelectorAll("[data-product]")
     .forEach(hydrateProduct);
+
+/* Copy-to-clipboard buttons: <button data-copy-target="code-element-id" hidden>.
+   Buttons stay hidden where the Clipboard API is unavailable. */
+document.addEventListener('DOMContentLoaded', function() {
+  if (!navigator.clipboard) return;
+
+  document.querySelectorAll('[data-copy-target]').forEach(button => {
+    const target = document.getElementById(button.dataset.copyTarget);
+    if (!target) return;
+
+    const label = button.querySelector('[data-copy-label]');
+    const status = button.closest('section')?.querySelector('[data-copy-status]');
+    let timer;
+
+    button.hidden = false;
+    button.addEventListener('click', () => {
+      navigator.clipboard.writeText(target.textContent).then(() => {
+        if (label) label.textContent = 'Copied';
+        if (status) status.textContent = 'Copied to clipboard';
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          if (label) label.textContent = 'Copy';
+          if (status) status.textContent = '';
+        }, 2000);
+      }).catch(() => {
+        if (status) status.textContent = 'Copy failed';
+      });
+    });
+  });
+});
