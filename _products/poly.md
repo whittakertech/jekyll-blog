@@ -31,7 +31,6 @@ features:
     icon: shield-check
   - title: Role-based history
     text: Track a current prime entry and its supersession history with `Poly::Stack`.
-    icon: history
 install:
   - label: Gemfile
     language: ruby
