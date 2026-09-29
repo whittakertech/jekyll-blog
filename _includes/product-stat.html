@@ -1,0 +1,35 @@
+{% comment %}
+  One stat in a product tile.
+  Params: icon, value, label, size ("lg", "xs", or default small), dot (true shows the recent-release marker)
+  "xs" is icon + value only; the label stays available to screen readers and as a tooltip.
+{% endcomment %}
+{% if include.size == "xs" %}
+<div class="flex items-center gap-1.5" title="{{ include.label }}">
+  {% include icon.html name=include.icon size=4 class="flex-none opacity-80" %}
+  <p class="mb-0 text-sm font-semibold leading-none">
+    {{ include.value }}<span class="sr-only"> {{ include.label }}</span>
+    {% if include.dot %}
+      <span class="ml-1 inline-block h-1.5 w-1.5 rounded-full bg-[var(--wt-color-semantic-success)] align-middle"
+            title="Released in the last 30 days"></span>
+    {% endif %}
+  </p>
+</div>
+{% else %}
+<div class="flex items-center gap-3">
+  {% if include.size == "lg" %}
+    {% include icon.html name=include.icon size=8 class="flex-none opacity-80" %}
+  {% else %}
+    {% include icon.html name=include.icon size=5 class="flex-none opacity-80" %}
+  {% endif %}
+  <div class="leading-tight">
+    <p class="mb-0 font-semibold {% if include.size == 'lg' %}text-2xl{% else %}text-base{% endif %}">
+      {{ include.value }}
+      {% if include.dot %}
+        <span class="ml-1 inline-block h-2 w-2 rounded-full bg-[var(--wt-color-semantic-success)] align-middle"
+              title="Released in the last 30 days"></span>
+      {% endif %}
+    </p>
+    <p class="mb-0 text-xs opacity-70">{{ include.label }}</p>
+  </div>
+</div>
+{% endif %}

@@ -13,11 +13,18 @@
 #
 #   stats.version            - current release number
 #   stats.downloads          - total downloads
+#   stats.version_downloads  - downloads of the current version
 #   stats.latest_release_at  - when the current release was published
 #   stats.first_release_at   - when the first release was published
 #   stats.release_count      - number of (non-yanked) releases
 #   stats.stars              - GitHub stargazers
-#   stats.last_push_at       - last push to the GitHub repository
+#   stats.forks              - GitHub forks
+#   stats.open_issues        - GitHub open issues (GitHub counts open PRs here too)
+#   stats.language           - primary repository language
+#   stats.repo_created_at    - when the GitHub repository was created
+#   stats.last_push_at       - last push (development activity, not a release;
+#                              GitHub's updated_at is deliberately not used)
+#   stats.recent_release     - true if the current release is under 30 days old
 #
 # The raw API payloads are kept alongside for anything stats doesn't cover:
 #
@@ -44,6 +51,9 @@ module WhittakerTech
     RUBYGEMS_API = "https://rubygems.org/api/v1".freeze
     GITHUB_API = "https://api.github.com".freeze
 
+    # A release this new gets flagged as recent (stats.recent_release).
+    RECENT_RELEASE_DAYS = 30
+
     # Memoized per process, failures included, so `jekyll serve` regenerations
     # don't re-hit the APIs. Restart the server to refetch.
     CACHE = {}
@@ -67,6 +77,9 @@ module WhittakerTech
           "slug" => slug,
           "title" => doc.data["title"],
           "tagline" => doc.data["tagline"],
+          "description" => doc.data["description"],
+          "links" => doc.data["links"],
+          "card" => doc.data["card"],
           "url" => doc.url,
           "stats" => data["stats"]
         }
@@ -127,12 +140,24 @@ module WhittakerTech
       {
         "version" => gem["version"],
         "downloads" => gem["downloads"],
+        "version_downloads" => gem["version_downloads"],
         "latest_release_at" => gem["version_created_at"],
         "first_release_at" => releases.min_by { |version| Time.parse(version["created_at"]) }&.dig("created_at"),
         "release_count" => data["rubygems_versions"] && releases.length,
         "stars" => github["stargazers_count"],
-        "last_push_at" => github["pushed_at"]
+        "forks" => github["forks_count"],
+        "open_issues" => github["open_issues_count"],
+        "language" => github["language"],
+        "repo_created_at" => github["created_at"],
+        "last_push_at" => github["pushed_at"],
+        "recent_release" => recent?(gem["version_created_at"])
       }
+    end
+
+    def recent?(timestamp)
+      return false unless timestamp
+
+      Time.now - Time.parse(timestamp) <= RECENT_RELEASE_DAYS * 24 * 60 * 60
     end
 
     def fetch(url, headers = {})

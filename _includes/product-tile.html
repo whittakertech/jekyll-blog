@@ -1,0 +1,116 @@
+{% comment %}
+  A product card in the featured-products bento.
+  Params:
+    product - a site.data.product_rankings entry
+    shape   - "big", "wide", "tall" or "small"
+    dense   - true for a small card sharing its cell with another (hides the tagline)
+  Every shape is the same card; larger shapes reveal more of the product.
+  Text is line-clamped so each shape holds a fixed footprint in the bento.
+  Optional front matter under `card:` — kicker, headline, icon (sprite id), image, theme ("dark").
+{% endcomment %}
+{% assign tile = include.product %}
+{% assign shape = include.shape %}
+{% if shape == "big" %}{% assign compact = false %}{% else %}{% assign compact = true %}{% endif %}
+{% assign stats = tile.stats %}
+{% assign headline = tile.card.headline | default: tile.tagline %}
+{% assign downloads = stats.downloads | compact_number %}
+{% assign stars = stats.stars | compact_number %}
+{% if stats.stars == 1 %}{% assign stars_label = "GitHub star" %}{% else %}{% assign stars_label = "GitHub stars" %}{% endif %}
+{% if stats.version %}{% assign version = "v" | append: stats.version %}{% else %}{% assign version = nil %}{% endif %}
+{% if shape == "big" %}{% assign stat_size = "lg" %}{% else %}{% assign stat_size = "xs" %}{% endif %}
+
+<article class="product-tile flex h-full min-h-0 flex-col {% if tile.card.theme == 'dark' %}product-tile--dark{% endif %}
+                {% if shape == 'big' %}gap-6 p-8 lg:p-10{% elsif include.dense %}gap-2 p-4{% elsif shape == 'small' %}gap-3 p-5{% else %}gap-3 p-6{% endif %}"
+         style="--accent: var(--wt-color-product-{{ tile.slug }}-color, var(--wt-color-brand));">
+  {% if tile.card.image %}
+  <img src="{{ tile.card.image | relative_url }}" alt="" class="product-tile-image" loading="lazy">
+  {% else %}
+  <span class="product-tile-glow {% if shape == 'big' %}-bottom-24 -right-24 h-96 w-96{% else %}-right-16 -top-16 h-56 w-56{% endif %}"
+        aria-hidden="true"></span>
+  {% endif %}
+
+  {%- comment -%} Identity (the wide shape carries its stats here) {%- endcomment -%}
+  <header class="flex items-center justify-between gap-4">
+    <div class="flex min-w-0 items-center {% if compact %}gap-3{% else %}gap-4{% endif %}">
+      <span class="product-tile-icon {% if compact %}h-9 w-9 rounded-lg text-base{% endif %}" aria-hidden="true">
+        {% if tile.card.icon %}
+          {% if compact %}{% include icon.html name=tile.card.icon size=5 %}{% else %}{% include icon.html name=tile.card.icon size=6 %}{% endif %}
+        {% else %}
+          {{ tile.title | slice: 0 }}
+        {% endif %}
+      </span>
+      <div class="min-w-0">
+        <h3 class="mb-0 truncate font-semibold leading-tight {% if compact %}text-lg{% else %}text-2xl lg:text-3xl{% endif %}">{{ tile.title }}</h3>
+        {% if tile.card.kicker %}
+        <p class="product-tile-kicker mt-0.5 truncate {% if compact %}text-[0.625rem] tracking-[0.12em]{% endif %}">{{ tile.card.kicker }}</p>
+        {% endif %}
+      </div>
+    </div>
+
+    {% if shape == "wide" %}
+    <div class="flex flex-none items-center gap-4">
+      {% if stats.downloads %}{% include product-stat.html icon="download" value=downloads label="Downloads" size="xs" %}{% endif %}
+      {% if stats.stars %}{% include product-stat.html icon="star" value=stars label=stars_label size="xs" %}{% endif %}
+      {% if stats.version %}{% include product-stat.html icon="package" value=version label="Latest release" dot=stats.recent_release size="xs" %}{% endif %}
+    </div>
+    {% endif %}
+  </header>
+
+  {%- comment -%} Positioning {%- endcomment -%}
+  {% unless include.dense %}
+  <div class="min-h-0 {% if shape == 'big' %}max-w-md{% elsif shape == 'wide' %}max-w-lg{% endif %}">
+    {% if headline %}
+    <p class="font-bold tracking-tight
+              {% case shape %}
+                {% when 'big' %}mb-4 text-4xl leading-[1.05] lg:text-5xl
+                {% when 'wide' %}mb-2 line-clamp-2 text-2xl leading-tight
+                {% when 'tall' %}mb-0 line-clamp-4 text-lg leading-snug
+                {% else %}mb-0 line-clamp-3 text-base font-medium leading-snug
+              {% endcase %}">
+      {{ headline }}
+    </p>
+    {% endif %}
+    {% if tile.description and shape == "big" %}
+    <p class="mb-0 line-clamp-3 text-base opacity-85 lg:text-lg">{{ tile.description }}</p>
+    {% elsif tile.description and shape == "wide" %}
+    <p class="mb-0 line-clamp-2 text-sm opacity-85">{{ tile.description }}</p>
+    {% endif %}
+  </div>
+  {% endunless %}
+
+  {%- comment -%} Actions — the small shape puts its arrow in the footer {%- endcomment -%}
+  {% unless shape == "small" %}
+  <div class="flex flex-wrap items-center {% if compact %}gap-x-4{% else %}gap-x-6{% endif %} gap-y-2">
+    <a href="{{ tile.url | relative_url }}" class="product-tile-cta {% if compact %}px-4 py-1.5 text-sm{% endif %}">
+      View {{ tile.title }} {% include icon.html name="arrow-right" size=4 %}
+    </a>
+    {% for link in tile.links %}
+      {% case link[0] %}
+        {% when "docs" %}{% assign link_label = "Docs" %}
+        {% when "github" %}{% assign link_label = "GitHub" %}
+        {% when "rubygems" %}{% assign link_label = "RubyGems" %}
+        {% when "npm" %}{% assign link_label = "npm" %}
+        {% else %}{% assign link_label = link[0] | capitalize %}
+      {% endcase %}
+      {% unless shape == "tall" and link[0] != "docs" %}
+      <a href="{{ link[1] }}" class="text-sm font-medium text-current opacity-80 hover:opacity-100 hover:underline">{{ link_label }}</a>
+      {% endunless %}
+    {% endfor %}
+  </div>
+  {% endunless %}
+
+  {%- comment -%} Metrics footer — the wide shape shows them in its header {%- endcomment -%}
+  {% unless shape == "wide" %}
+  <div class="mt-auto flex items-center border-t border-current/10
+              {% if shape == 'big' %}flex-wrap gap-x-10 gap-y-4 pt-6{% elsif include.dense %}gap-4 pt-2{% else %}gap-4 pt-3{% endif %}">
+    {% if stats.downloads %}{% include product-stat.html icon="download" value=downloads label="Downloads" size=stat_size %}{% endif %}
+    {% if stats.stars %}{% include product-stat.html icon="star" value=stars label=stars_label size=stat_size %}{% endif %}
+    {% if stats.version and shape != "small" %}{% include product-stat.html icon="package" value=version label="Latest release" dot=stats.recent_release size=stat_size %}{% endif %}
+    {% if shape == "small" %}
+    <a href="{{ tile.url | relative_url }}" class="product-tile-arrow ml-auto h-8 w-8" aria-label="View {{ tile.title }}">
+      {% include icon.html name="arrow-right" size=4 %}
+    </a>
+    {% endif %}
+  </div>
+  {% endunless %}
+</article>

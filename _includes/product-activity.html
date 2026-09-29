@@ -1,0 +1,40 @@
+{% comment %}
+  One half of the activity strip above the product bento.
+  Params: product (a site.data.product_rankings entry), kind ("newest" or "update")
+{% endcomment %}
+{% assign activity = include.product %}
+<a href="{{ activity.url | relative_url }}"
+   class="group flex items-center gap-4 px-6 py-3 text-text transition-colors hover:bg-text/5"
+   style="--accent: var(--wt-color-product-{{ activity.slug }}-color, var(--wt-color-brand));">
+  <span class="relative flex h-2.5 w-2.5 flex-none" aria-hidden="true">
+    {% if include.kind == "newest" %}
+    <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--wt-color-semantic-success)] opacity-60 motion-reduce:animate-none"></span>
+    <span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-[var(--wt-color-semantic-success)]"></span>
+    {% else %}
+    <span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-[var(--wt-color-semantic-info)]"></span>
+    {% endif %}
+  </span>
+
+  <div class="min-w-0 flex-1">
+    <p class="mb-0 text-xs font-semibold uppercase tracking-[0.18em] opacity-70">
+      {% if include.kind == "newest" %}Newest product{% else %}Latest release{% endif %}
+    </p>
+    <p class="mb-0 sm:truncate">
+      <span class="font-semibold text-[var(--accent)]">{{ activity.title }}</span>
+      {% if include.kind == "newest" %}
+        <span class="font-mono text-sm opacity-70">
+          &middot; first released {{ activity.stats.first_release_at | date: "%b %-d, %Y" }}
+        </span>
+      {% else %}
+        <span class="font-mono text-sm">v{{ activity.stats.version }}</span>
+        <span class="font-mono text-sm opacity-70">
+          &middot; {{ activity.stats.latest_release_at | date: "%b %-d, %Y" }}
+        </span>
+      {% endif %}
+    </p>
+  </div>
+
+  <span class="flex-none opacity-50 transition group-hover:translate-x-0.5 group-hover:opacity-100" aria-hidden="true">
+    {% include icon.html name="arrow-right" size=5 %}
+  </span>
+</a>
