@@ -38,7 +38,14 @@
     </nav>
 
     <header class="flex max-w-2xl flex-col gap-6">
-      {% include product/identity.html product=pm size="lg" tag="h1" %}
+      {% if pm.card.wordmark %}
+      <div class="flex flex-col items-start gap-2">
+        <h1 class="m-0"><img src="{{ pm.card.wordmark }}" alt="{{ pm.title }}" class="h-12 w-auto md:h-16" fetchpriority="high"></h1>
+        {% if pm.card.kicker %}<p class="product-tile-kicker mt-0 md:text-sm md:tracking-[0.3em]">{{ pm.card.kicker }}</p>{% endif %}
+      </div>
+      {% else %}
+        {% include product/identity.html product=pm size="lg" tag="h1" %}
+      {% endif %}
 
       {% if pm_headline %}
       <p class="mb-0 text-4xl font-bold leading-[1.05] tracking-tight md:text-6xl">{{ pm_headline }}</p>
