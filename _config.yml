@@ -64,6 +64,21 @@ collections:
     permalink: /products/:slug/
     sort_by: title
 
+jekyll_get_json:
+  - data: midas
+    json: https://rubygems.org/api/v1/gems/whittaker_tech-midas.json
+  - data: midas_versions
+    json: https://rubygems.org/api/v1/versions/whittaker_tech-midas.json
+  - data: midas_repo
+    json: https://api.github.com/repos/whittakertech/midas
+
+  - data: poly
+    json: https://rubygems.org/api/v1/gems/poly.json
+  - data: poly_versions
+    json: https://rubygems.org/api/v1/versions/poly.json
+  - data: poly_repo
+    json: https://api.github.com/repos/whittakertech/poly
+
 defaults:
   - scope:
       path: ""
