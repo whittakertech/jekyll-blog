@@ -144,8 +144,11 @@ document
     .querySelectorAll("[data-product]")
     .forEach(hydrateProduct);
 
-/* Copy-to-clipboard buttons: <button data-copy-target="code-element-id" hidden>.
-   Buttons stay hidden where the Clipboard API is unavailable. */
+/* Copy-to-clipboard buttons:
+   <button data-copy-target="code-element-id" data-copy-status="live-region-id" hidden>.
+   data-copy-status is optional and names the aria-live element that announces
+   the result; several buttons may share one. Buttons stay hidden where the
+   Clipboard API is unavailable. */
 document.addEventListener('DOMContentLoaded', function() {
   if (!navigator.clipboard) return;
 
@@ -154,7 +157,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!target) return;
 
     const label = button.querySelector('[data-copy-label]');
-    const status = button.closest('section')?.querySelector('[data-copy-status]');
+    const status = button.dataset.copyStatus ? document.getElementById(button.dataset.copyStatus) : null;
     let timer;
 
     button.hidden = false;

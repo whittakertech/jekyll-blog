@@ -16,7 +16,7 @@
       <figure class="product-code m-0">
         <figcaption class="product-code-header">
           <span>{{ step.label | default: step.language }}</span>
-          <button type="button" class="product-code-copy" data-copy-target="{{ code_id }}" hidden>
+          <button type="button" class="product-code-copy" data-copy-target="{{ code_id }}" data-copy-status="install-copy-status" hidden>
             {% include icon.html name="copy" size=4 %} <span data-copy-label>Copy</span>
           </button>
         </figcaption>
@@ -38,5 +38,6 @@
     </div>
     {% endif %}
   </div>
-  <p class="sr-only" aria-live="polite" data-copy-status></p>
+  {% comment %} One live region announces the result of every copy button in this section. {% endcomment %}
+  <p id="install-copy-status" class="sr-only" aria-live="polite"></p>
 </section>
