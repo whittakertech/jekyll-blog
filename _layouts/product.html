@@ -34,7 +34,7 @@ layout: base
 {% endif %}
 {% assign related_products = related_products | slice: 0, 2 %}
 
-<article class="product-page" style="--accent: var(--wt-color-product-{{ page.slug }}-color, var(--wt-color-brand));">
+<article class="product-page">
   {% include product/masthead.html product=page stats=product_stats %}
 
   <div class="container-custom flex flex-col gap-14 py-12 md:py-16">
@@ -57,10 +57,17 @@ layout: base
       {% include product/install.html steps=page.install docs=page.links.docs %}
     {% endif %}
 
-    {% if page.use_cases.size > 0 or related_products.size > 0 %}
+    {% if page.use_cases.size > 0 %}
+      {% include product/use-cases.html use_cases=page.use_cases %}
+    {% endif %}
+
+    {% if page.roadmap.size > 0 %}
+      {% include product/roadmap.html items=page.roadmap %}
+    {% endif %}
+
+    {% if related_products.size > 0 %}
     <div class="grid gap-14 {% if page.use_cases.size > 0 and related_products.size > 0 %}lg:grid-cols-2 lg:gap-10{% endif %}">
-      {% if page.use_cases.size > 0 %}{% include product/use-cases.html use_cases=page.use_cases %}{% endif %}
-      {% if related_products.size > 0 %}{% include product/related.html products=related_products %}{% endif %}
+      {% include product/related.html products=related_products %}
     </div>
     {% endif %}
   </div>

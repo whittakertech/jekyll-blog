@@ -12,7 +12,7 @@
   {% assign pl_key = pl_link[0] %}
   {% if include.only and pl_key != include.only %}{% continue %}{% endif %}
   {% if include.except and pl_key == include.except %}{% continue %}{% endif %}
-  <a href="{{ pl_link[1] }}" class="{{ include.class }}">
+  <a href="{{ pl_link[1] }}" class="{{ include.class }}">{% include product/link-target.html url=pl_link[1] %}
     {%- include product/link-label.html key=pl_key -%}
     {%- if include.external %} {% include icon.html name="arrow-northeast" size=3 class="flex-none opacity-70" %}{% endif -%}
   </a>

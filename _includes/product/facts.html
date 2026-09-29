@@ -62,13 +62,13 @@
     {% if pf.repository_url %}
     <div class="product-fact">
       <dt>{% include icon.html name="repo" size=4 class="flex-none opacity-70" %} Repository</dt>
-      <dd><a href="{{ pf.repository_url }}" class="product-fact-link">{{ pf.repository_name | default: "Source" }}</a></dd>
+      <dd><a href="{{ pf.repository_url }}" class="product-fact-link">{% include product/link-target.html url=pf.repository_url %}{{ pf.repository_name | default: "Source" }}</a></dd>
     </div>
     {% endif %}
     {% if pf.package_url %}
     <div class="product-fact">
       <dt>{% include icon.html name="package" size=4 class="flex-none opacity-70" %} {{ pf.package_registry | default: "Package" }}</dt>
-      <dd><a href="{{ pf.package_url }}" class="product-fact-link">{{ pf.package_name | default: "Package" }}</a></dd>
+      <dd><a href="{{ pf.package_url }}" class="product-fact-link">{% include product/link-target.html url=pf.package_url %}{{ pf.package_name | default: "Package" }}</a></dd>
     </div>
     {% endif %}
   </dl>

@@ -1,0 +1,11 @@
+<section class="product-section" aria-labelledby="roadmap-heading">
+  <h2 id="roadmap-heading" class="product-section-label">Roadmap</h2>
+  <ul class="m-0 flex list-none flex-col gap-3 p-0">
+    {% for item in include.items %}
+    <li class="m-0 flex items-center gap-3">
+      <span class="product-check" aria-hidden="true"></span>
+      {{ item }}
+    </li>
+    {% endfor %}
+  </ul>
+</section>

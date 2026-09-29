@@ -1,6 +1,7 @@
 ---
 layout: product
 title: "Midas"
+schema_type: SoftwareApplication
 tagline: "Unified multi-currency monetary management for Rails"
 description: "A Rails engine providing a single source of truth for currency values using a polymorphic Coin ledger."
 slug: "midas"
@@ -49,18 +50,32 @@ install:
       bin/rails railties:install:migrations FROM=whittaker_tech_midas
       bin/rails db:migrate
 use_cases:
-  - Prices, balances and totals on any model
-  - Applications that handle more than one currency
-  - Invoices, billing and payments
-  - Any Rails application that handles money
+  - Product catalogs and configurable pricing
+  - Multi-currency applications
+  - Invoices, billing, fees and payments
+  - Models with multiple independent monetary values
+roadmap:
+  - Exchange rate fetching
+  - Versioned coin histories
+  - ViewComponent integrations
+  - Billing integration examples (Stripe and LemonSqueezy)
 ---
 
 ## Overview
 
-Midas centralizes all monetary behavior in Rails applications using a polymorphic `Coin` ledger.  
-Instead of duplicating `price_cents` and currency columns across dozens of models, Midas stores every monetary value in a single, consistent system.
+Midas centralizes monetary values in a polymorphic `Coin` ledger. Instead of repeating price and currency columns on each model, attach one or more values to any model:
 
-This prevents rounding bugs, supports multi-currency conversion, and ensures financial logic remains predictable as your application grows.
+```ruby
+# Product has price_cents and price_currency columns
+product.price
+
+# Midas: one shared ledger, attached through the model
+class Product < ApplicationRecord
+  has_coin :price
+end
+```
+
+The `has_coin` declaration gives the model a consistent money interface while Midas stores the value in the shared ledger. This helps prevent rounding bugs, supports multi-currency conversion, and keeps financial logic predictable as your application grows.
 
 ## Why Midas Exists
 
@@ -68,10 +83,3 @@ As systems scale, currency logic becomes one of the most fragile parts of an app
 Teams often duplicate conversion, rounding, and formatting logic in dozens of places.
 
 Midas eliminates this entirely.
-
-## Roadmap
-
-- Exchange rate fetching
-- Versioned coin histories
-- ViewComponent integrations
-- Billing integration examples (Stripe and LemonSqueezy)

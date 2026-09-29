@@ -1,8 +1,16 @@
-/* Product pages (_layouts/product.html).
-   The masthead reuses the product-tile surface; everything below derives
-   from the --accent set on .product-page, like the tiles do. */
+/* Product pages (_layouts/product.html): product identity lives in the
+   masthead; the editorial body uses WhittakerTech's brand accent. */
 
 @layer components {
+  .product-page {
+    --page-accent: var(--wt-color-brand);
+    --accent: var(--page-accent);
+  }
+
+  .product-masthead {
+    --accent: var(--product-accent);
+  }
+
   /* The big tile at full page width: square corners, no floating shadow. */
   .product-masthead {
     @apply rounded-none border-x-0 border-t-0 shadow-none;
@@ -24,7 +32,7 @@
   /* Small uppercase heading shared by every product-page section. */
   .product-section-label {
     @apply mb-4 mt-0 text-xs font-semibold uppercase leading-normal tracking-[0.18em];
-    color: color-mix(in srgb, var(--accent) 65%, var(--color-text));
+    color: color-mix(in srgb, var(--page-accent) 65%, var(--color-text));
   }
 
   .product-section {
@@ -32,8 +40,8 @@
   }
 
   .product-prose {
-    --tw-prose-links: color-mix(in srgb, var(--accent) 65%, var(--color-text));
-    --tw-prose-bullets: var(--accent);
+    --tw-prose-links: color-mix(in srgb, var(--page-accent) 65%, var(--color-text));
+    --tw-prose-bullets: var(--page-accent);
 
     & > :first-child {
       @apply mt-0;
@@ -57,7 +65,7 @@
   }
 
   .product-fact-link {
-    color: color-mix(in srgb, var(--accent) 65%, var(--color-text));
+    color: color-mix(in srgb, var(--page-accent) 65%, var(--color-text));
 
     &:hover {
       @apply underline;
@@ -70,14 +78,14 @@
 
   .product-card-icon {
     @apply flex h-10 w-10 flex-none items-center justify-center rounded-xl;
-    background: color-mix(in srgb, var(--accent) 18%, transparent);
-    color: color-mix(in srgb, var(--accent) 75%, var(--color-text));
+    background: color-mix(in srgb, var(--page-accent) 18%, transparent);
+    color: color-mix(in srgb, var(--page-accent) 75%, var(--color-text));
   }
 
   .product-check {
     @apply flex h-5 w-5 flex-none items-center justify-center rounded-full;
-    background: color-mix(in srgb, var(--accent) 22%, transparent);
-    color: color-mix(in srgb, var(--accent) 75%, var(--color-text));
+    background: color-mix(in srgb, var(--page-accent) 22%, transparent);
+    color: color-mix(in srgb, var(--page-accent) 75%, var(--color-text));
   }
 
   /* Code cards stay dark in both themes, like prose code blocks. */
