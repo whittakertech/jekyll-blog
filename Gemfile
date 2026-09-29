@@ -8,7 +8,6 @@ gem 'foreman'
 
 group :jekyll_plugins do
   gem 'jekyll-feed'
-  gem 'jekyll-get-json'
   gem 'jekyll-paginate'
   gem 'jekyll-seo-tag'
   gem 'jekyll-sitemap'

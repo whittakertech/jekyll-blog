@@ -1,9 +1,10 @@
+{% assign midas = site.data.products.midas.stats %}
 <h3>Midas</h3>
 <ul>
-  <li>Version: {{ site.data.midas.version }}</li>
-  <li>Downloads: {{ site.data.midas.downloads }}</li>
-  <li>Latest release: {{ site.data.midas.version_created_at }}</li>
-  <li>GitHub stars: {{ site.data.midas_repo.stargazers_count }}</li>
-  <li>Last push: {{ site.data.midas_repo.pushed_at }}</li>
-  <li>Releases: {{ site.data.midas_versions | size }}</li>
+  <li>Version: {{ midas.version }}</li>
+  <li>Downloads: {{ midas.downloads }}</li>
+  <li>Latest release: {{ midas.latest_release_at }}</li>
+  <li>GitHub stars: {{ midas.stars }}</li>
+  <li>Last push: {{ midas.last_push_at }}</li>
+  <li>Releases: {{ midas.release_count }}</li>
 </ul>
