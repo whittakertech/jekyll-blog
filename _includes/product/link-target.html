@@ -1,0 +1,2 @@
+{% assign plt_protocol = include.url | slice: 0, 4 %}
+{% if plt_protocol == "http" %}target="_blank" rel="noopener noreferrer"{% endif %}

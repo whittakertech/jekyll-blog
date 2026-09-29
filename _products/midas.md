@@ -17,6 +17,7 @@ card:
   kicker: Financial primitives
   headline: Turn complexity into clarity.
   theme: dark
+  wordmark: "https://brand.whittakertech.com/assets/v/0.1.8/logo/midas/wordmark-dark.svg"
 sources:
   rubygems: whittaker_tech-midas
   github: whittakertech/midas
@@ -39,39 +40,43 @@ features:
   - title: Tested and documented
     text: 90%+ test coverage, full API documentation and an architecture overview.
     icon: shield-check
+  - title: Additive double-entry ledger
+    text: Record balanced, immutable postings when a monetary workflow needs an auditable trail.
+    icon: book-open
 install:
   - label: Gemfile
     language: ruby
     code: gem "whittaker_tech-midas"
-  - label: Install and run the migrations
+  - label: Install Midas and run the migrations
     language: bash
     code: |
-      bin/rails railties:install:migrations FROM=whittaker_tech_midas
+      bin/rails generate whittaker_tech:midas:install
       bin/rails db:migrate
 use_cases:
-  - Prices, balances and totals on any model
-  - Applications that handle more than one currency
-  - Invoices, billing and payments
-  - Any Rails application that handles money
+  - Product catalogs and configurable pricing
+  - Multi-currency applications
+  - Invoices, billing, fees and payments
+  - Models with multiple independent monetary values
+roadmap:
+  - Exchange rate fetching
+  - Versioned coin histories
+  - ViewComponent integrations
+  - Billing integration examples (Stripe and LemonSqueezy)
 ---
 
 ## Overview
 
-Midas centralizes all monetary behavior in Rails applications using a polymorphic `Coin` ledger.  
-Instead of duplicating `price_cents` and currency columns across dozens of models, Midas stores every monetary value in a single, consistent system.
+Give every model that handles money a consistent interface, without adding another pair of amount and currency columns to its table. Midas stores values in a shared, polymorphic `Coin` ledger:
 
-This prevents rounding bugs, supports multi-currency conversion, and ensures financial logic remains predictable as your application grows.
+```ruby
+class Product < ApplicationRecord
+  include WhittakerTech::Midas::Bankable
+  has_coin :price
+end
+```
 
-## Why Midas Exists
+Use the same approach for prices, fees, balances, or several independent values on one record. Midas handles currency-aware amounts and conversion, so money behavior can stay consistent as your application grows.
 
-As systems scale, currency logic becomes one of the most fragile parts of an application.  
-Teams often duplicate conversion, rounding, and formatting logic in dozens of places.
+## From monetary values to auditable flows
 
-Midas eliminates this entirely.
-
-## Roadmap
-
-- Exchange rate fetching
-- Versioned coin histories
-- ViewComponent integrations
-- Billing integration examples (Stripe and LemonSqueezy)
+For everyday model attributes, `Coin` and `Bankable` are the core. When billing or payments also need a clear, auditable explanation of how balances changed, Midas adds a double-entry `Ledger` with balanced, immutable postings. The Ledger complements the simpler value model; it does not replace it. See the [documentation](https://midas.whittakertech.com) for the API and implementation details.

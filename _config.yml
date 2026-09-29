@@ -99,6 +99,7 @@ defaults:
       type: "products"
     values:
       layout: "product"
+      schema_type: "SoftwareApplication"
       robots: "index, follow"
       sitemap: true
 
