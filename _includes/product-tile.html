@@ -11,7 +11,8 @@
 {% assign tile = include.product %}
 {% assign shape = include.shape %}
 {% if shape == "big" %}{% assign compact = false %}{% else %}{% assign compact = true %}{% endif %}
-{% assign stats = tile.stats %}
+{% assign product_data = site.data.products[tile.slug] %}
+{% assign stats = product_data.stats | default: tile.stats %}
 {% assign headline = tile.card.headline | default: tile.tagline %}
 {% assign downloads = stats.downloads | compact_number %}
 {% assign stars = stats.stars | compact_number %}

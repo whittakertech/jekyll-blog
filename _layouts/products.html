@@ -4,27 +4,33 @@ layout: base
 
 <div class="container-custom section-padding animate-fade-in-up">
   <section class="products-index">
-    <header class="page-header">
-      <h1>{{ page.heading | default: page.title }}</h1>
+    <header class="mb-6 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+      <div>
+        <p class="mb-2 text-sm uppercase tracking-widest text-primary">Products</p>
+        <h1 class="mb-0 text-3xl font-bold leading-tight tracking-tight text-text md:text-4xl">{{ page.heading | default: page.title }}</h1>
+      </div>
       {% if page.intro %}
-      <p>{{ page.intro }}</p>
+      <p class="mb-0 max-w-2xl text-text/80">{{ page.intro }}</p>
       {% endif %}
     </header>
 
     {{ content }}
 
-    <div class="product-grid">
-      {% assign products = site.products | sort: 'title' %}
+    {% assign rankings = site.data.product_rankings %}
+    {% if rankings.newest or rankings.latest_update %}
+    <div class="mb-4 grid divide-y divide-text/10 overflow-hidden rounded-2xl border border-text/10 bg-text/[0.03] md:grid-cols-2 md:divide-x md:divide-y-0">
+      {% if rankings.newest %}{% include product-activity.html product=rankings.newest kind="newest" %}{% endif %}
+      {% if rankings.latest_update %}{% include product-activity.html product=rankings.latest_update kind="update" %}{% endif %}
+    </div>
+    {% endif %}
+
+    {% assign products = site.products | sort: 'title' %}
+    {% if products.size > 0 %}
+    <div class="grid gap-4 md:grid-cols-2">
       {% for product in products %}
-      <article class="product-card">
-        <a href="{{ product.url | relative_url }}">
-          <h2>{{ product.title }}</h2>
-          {% if product.description %}
-          <p>{{ product.description }}</p>
-          {% endif %}
-        </a>
-      </article>
+        {% include product-tile.html product=product shape="wide" %}
       {% endfor %}
     </div>
+    {% endif %}
   </section>
 </div>
