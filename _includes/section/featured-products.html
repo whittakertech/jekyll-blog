@@ -1,46 +1,87 @@
+{% comment %}
+  Featured Products: a data-driven bento of the top products by downloads,
+  topped by an activity strip (newest product, latest release).
+  All placement comes from site.data.product_rankings (see _plugins/product_sources.rb);
+  no product is named here.
+
+  Bento layouts by product count:
+    1  big (full width)
+    2  big | wide
+    3  big | wide / wide
+    4  big | wide / (tall | small)
+    5  big | wide / (tall | small / small)
+{% endcomment %}
 {% assign rankings = site.data.product_rankings %}
-{% if rankings.newest or rankings.latest_update or rankings.top_downloads.size > 0 %}
-<section class="py-24 md:py-32">
+{% assign featured = rankings.top_downloads | slice: 0, 5 %}
+{% assign count = featured.size %}
+{% comment %} include params can't index arrays, so name each slot {% endcomment %}
+{% assign slot1 = featured[0] %}
+{% assign slot2 = featured[1] %}
+{% assign slot3 = featured[2] %}
+{% assign slot4 = featured[3] %}
+{% assign slot5 = featured[4] %}
+
+{% if count > 0 or rankings.newest or rankings.latest_update %}
+<section class="py-16">
   <div class="container-custom">
-    <h2 class="mb-12 text-3xl font-bold leading-tight tracking-tight text-text md:text-5xl">
-      Products
-    </h2>
-
-    <div class="grid gap-12 md:grid-cols-3">
-      {% if rankings.newest %}
-      {% assign product = rankings.newest %}
+    <header class="mb-6 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
       <div>
-        <h3 class="mb-4 text-sm font-semibold uppercase tracking-wide text-primary">Newest product</h3>
-        <a href="{{ product.url | relative_url }}" class="text-xl font-bold">{{ product.title }}</a>
-        {% if product.tagline %}<p class="mt-2">{{ product.tagline }}</p>{% endif %}
-        <p class="mt-2 text-sm">First released {{ product.stats.first_release_at | date: "%b %-d, %Y" }}</p>
+        <p class="mb-2 text-sm uppercase tracking-widest text-primary">Products</p>
+        <h2 class="mb-0 text-3xl font-bold leading-tight tracking-tight text-text md:text-4xl">
+          Tools we build and maintain
+        </h2>
       </div>
-      {% endif %}
+      <a href="{{ '/products/' | relative_url }}"
+         class="inline-flex flex-none items-center gap-2 self-start rounded-xl bg-[color-mix(in_srgb,var(--color-primary)_45%,black)] px-5 py-2.5 font-semibold text-white transition-colors hover:bg-[color-mix(in_srgb,var(--color-primary)_60%,black)] md:self-auto">
+        View all products {% include icon.html name="arrow-right" size=4 %}
+      </a>
+    </header>
 
-      {% if rankings.latest_update %}
-      {% assign product = rankings.latest_update %}
-      <div>
-        <h3 class="mb-4 text-sm font-semibold uppercase tracking-wide text-primary">Latest update</h3>
-        <a href="{{ product.url | relative_url }}" class="text-xl font-bold">{{ product.title }}</a>
-        <p class="mt-2">Version {{ product.stats.version }}</p>
-        <p class="mt-2 text-sm">Released {{ product.stats.latest_release_at | date: "%b %-d, %Y" }}</p>
-      </div>
-      {% endif %}
-
-      {% if rankings.top_downloads.size > 0 %}
-      <div>
-        <h3 class="mb-4 text-sm font-semibold uppercase tracking-wide text-primary">Most downloaded</h3>
-        <ol class="space-y-2">
-          {% for product in rankings.top_downloads %}
-          <li>
-            <a href="{{ product.url | relative_url }}" class="font-bold">{{ product.title }}</a>
-            <span class="text-sm">&mdash; {{ product.stats.downloads }} downloads</span>
-          </li>
-          {% endfor %}
-        </ol>
-      </div>
-      {% endif %}
+    {% if rankings.newest or rankings.latest_update %}
+    <div class="mb-4 grid divide-y divide-text/10 overflow-hidden rounded-2xl border border-text/10 bg-text/[0.03] md:grid-cols-2 md:divide-x md:divide-y-0">
+      {% if rankings.newest %}{% include product-activity.html product=rankings.newest kind="newest" %}{% endif %}
+      {% if rankings.latest_update %}{% include product-activity.html product=rankings.latest_update kind="update" %}{% endif %}
     </div>
+    {% endif %}
+
+    {% if count == 1 %}
+      {% include product-tile.html product=slot1 shape="big" %}
+    {% elsif count > 1 %}
+    {% comment %}
+      On large screens the big card is square and sets the row height; the right
+      column is taken out of height calculation (h-0 + min-h-full) so it fills
+      exactly that square instead of stretching it.
+    {% endcomment %}
+    <div class="grid gap-4 lg:grid-cols-2">
+      <div class="lg:aspect-square">
+        {% include product-tile.html product=slot1 shape="big" %}
+      </div>
+
+      <div class="flex flex-col gap-4 lg:h-0 lg:min-h-full">
+        {% if count == 2 %}
+          <div class="min-h-0 flex-1">{% include product-tile.html product=slot2 shape="wide" %}</div>
+        {% else %}
+          {% if count == 3 %}
+            <div class="min-h-0 flex-1">{% include product-tile.html product=slot2 shape="wide" %}</div>
+            <div class="min-h-0 flex-1">{% include product-tile.html product=slot3 shape="wide" %}</div>
+          {% else %}
+          <div class="flex-none">{% include product-tile.html product=slot2 shape="wide" %}</div>
+          <div class="grid min-h-0 flex-1 gap-4 sm:grid-cols-2">
+            {% include product-tile.html product=slot3 shape="tall" %}
+            {% if count == 4 %}
+              {% include product-tile.html product=slot4 shape="small" %}
+            {% else %}
+            <div class="grid min-h-0 grid-rows-2 gap-4">
+              {% include product-tile.html product=slot4 shape="small" dense=true %}
+              {% include product-tile.html product=slot5 shape="small" dense=true %}
+            </div>
+            {% endif %}
+          </div>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+    {% endif %}
   </div>
 </section>
 {% endif %}
