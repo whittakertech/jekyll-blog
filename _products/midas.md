@@ -1,7 +1,6 @@
 ---
 layout: product
 title: "Midas"
-schema_type: SoftwareApplication
 tagline: "Unified multi-currency monetary management for Rails"
 description: "A Rails engine providing a single source of truth for currency values using a polymorphic Coin ledger."
 slug: "midas"
@@ -67,7 +66,8 @@ Midas centralizes monetary values in a polymorphic `Coin` ledger. Instead of rep
 
 ```ruby
 # Product has price_cents and price_currency columns
-product.price
+product.price_cents
+product.price_currency
 
 # Midas: one shared ledger, attached through the model
 class Product < ApplicationRecord
