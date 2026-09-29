@@ -13,6 +13,10 @@ links:
   github: "https://github.com/whittakertech/midas"
   rubygems: "https://rubygems.org/gems/whittaker_tech-midas"
   docs: "https://midas.whittakertech.com"
+card:
+  kicker: Financial primitives
+  headline: Turn complexity into clarity.
+  theme: dark
 sources:
   rubygems: whittaker_tech-midas
   github: whittakertech/midas
