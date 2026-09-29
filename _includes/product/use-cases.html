@@ -1,0 +1,14 @@
+{% comment %}
+  Short "good fit for" checklist (front matter `use_cases:`, a list of strings).
+{% endcomment %}
+<section class="product-section" aria-labelledby="use-cases-heading">
+  <h2 id="use-cases-heading" class="product-section-label">Common use cases</h2>
+  <ul class="m-0 flex list-none flex-col gap-3 p-0">
+    {% for use_case in include.use_cases %}
+    <li class="m-0 flex items-center gap-3">
+      <span class="product-check" aria-hidden="true">{% include icon.html name="check" size=3 %}</span>
+      {{ use_case }}
+    </li>
+    {% endfor %}
+  </ul>
+</section>

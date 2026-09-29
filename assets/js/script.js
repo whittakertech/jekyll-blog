@@ -143,3 +143,36 @@ async function hydrateProduct(element) {
 document
     .querySelectorAll("[data-product]")
     .forEach(hydrateProduct);
+
+/* Copy-to-clipboard buttons:
+   <button data-copy-target="code-element-id" data-copy-status="live-region-id" hidden>.
+   data-copy-status is optional and names the aria-live element that announces
+   the result; several buttons may share one. Buttons stay hidden where the
+   Clipboard API is unavailable. */
+document.addEventListener('DOMContentLoaded', function() {
+  if (!navigator.clipboard) return;
+
+  document.querySelectorAll('[data-copy-target]').forEach(button => {
+    const target = document.getElementById(button.dataset.copyTarget);
+    if (!target) return;
+
+    const label = button.querySelector('[data-copy-label]');
+    const status = button.dataset.copyStatus ? document.getElementById(button.dataset.copyStatus) : null;
+    let timer;
+
+    button.hidden = false;
+    button.addEventListener('click', () => {
+      navigator.clipboard.writeText(target.textContent).then(() => {
+        if (label) label.textContent = 'Copied';
+        if (status) status.textContent = 'Copied to clipboard';
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          if (label) label.textContent = 'Copy';
+          if (status) status.textContent = '';
+        }, 2000);
+      }).catch(() => {
+        if (status) status.textContent = 'Copy failed';
+      });
+    });
+  });
+});

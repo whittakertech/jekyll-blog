@@ -20,6 +20,39 @@ card:
 sources:
   rubygems: whittaker_tech-midas
   github: whittakertech/midas
+features:
+  - title: Polymorphic Coin ledger
+    text: One `Coin` model stores every monetary value, for any model.
+    icon: database
+  - title: Multi-currency support
+    text: Built on the `money` gem, with conversion between currencies.
+    icon: globe
+  - title: Declarative DSL
+    text: "`has_coin` and `has_coins` attach money to a model in one line."
+    icon: code
+  - title: Zero schema duplication
+    text: No more `price_cents` and currency columns repeated across tables.
+    icon: layers
+  - title: Headless currency input
+    text: A Stimulus-powered input field that leaves the markup to you.
+    icon: text-cursor
+  - title: Tested and documented
+    text: 90%+ test coverage, full API documentation and an architecture overview.
+    icon: shield-check
+install:
+  - label: Gemfile
+    language: ruby
+    code: gem "whittaker_tech-midas"
+  - label: Install and run the migrations
+    language: bash
+    code: |
+      bin/rails railties:install:migrations FROM=whittaker_tech_midas
+      bin/rails db:migrate
+use_cases:
+  - Prices, balances and totals on any model
+  - Applications that handle more than one currency
+  - Invoices, billing and payments
+  - Any Rails application that handles money
 ---
 
 ## Overview
@@ -36,49 +69,9 @@ Teams often duplicate conversion, rounding, and formatting logic in dozens of pl
 
 Midas eliminates this entirely.
 
-## Key Features
-
-- Single polymorphic `Coin` model for all monetary values
-- Multi-currency support using the `money` gem
-- Declarative `has_coin` and `has_coins` DSL
-- Automatic conversion for integers, floats, and `Money` objects
-- Headless Stimulus-powered currency input field
-- Zero schema duplication
-- 90%+ test coverage
-- Full API documentation and architecture overview
-
-## Documentation
-
-Full documentation is available at:
-
-[{{ page.links.docs }}]({{ page.links.docs }})
-
-## Installation
-
-```ruby
-gem "whittaker_tech-midas"
-```
-
-Run migrations:
-
-```bash
-bin/rails railties:install:migrations FROM=whittaker_tech_midas
-bin/rails db:migrate
-```
-
-## Links
-
-- GitHub: [{{ page.links.github }}]({{ page.links.github }})
-- RubyGems: [{{ page.links.rubygems }}]({{ page.links.rubygems }})
-- Documentation: [{{ page.links.docs }}]({{ page.links.docs }})
-
 ## Roadmap
 
 - Exchange rate fetching
 - Versioned coin histories
 - ViewComponent integrations
 - Billing integration examples (Stripe and LemonSqueezy)
-
-## License
-
-MIT License, © WhittakerTech.

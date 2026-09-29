@@ -1,0 +1,43 @@
+{% comment %}
+  Installation steps (front matter `install:`), each a copyable code card,
+  beside a pointer to the full documentation when the product has docs.
+    install:
+      - label: Gemfile
+        language: ruby
+        code: gem "whittaker_tech-midas"
+  Params: steps, docs (documentation URL)
+{% endcomment %}
+<section class="product-section" aria-labelledby="installation-heading">
+  <h2 id="installation-heading" class="product-section-label">Installation</h2>
+  <div class="grid gap-4 {% if include.docs %}lg:grid-cols-[minmax(0,1fr)_20rem]{% endif %}">
+    <div class="flex min-w-0 flex-col gap-4">
+      {% for step in include.steps %}
+      {% assign code_id = "install-step-" | append: forloop.index %}
+      <figure class="product-code m-0">
+        <figcaption class="product-code-header">
+          <span>{{ step.label | default: step.language }}</span>
+          <button type="button" class="product-code-copy" data-copy-target="{{ code_id }}" data-copy-status="install-copy-status" hidden>
+            {% include icon.html name="copy" size=4 %} <span data-copy-label>Copy</span>
+          </button>
+        </figcaption>
+        <pre class="m-0"><code id="{{ code_id }}"{% if step.language %} class="language-{{ step.language }}"{% endif %}>{{ step.code | strip | escape }}</code></pre>
+      </figure>
+      {% endfor %}
+    </div>
+
+    {% if include.docs %}
+    <div class="product-card flex gap-4 self-start p-5">
+      <span class="product-card-icon" aria-hidden="true">{% include icon.html name="book" size=5 %}</span>
+      <div class="min-w-0">
+        <h3 class="mb-1 text-base font-semibold leading-snug">Next steps</h3>
+        <p class="mb-4 text-sm leading-relaxed opacity-75">Read the full documentation for configuration, usage and API guides.</p>
+        <a href="{{ include.docs }}" class="product-tile-cta px-4 py-1.5 text-sm">
+          View documentation {% include icon.html name="arrow-right" size=4 %}
+        </a>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+  {% comment %} One live region announces the result of every copy button in this section. {% endcomment %}
+  <p id="install-copy-status" class="sr-only" aria-live="polite"></p>
+</section>

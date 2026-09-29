@@ -1,0 +1,22 @@
+{% comment %}
+  A product's live metrics, one product-stat.html per available value.
+  Stats that failed to load are simply left out.
+  Params:
+    stats        - normalized stats (see _plugins/product_sources.rb)
+    size         - passed through to product-stat.html ("lg", "xs" or default)
+    hide_version - true omits the latest release
+    releases     - true adds the release count
+  Variables are prefixed ps_ because include assigns leak into the caller.
+{% endcomment %}
+{% assign ps = include.stats %}
+{% assign ps_downloads = ps.downloads | compact_number %}
+{% assign ps_stars = ps.stars | compact_number %}
+{% if ps.stars == 1 %}{% assign ps_stars_label = "GitHub star" %}{% else %}{% assign ps_stars_label = "GitHub stars" %}{% endif %}
+{% if ps.release_count == 1 %}{% assign ps_releases_label = "Release" %}{% else %}{% assign ps_releases_label = "Releases" %}{% endif %}
+{% if ps.downloads %}{% include product-stat.html icon="download" value=ps_downloads label="Downloads" size=include.size %}{% endif %}
+{% if ps.stars %}{% include product-stat.html icon="star" value=ps_stars label=ps_stars_label size=include.size %}{% endif %}
+{% if ps.version and include.hide_version != true %}
+  {% assign ps_version = "v" | append: ps.version %}
+  {% include product-stat.html icon="package" value=ps_version label="Latest release" dot=ps.recent_release size=include.size %}
+{% endif %}
+{% if ps.release_count and include.releases %}{% include product-stat.html icon="layers" value=ps.release_count label=ps_releases_label size=include.size %}{% endif %}

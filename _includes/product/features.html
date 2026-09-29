@@ -1,0 +1,24 @@
+{% comment %}
+  Key-feature cards (front matter `features:`). Deliberately presentational:
+  a handful of one-line cards; long explanations belong in the Markdown body.
+    features:
+      - title: Polymorphic Coin ledger
+        text: One model stores every monetary value.
+        icon: database   # optional sprite id
+{% endcomment %}
+<section class="product-section" aria-labelledby="key-features-heading">
+  <h2 id="key-features-heading" class="product-section-label">Key features</h2>
+  <ul class="m-0 grid list-none gap-4 p-0 sm:grid-cols-2 lg:grid-cols-3">
+    {% for feature in include.features %}
+    <li class="product-card m-0 flex gap-4 p-5">
+      {% if feature.icon %}
+      <span class="product-card-icon" aria-hidden="true">{% include icon.html name=feature.icon size=5 %}</span>
+      {% endif %}
+      <div class="min-w-0">
+        <h3 class="mb-1 text-base font-semibold leading-snug">{{ feature.title }}</h3>
+        {% if feature.text %}<p class="mb-0 text-sm leading-relaxed opacity-75">{{ feature.text | markdownify | remove: '<p>' | remove: '</p>' | strip }}</p>{% endif %}
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+</section>

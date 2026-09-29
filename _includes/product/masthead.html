@@ -1,0 +1,67 @@
+{% comment %}
+  The product-page masthead: the big product tile given the full page width.
+  Same grammar as product-tile.html — accent, theme, identity, headline,
+  explanation, links and live metrics — so homepage → catalog → product page
+  reads as one product.
+  Params:
+    product - the product document (page)
+    stats   - normalized stats; any missing value is simply left out
+  Variables are prefixed pm_ because include assigns leak into the caller.
+{% endcomment %}
+{% assign pm = include.product %}
+{% assign pm_stats = include.stats %}
+{% assign pm_headline = pm.card.headline | default: pm.tagline %}
+{% assign pm_explanation = pm.description | default: pm.tagline %}
+{% if pm_explanation == pm_headline %}{% assign pm_explanation = nil %}{% endif %}
+{% if pm.links.docs %}
+  {% assign pm_primary_key = "docs" %}
+{% else %}
+  {% assign pm_primary_key = pm.links | first | first %}
+{% endif %}
+{% assign pm_primary_url = pm.links[pm_primary_key] %}
+
+<section class="product-tile product-masthead {% if pm.card.theme == 'dark' %}product-tile--dark{% endif %}"
+         style="--accent: var(--wt-color-product-{{ pm.slug }}-color, var(--wt-color-brand));">
+  {% if pm.card.image %}
+  <img src="{{ pm.card.image | relative_url }}" alt="" class="product-masthead-image" fetchpriority="high">
+  {% else %}
+  <span class="product-tile-glow -right-32 -top-32 h-[36rem] w-[36rem] opacity-80" aria-hidden="true"></span>
+  {% endif %}
+
+  <div class="container-custom flex flex-col gap-8 pb-10 pt-8 md:pb-12 md:pt-10">
+    <nav aria-label="Breadcrumb">
+      <ol class="m-0 flex list-none items-center gap-2 p-0 text-sm">
+        <li class="m-0"><a href="{{ '/products/' | relative_url }}" class="product-masthead-crumb">Products</a></li>
+        <li class="m-0 opacity-50" aria-hidden="true">&rsaquo;</li>
+        <li class="m-0 opacity-80" aria-current="page">{{ pm.title }}</li>
+      </ol>
+    </nav>
+
+    <header class="flex max-w-2xl flex-col gap-6">
+      {% include product/identity.html product=pm size="lg" tag="h1" %}
+
+      {% if pm_headline %}
+      <p class="mb-0 text-4xl font-bold leading-[1.05] tracking-tight md:text-6xl">{{ pm_headline }}</p>
+      {% endif %}
+      {% if pm_explanation %}
+      <p class="mb-0 max-w-xl text-lg opacity-85 md:text-xl">{{ pm_explanation }}</p>
+      {% endif %}
+    </header>
+
+    {% if pm_primary_url %}
+    <div class="flex flex-wrap items-center gap-x-6 gap-y-3">
+      <a href="{{ pm_primary_url }}" class="product-tile-cta">
+        {% include product/link-label.html key=pm_primary_key long=true %} {% include icon.html name="arrow-right" size=4 %}
+      </a>
+      {% include product/links.html links=pm.links except=pm_primary_key external=true
+         class="inline-flex items-center gap-1.5 font-medium text-current opacity-80 hover:opacity-100 hover:underline" %}
+    </div>
+    {% endif %}
+
+    {% if pm_stats.downloads or pm_stats.stars or pm_stats.version or pm_stats.release_count %}
+    <div class="grid grid-cols-2 gap-6 border-t border-current/10 pt-6 sm:flex sm:flex-wrap sm:gap-x-12">
+      {% include product/stats.html stats=pm_stats size="lg" releases=true %}
+    </div>
+    {% endif %}
+  </div>
+</section>

@@ -1,0 +1,11 @@
+{%- comment -%}
+  Outputs the display label for a product link key (docs, github, rubygems, npm, ...).
+  Params: key, long (true spells "docs" out as "Documentation")
+{%- endcomment -%}
+{%- case include.key -%}
+  {%- when "docs" -%}{%- if include.long -%}Documentation{%- else -%}Docs{%- endif -%}
+  {%- when "github" -%}GitHub
+  {%- when "rubygems" -%}RubyGems
+  {%- when "npm" -%}npm
+  {%- else -%}{{ include.key | capitalize }}
+{%- endcase -%}

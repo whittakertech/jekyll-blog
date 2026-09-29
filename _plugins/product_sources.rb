@@ -21,6 +21,12 @@
 #   stats.forks              - GitHub forks
 #   stats.open_issues        - GitHub open issues (GitHub counts open PRs here too)
 #   stats.language           - primary repository language
+#   stats.license            - license name(s), e.g. "MIT"
+#   stats.repository_name    - display name of the source repository
+#   stats.repository_url     - web page of the source repository
+#   stats.package_registry   - display name of the package registry, e.g. "RubyGems"
+#   stats.package_name       - name of the published package
+#   stats.package_url        - web page of the package on its registry
 #   stats.repo_created_at    - when the GitHub repository was created
 #   stats.last_push_at       - last push (development activity, not a release;
 #                              GitHub's updated_at is deliberately not used)
@@ -128,11 +134,11 @@ module WhittakerTech
         data["github"] = fetch("#{GITHUB_API}/repos/#{repo}", github_headers)
       end
 
-      data["stats"] = stats(data)
+      data["stats"] = stats(data, sources)
       data
     end
 
-    def stats(data)
+    def stats(data, sources)
       gem = data["rubygems"] || {}
       github = data["github"] || {}
       releases = Array(data["rubygems_versions"]).reject { |version| version["yanked"] }
@@ -151,6 +157,37 @@ module WhittakerTech
         "repo_created_at" => github["created_at"],
         "last_push_at" => github["pushed_at"],
         "recent_release" => recent?(gem["version_created_at"])
+      }.merge(license(gem, github), repository(github, sources["github"]), package(gem, sources["rubygems"]))
+    end
+
+    # The registry's license list wins; GitHub's detected license fills in.
+    # NOASSERTION is GitHub's "a license file exists but wasn't recognized".
+    def license(gem, github)
+      names = Array(gem["licenses"]).compact.reject(&:empty?)
+      spdx = github.dig("license", "spdx_id")
+      names = [spdx] if names.empty? && spdx && spdx != "NOASSERTION"
+
+      { "license" => names.empty? ? nil : names.join(", ") }
+    end
+
+    # Repository and package pages follow from the configured sources, so
+    # they survive a failed fetch.
+    def repository(github, repo)
+      return {} unless repo
+
+      {
+        "repository_name" => github["full_name"] || repo,
+        "repository_url" => github["html_url"] || "https://github.com/#{repo}"
+      }
+    end
+
+    def package(gem, name)
+      return {} unless name
+
+      {
+        "package_registry" => "RubyGems",
+        "package_name" => gem["name"] || name,
+        "package_url" => gem["project_uri"] || "https://rubygems.org/gems/#{URI.encode_www_form_component(name)}"
       }
     end
 

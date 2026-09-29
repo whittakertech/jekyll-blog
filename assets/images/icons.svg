@@ -73,4 +73,76 @@
           fill="currentColor">
     <path d="M12 2.5l2.94 5.96 6.56.95-4.75 4.63 1.12 6.54L12 17.49l-5.87 3.09 1.12-6.54L2.5 9.41l6.56-.95L12 2.5z" />
   </symbol>
+  <symbol id="layers" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor"
+          stroke-linecap="round" stroke-linejoin="round"
+          stroke-width="1.75">
+    <path d="M12 3l9 5-9 5-9-5 9-5zM3 12.5l9 5 9-5M3 17l9 5 9-5" />
+  </symbol>
+  <symbol id="calendar" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor"
+          stroke-linecap="round" stroke-linejoin="round"
+          stroke-width="1.75">
+    <path d="M5 5h14a1 1 0 011 1v14a1 1 0 01-1 1H5a1 1 0 01-1-1V6a1 1 0 011-1zM4 10h16M8 3v4M16 3v4" />
+  </symbol>
+  <symbol id="scale" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor"
+          stroke-linecap="round" stroke-linejoin="round"
+          stroke-width="1.75">
+    <path d="M12 3v18M8 21h8M4 6h16M4 6l-2.5 7a2.5 2.5 0 005 0L4 6zM20 6l-2.5 7a2.5 2.5 0 005 0L20 6z" />
+  </symbol>
+  <symbol id="code" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor"
+          stroke-linecap="round" stroke-linejoin="round"
+          stroke-width="1.75">
+    <path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16" />
+  </symbol>
+  <symbol id="repo" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor"
+          stroke-linecap="round" stroke-linejoin="round"
+          stroke-width="1.75">
+    <path d="M5 4.5A1.5 1.5 0 016.5 3H19v15H6.5A1.5 1.5 0 005 19.5v-15zM5 19.5A1.5 1.5 0 006.5 21H19v-3M9 7h6" />
+  </symbol>
+  <symbol id="book" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor"
+          stroke-linecap="round" stroke-linejoin="round"
+          stroke-width="1.75">
+    <path d="M12 6.5C10 5 7 4.5 3 5v14c4-.5 7 0 9 1.5 2-1.5 5-2 9-1.5V5c-4-.5-7 0-9 1.5zM12 6.5v14" />
+  </symbol>
+  <symbol id="copy" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor"
+          stroke-linecap="round" stroke-linejoin="round"
+          stroke-width="1.75">
+    <path d="M9 9h10a1 1 0 011 1v10a1 1 0 01-1 1H9a1 1 0 01-1-1V10a1 1 0 011-1zM16 9V4a1 1 0 00-1-1H5a1 1 0 00-1 1v10a1 1 0 001 1h3" />
+  </symbol>
+  <symbol id="check" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor"
+          stroke-linecap="round" stroke-linejoin="round"
+          stroke-width="1.75">
+    <path d="M5 12.5l4.5 4.5L19 7.5" />
+  </symbol>
+  <symbol id="database" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor"
+          stroke-linecap="round" stroke-linejoin="round"
+          stroke-width="1.75">
+    <path d="M4 6c0-1.66 3.58-3 8-3s8 1.34 8 3-3.58 3-8 3-8-1.34-8-3zM4 6v12c0 1.66 3.58 3 8 3s8-1.34 8-3V6M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3" />
+  </symbol>
+  <symbol id="globe" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor"
+          stroke-linecap="round" stroke-linejoin="round"
+          stroke-width="1.75">
+    <path d="M12 3a9 9 0 100 18 9 9 0 000-18zM3 12h18M12 3c2.5 2.5 3.5 5.5 3.5 9s-1 6.5-3.5 9c-2.5-2.5-3.5-5.5-3.5-9s1-6.5 3.5-9z" />
+  </symbol>
+  <symbol id="shield-check" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor"
+          stroke-linecap="round" stroke-linejoin="round"
+          stroke-width="1.75">
+    <path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6l8-3zM8.5 12l2.5 2.5 4.5-5" />
+  </symbol>
+  <symbol id="text-cursor" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor"
+          stroke-linecap="round" stroke-linejoin="round"
+          stroke-width="1.75">
+    <path d="M3 7h13M3 17h13M3 7v10M20 5v14M18 5h4M18 19h4M7 12h5" />
+  </symbol>
 </svg>
