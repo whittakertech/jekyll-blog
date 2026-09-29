@@ -13,6 +13,9 @@ links:
   github: "https://github.com/whittakertech/midas"
   rubygems: "https://rubygems.org/gems/whittaker_tech-midas"
   docs: "https://midas.whittakertech.com"
+sources:
+  rubygems: whittaker_tech-midas
+  github: whittakertech/midas
 ---
 
 ## Overview

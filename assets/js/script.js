@@ -53,3 +53,93 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+
+
+const RUBYGEMS_API = "https://rubygems.org/api/v1";
+
+async function fetchJson(url) {
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    throw new Error(`${response.status} ${response.statusText}: ${url}`);
+  }
+
+  return response.json();
+}
+
+async function fetchRubyGem(name) {
+  const encodedName = encodeURIComponent(name);
+
+  const [gem, versions] = await Promise.all([
+    fetchJson(`${RUBYGEMS_API}/gems/${encodedName}.json`),
+    fetchJson(`${RUBYGEMS_API}/versions/${encodedName}.json`)
+  ]);
+
+  const releases = versions
+      .filter(version => !version.yanked)
+      .sort(
+          (a, b) =>
+              new Date(a.created_at).getTime() -
+              new Date(b.created_at).getTime()
+      );
+
+  return {
+    version: gem.version,
+    downloads: gem.downloads,
+    versionDownloads: gem.version_downloads,
+
+    firstRelease: releases.at(0)?.created_at ?? null,
+    latestRelease: gem.version_created_at,
+
+    releases: releases.length
+  };
+}
+
+function formatNumber(value) {
+  return new Intl.NumberFormat().format(value);
+}
+
+function formatDate(value) {
+  return new Intl.DateTimeFormat(undefined, {
+    year: "numeric",
+    month: "short",
+    day: "numeric"
+  }).format(new Date(value));
+}
+
+async function hydrateProduct(element) {
+  const gemName = element.dataset.rubygem;
+
+  if (!gemName) return;
+
+  try {
+    const product = await fetchRubyGem(gemName);
+
+    element.querySelectorAll("[data-product-version]")
+        .forEach(el => el.textContent = product.version);
+
+    element.querySelectorAll("[data-product-downloads]")
+        .forEach(el => el.textContent = formatNumber(product.downloads));
+
+    element.querySelectorAll("[data-product-first-release]")
+        .forEach(el => {
+          el.dateTime = product.firstRelease;
+          el.textContent = formatDate(product.firstRelease);
+        });
+
+    element.querySelectorAll("[data-product-latest-release]")
+        .forEach(el => {
+          el.dateTime = product.latestRelease;
+          el.textContent = formatDate(product.latestRelease);
+        });
+
+    element.dataset.productHydrated = "";
+  } catch (error) {
+    console.warn(`Unable to hydrate ${gemName}`, error);
+    element.dataset.productUnavailable = "";
+  }
+}
+
+document
+    .querySelectorAll("[data-product]")
+    .forEach(hydrateProduct);

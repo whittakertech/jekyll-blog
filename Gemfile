@@ -1,11 +1,17 @@
 source "https://rubygems.org"
 
-gem "github-pages", group: :jekyll_plugins
+# Built and deployed by our own workflow (.github/workflows/deploy.yml), not the
+# github-pages gem, so we control the Jekyll version and can use any plugin.
+gem "jekyll", "~> 4.4"
 
 gem 'foreman'
 
-# GitHub Pages doesn't allow custom plugins, so these are included:
-# jekyll-feed, jekyll-sitemap, jekyll-seo-tag are already included in github-pages
+group :jekyll_plugins do
+  gem 'jekyll-feed'
+  gem 'jekyll-paginate'
+  gem 'jekyll-seo-tag'
+  gem 'jekyll-sitemap'
+end
 
 # Windows and JRuby does not include zoneinfo files
 platforms :mingw, :x64_mingw, :mswin, :jruby do
