@@ -31,7 +31,7 @@
       <div class="min-w-0">
         <h3 class="mb-1 text-base font-semibold leading-snug">Next steps</h3>
         <p class="mb-4 text-sm leading-relaxed opacity-75">Read the full documentation for configuration, usage and API guides.</p>
-        <a href="{{ include.docs }}" class="product-tile-cta px-4 py-1.5 text-sm">{% include product/link-target.html url=include.docs %}
+        <a href="{{ include.docs }}" class="product-tile-cta px-4 py-1.5 text-sm" {% include product/link-target.html url=include.docs %}>
           View documentation {% include icon.html name="arrow-right" size=4 %}
         </a>
       </div>
