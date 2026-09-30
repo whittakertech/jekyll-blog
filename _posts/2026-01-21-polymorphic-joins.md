@@ -9,6 +9,7 @@ description: >-
   Here’s how reflection, Arel, and explicit opt-in can make polymorphic joins safe, auditable,
   and production-ready without injecting SQL.
 og_title: "Polymorphic Joins in Rails"
+hero_image: "https://media.whittakertech.com/whittakertech/blog/finishing-the-sentence-rails-started.png"
 headline: >-
   Finishing the Sentence Rails Starts: How to Build Safe, Explicit Polymorphic Joins
   Without Raw SQL or Framework Monkey-Patching
