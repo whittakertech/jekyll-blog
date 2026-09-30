@@ -138,6 +138,9 @@ jobs:
           end
           RUBY
 
+      - name: Verify blog images and metadata
+        run: ruby scripts/check_blog_output.rb
+
       - name: Check for broken internal links
         run: |
           echo "🔗 Checking internal links..."

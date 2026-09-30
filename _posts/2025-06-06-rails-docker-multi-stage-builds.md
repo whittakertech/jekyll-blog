@@ -2,6 +2,9 @@
 layout: post
 date: 2025-06-06 09:00:00 -0600
 title: "Rails Docker Architecture: Multi-Stage Builds and Base Images"
+card_title: "Multi-Stage Docker Builds for Rails"
+series: "rails-docker-migration"
+series_part: 2
 slug: "rails-docker-multi-stage-builds"
 canonical_url: "https://whittakertech.com/blog/rails-docker-multi-stage-builds/"
 description: >-

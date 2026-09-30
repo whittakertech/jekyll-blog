@@ -1,0 +1,323 @@
+/* Blog index, article layout, and series navigation. Shares the editorial
+   tokens and card primitives in writing.css. */
+
+.blog-section {
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.writing-heading h1 {
+  margin: 0.35rem 0 0.25rem;
+  color: var(--wt-color-editorial-ink);
+  font-family: var(--wt-font-serif);
+  font-size: clamp(2.5rem, 5vw, 3.75rem);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+}
+
+/* Index and related-writing cards */
+.blog-grid {
+  display: grid;
+  gap: 2rem 1.75rem;
+}
+
+@media (min-width: 40rem) {
+  .blog-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (min-width: 64rem) {
+  .blog-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+.writing-image--index {
+  aspect-ratio: 1.6;
+}
+
+.writing-card h2 {
+  margin: 0.35rem 0 0.4rem;
+  color: var(--wt-color-editorial-ink);
+  font-family: var(--wt-font-serif);
+  font-size: clamp(1.3rem, 2vw, 1.6rem);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.writing-card h2 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.writing-card h2 a:hover,
+.writing-card h3 a:hover {
+  color: var(--wt-color-editorial-accent);
+  text-decoration: none;
+}
+
+.blog-card h3 {
+  font-size: clamp(1.2rem, 1.6vw, 1.4rem);
+}
+
+.writing-meta {
+  flex-wrap: wrap;
+}
+
+.writing-meta .writing-meta-plain {
+  color: var(--wt-color-editorial-muted);
+}
+
+.blog-pagination {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--wt-color-editorial-rule);
+  color: var(--wt-color-editorial-muted);
+  font-size: 0.9rem;
+}
+
+.blog-pagination a {
+  color: var(--wt-color-editorial-accent);
+  text-decoration: none;
+}
+
+.blog-pagination a[rel="next"] {
+  justify-self: end;
+}
+
+/* Article */
+.article {
+  padding: clamp(2rem, 5vw, 4rem) 0 clamp(3rem, 6vw, 5rem);
+  color: var(--wt-color-editorial-ink);
+}
+
+.article-header {
+  max-width: 52rem;
+}
+
+.article-breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0 0 1.5rem;
+  padding: 0;
+  color: var(--wt-color-editorial-muted);
+  font-size: 0.85rem;
+}
+
+.article-breadcrumb li {
+  margin: 0;
+  list-style: none;
+}
+
+.article-breadcrumb a {
+  color: var(--wt-color-editorial-muted);
+}
+
+.article-breadcrumb a:hover {
+  color: var(--wt-color-editorial-accent);
+}
+
+.article-series {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0 0 1rem;
+  color: var(--wt-color-editorial-accent);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.article-series .series-badge {
+  position: static;
+}
+
+.article-header h1 {
+  margin: 0 0 1rem;
+  color: var(--wt-color-editorial-ink);
+  font-family: var(--wt-font-serif);
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  overflow-wrap: break-word;
+}
+
+.article-dek {
+  margin: 0 0 1.25rem;
+  color: var(--wt-color-editorial-muted);
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  line-height: 1.55;
+}
+
+.article-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0;
+  color: var(--wt-color-editorial-muted);
+  font-size: 0.9rem;
+}
+
+.article-hero {
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+
+.article-hero-frame {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 2;
+  border: 1px solid var(--wt-color-editorial-rule);
+  border-radius: 0.5rem;
+  background: var(--wt-color-editorial-art-3);
+}
+
+.article-hero-frame img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 39.999rem) {
+  .article-hero-frame { aspect-ratio: 1.5; }
+}
+
+.article-hero figcaption {
+  margin-top: 0.5rem;
+  color: var(--wt-color-editorial-muted);
+  font-size: 0.8rem;
+}
+
+.article-body {
+  box-sizing: content-box;
+  max-width: 44rem;
+  margin: clamp(2rem, 4vw, 3rem) auto 0;
+  padding: 0 1.5rem;
+}
+
+.article-body table {
+  display: block;
+  overflow-x: auto;
+}
+
+.article-body blockquote {
+  font-style: normal;
+}
+
+.article-footer {
+  max-width: 72rem;
+  margin-top: clamp(3rem, 6vw, 4.5rem);
+}
+
+.article-footer > * + * {
+  margin-top: clamp(2.5rem, 5vw, 3.5rem);
+}
+
+.article-footer h2 {
+  margin: 0 0 1rem;
+  color: var(--wt-color-editorial-ink);
+  font-family: var(--wt-font-serif);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 400;
+}
+
+.article-subscribe {
+  max-width: 44rem;
+  margin-inline: auto;
+  padding: 1.5rem 0;
+  border-block: 1px solid var(--wt-color-editorial-rule);
+}
+
+.article-subscribe p {
+  color: var(--wt-color-editorial-muted);
+}
+
+.article-subscribe form {
+  max-width: 28rem;
+}
+
+/* Series navigation */
+.series-nav {
+  max-width: 44rem;
+  margin-inline: auto;
+  padding: 1.5rem;
+  border: 1px solid var(--wt-color-editorial-rule);
+  border-radius: 0.5rem;
+}
+
+.series-nav-eyebrow {
+  margin: 0;
+  color: var(--wt-color-editorial-accent);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.series-nav .series-nav-parts {
+  margin: 0 0 1rem;
+  padding: 0;
+}
+
+.series-nav-parts li {
+  margin: 0;
+  padding: 0.35rem 0;
+  list-style: none;
+}
+
+.series-nav-parts a,
+.series-nav-parts [aria-current] {
+  display: flex;
+  gap: 0.75rem;
+  color: var(--wt-color-editorial-ink);
+}
+
+.series-nav-parts [aria-current] {
+  color: var(--wt-color-editorial-accent);
+}
+
+.series-nav-num {
+  flex: none;
+  min-width: 4rem;
+  color: var(--wt-color-editorial-muted);
+  font-size: 0.8rem;
+  line-height: 1.8;
+}
+
+.series-nav-reference {
+  margin: 0 0 1rem;
+  color: var(--wt-color-editorial-muted);
+}
+
+.series-nav-steps {
+  display: grid;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--wt-color-editorial-rule);
+}
+
+@media (min-width: 40rem) {
+  .series-nav-steps { grid-template-columns: 1fr 1fr; }
+  .series-nav-next { grid-column: 2; text-align: right; }
+}
+
+.series-nav-steps a {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  color: var(--wt-color-editorial-ink);
+}
+
+.series-nav-steps a span {
+  color: var(--wt-color-editorial-accent);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}

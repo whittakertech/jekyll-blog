@@ -1,0 +1,41 @@
+{%- assign s = page.series_info -%}
+{%- if s -%}
+<nav class="series-nav" aria-labelledby="series-nav-title">
+  <p class="series-nav-eyebrow">Series</p>
+  <h2 id="series-nav-title">{{ s.title | escape }}</h2>
+  <ol class="series-nav-parts">
+    {%- for part in s.parts %}
+    <li>
+      {%- if part.url == page.url -%}
+      <span aria-current="page"><span class="series-nav-num">Part {{ part.part }}</span> {{ part.title | escape }}</span>
+      {%- else -%}
+      <a href="{{ part.url | relative_url }}"><span class="series-nav-num">Part {{ part.part }}</span> {{ part.title | escape }}</a>
+      {%- endif -%}
+    </li>
+    {%- endfor %}
+  </ol>
+  {%- if s.reference %}
+  <p class="series-nav-reference">
+    {%- if s.reference.url == page.url -%}
+    You're reading the companion reference: every configuration from the series in one place.
+    {%- else -%}
+    <a href="{{ s.reference.url | relative_url }}">Companion reference: {{ s.reference.title | escape }}</a>
+    {%- endif -%}
+  </p>
+  {%- endif %}
+  {%- if s.previous or s.next %}
+  <div class="series-nav-steps">
+    {%- if s.previous %}
+    <a class="series-nav-prev" href="{{ s.previous.url | relative_url }}" rel="prev">
+      <span>← Part {{ s.previous.part }}</span>{{ s.previous.title | escape }}
+    </a>
+    {%- endif %}
+    {%- if s.next %}
+    <a class="series-nav-next" href="{{ s.next.url | relative_url }}" rel="next">
+      <span>Part {{ s.next.part }} →</span>{{ s.next.title | escape }}
+    </a>
+    {%- endif %}
+  </div>
+  {%- endif %}
+</nav>
+{%- endif -%}

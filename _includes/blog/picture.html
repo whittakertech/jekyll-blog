@@ -1,0 +1,37 @@
+{%- comment -%}
+  Renders a resolved image asset (post.image_asset, see _plugins/blog_images.rb).
+  Params:
+    asset       required  resolved manifest entry
+    variant     "card" | "hero"
+    sizes       sizes attribute for the srcset
+    priority    true for the article hero: eager + fetchpriority=high; otherwise lazy
+    decorative  true when adjacent text already names the image (alt="")
+  Processed variants render as <picture> (WebP, JPEG fallback). An entry without
+  variants renders its original. Callers skip this include when asset.fallback.
+{%- endcomment -%}
+{%- assign asset = include.asset -%}
+{%- assign set = asset.variants[include.variant] -%}
+{%- if include.decorative -%}{%- assign alt = "" -%}{%- else -%}{%- assign alt = asset.alt -%}{%- endif -%}
+{%- if include.priority -%}
+  {%- capture loading_attrs -%}loading="eager" fetchpriority="high"{%- endcapture -%}
+{%- else -%}
+  {%- capture loading_attrs -%}loading="lazy"{%- endcapture -%}
+{%- endif -%}
+{%- capture style -%}object-position: {{ asset.focal | default: "50% 50%" }}{%- endcapture -%}
+{%- if set.jpeg -%}
+  {%- assign default = set.jpeg | first -%}
+<picture>
+  {%- if set.webp %}
+  <source type="image/webp" sizes="{{ include.sizes | escape }}" srcset="{% for v in set.webp %}{{ v.url | escape }} {{ v.width }}w{% unless forloop.last %}, {% endunless %}{% endfor %}">
+  {%- endif %}
+  <img src="{{ default.url | escape }}"
+       srcset="{% for v in set.jpeg %}{{ v.url | escape }} {{ v.width }}w{% unless forloop.last %}, {% endunless %}{% endfor %}"
+       sizes="{{ include.sizes | escape }}"
+       width="{{ default.width }}" height="{{ default.height }}"
+       alt="{{ alt | escape }}" {{ loading_attrs }} decoding="async" style="{{ style | escape }}">
+</picture>
+{%- elsif asset.original.url -%}
+<img src="{{ asset.original.url | escape }}"
+     {% if asset.original.width %}width="{{ asset.original.width }}" height="{{ asset.original.height }}"{% endif %}
+     alt="{{ alt | escape }}" {{ loading_attrs }} decoding="async" style="{{ style | escape }}">
+{%- endif -%}

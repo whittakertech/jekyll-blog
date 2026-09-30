@@ -2,6 +2,9 @@
 layout: post
 date: 2025-06-20 09:00:00 -0600
 title: "Docker System Dependencies: Fighting libv8-dev and Node.js Conflicts"
+card_title: "Resolving libv8 and Node.js Conflicts"
+series: "rails-docker-migration"
+series_part: 4
 slug: "rails-docker-libv8-node-conflicts"
 canonical_url: "https://whittakertech.com/blog/rails-docker-libv8-node-conflicts/"
 description: >-

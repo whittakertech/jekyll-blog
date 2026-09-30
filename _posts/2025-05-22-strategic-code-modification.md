@@ -1,6 +1,7 @@
 ---
 date: 2025-05-22 13:00:00 -0600
 title: "Strategic Code Modification: Custom Shopify Requirements"
+card_title: "Custom Shopify Checkout Without Breaking the Theme"
 og_title: "Smart Code Changes Without Breaking Your Shopify Theme"
 headline: >-
   When Off-the-Shelf Meets Custom Requirements: How a Simple Prescription Product Request Became an Elegant Conditional

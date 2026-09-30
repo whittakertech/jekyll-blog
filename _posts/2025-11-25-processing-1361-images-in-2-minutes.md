@@ -2,13 +2,14 @@
 layout: post
 date: 2025-11-25 09:00:00 -0600
 title: "Processing 1,361 Images in 2 Minutes: How We Transformed a Rails Bottleneck into an Asynchronous Pipeline"
+card_title: "1,361 Images in 2 Minutes"
 slug: "processing-1361-images-in-2-minutes"
 canonical_url: "https://whittakertech.com/blog/processing-1361-images-in-2-minutes/"
 description: >-
   How we rebuilt a legacy synchronous Paperclip + S3 image pipeline into a fully asynchronous architecture—cutting
   processing time from 11 hours to 2 minutes without scaling dynos or increasing infrastructure costs.
 og_title: "Rails Image Processing at Scale: 11 Hours Cut to 2 Minutes"
-hero_image: "https://media.whittakertech.com/whittakertech/blog/processing-photos.png"
+image_key: "processing-photos"
 headline: >-
   Processing 1,361 Images in 2 Minutes: The Architectural Shift That Turned a Slow Rails Pipeline into a High-Throughput,
   Asynchronous System

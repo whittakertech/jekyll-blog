@@ -1,6 +1,7 @@
 ---
 date: 2025-03-04 14:00:00 -0700
 title: "Ruby Rails Upgrade Guide: From Legacy 6.1 to Modern 7.1"
+card_title: "Rescuing a Rails 6.1 App from 118 Failures"
 og_title: "How We Rescued a Legacy Rails App from 118 Failures"
 headline: >-
   Navigating Ruby and Rails Upgrades: How We Rescued a Legacy Application from 118 Failing Tests and Critical

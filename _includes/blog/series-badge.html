@@ -1,0 +1,6 @@
+{%- assign s = include.post.series_info -%}
+{%- if s -%}
+<span class="series-badge">
+  {%- if s.role == "reference" -%}Companion reference{%- else -%}Part {{ s.part }} of {{ s.total }}{%- endif -%}
+</span>
+{%- endif -%}

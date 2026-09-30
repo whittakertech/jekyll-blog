@@ -2,6 +2,9 @@
 layout: post
 date: 2025-06-13 09:00:00 -0600
 title: "Solving Rails Asset Pipeline Conflicts in Docker: Propshaft vs Sprockets"
+card_title: "Asset Pipeline Conflicts in Docker"
+series: "rails-docker-migration"
+series_part: 3
 slug: "rails-docker-asset-pipeline-conflicts"
 canonical_url: "https://whittakertech.com/blog/rails-docker-asset-pipeline-conflicts/"
 description: >-

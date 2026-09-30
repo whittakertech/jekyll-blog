@@ -12,23 +12,17 @@
 
     <div class="writing-grid">
       <article class="writing-card writing-card--featured">
-        <a class="writing-image writing-image--featured" href="{{ featured_post.url | relative_url }}" aria-label="Read {{ featured_post.title | escape }}">
-          {% if featured_post.hero_image %}
-            <img src="{{ featured_post.hero_image | relative_url }}" alt="" loading="lazy">
-          {% else %}
-            <span class="writing-art-label" aria-hidden="true">WT <span>/</span> FIELD NOTES</span>
-          {% endif %}
-        </a>
+        {% include blog/card-image.html post=featured_post class="writing-image--featured" sizes="(min-width: 72rem) 39.25rem, (min-width: 48rem) calc((100vw - 4.75rem) * 0.584), calc(100vw - 3rem)" %}
         <div class="writing-card-copy">
           <p class="writing-meta">
-            <span>{{ featured_post.categories | first | default: "Writing" }}</span>
+            <span>{{ featured_post.categories | first | default: "Writing" | escape }}</span>
             <span aria-hidden="true">·</span>
             <time datetime="{{ featured_post.date | date_to_xmlschema }}">{{ featured_post.date | date: "%b %-d, %Y" }}</time>
           </p>
-          <h3><a href="{{ featured_post.url | relative_url }}">{{ featured_post.card_title | default: featured_post.title | truncate: 72 | escape }}</a></h3>
+          <h3>{% include blog/card-title.html post=featured_post %}</h3>
           <div class="writing-description-row">
-            <p>{{ featured_post.description | default: featured_post.excerpt | strip_html | normalize_whitespace | truncate: 150 }}</p>
-            <a class="writing-arrow" href="{{ featured_post.url | relative_url }}" aria-label="Read {{ featured_post.title | escape }}">→</a>
+            <p class="line-clamp-3">{{ featured_post.description | default: featured_post.excerpt | strip_html | normalize_whitespace | escape }}</p>
+            <a class="writing-arrow" href="{{ featured_post.url | relative_url }}" tabindex="-1" aria-hidden="true">→</a>
           </div>
         </div>
       </article>
@@ -36,24 +30,18 @@
       <div class="writing-secondary">
         {% for post in secondary_posts %}
           <article class="writing-card">
-            <a class="writing-image writing-image--secondary" href="{{ post.url | relative_url }}" aria-label="Read {{ post.title | escape }}">
-              {% if post.hero_image %}
-                <img src="{{ post.hero_image | relative_url }}" alt="" loading="lazy">
-              {% else %}
-                <span class="writing-art-label" aria-hidden="true">WT <span>/</span> FIELD NOTES</span>
-              {% endif %}
-            </a>
+            {% include blog/card-image.html post=post class="writing-image--secondary" sizes="(min-width: 72rem) 28rem, (min-width: 48rem) calc((100vw - 4.75rem) * 0.417), calc(100vw - 3rem)" %}
             <div class="writing-card-copy">
               <p class="writing-meta">
-                <span>{{ post.categories | first | default: "Writing" }}</span>
+                <span>{{ post.categories | first | default: "Writing" | escape }}</span>
                 <span aria-hidden="true">·</span>
                 <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time>
               </p>
               <div class="writing-title-row">
-                <h3><a href="{{ post.url | relative_url }}">{{ post.card_title | default: post.title | truncate: 64 | escape }}</a></h3>
-                <a class="writing-arrow" href="{{ post.url | relative_url }}" aria-label="Read {{ post.title | escape }}">→</a>
+                <h3>{% include blog/card-title.html post=post %}</h3>
+                <a class="writing-arrow" href="{{ post.url | relative_url }}" tabindex="-1" aria-hidden="true">→</a>
               </div>
-              <p class="writing-description">{{ post.description | default: post.excerpt | strip_html | normalize_whitespace | truncate: 120 }}</p>
+              <p class="writing-description line-clamp-2">{{ post.description | default: post.excerpt | strip_html | normalize_whitespace | escape }}</p>
             </div>
           </article>
         {% endfor %}

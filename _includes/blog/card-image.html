@@ -1,0 +1,19 @@
+{%- comment -%}
+  Card image link used by the homepage and blog index.
+  Params: post, class (layout modifier), sizes.
+  Posts on the fallback image get the brand artwork instead of a photograph.
+  Default sizes match .blog-grid in blog.css: 1 column, 2 at 40rem, 3 at 64rem,
+  inside a 72rem container with 1.5rem padding and 1.75rem column gaps.
+  Homepage cards pass their own sizes (writing.css grid: 1.4fr / 1fr at 48rem).
+{%- endcomment -%}
+{%- assign asset = include.post.image_asset -%}
+{%- assign sizes = include.sizes | default: "(min-width: 72rem) 21.85rem, (min-width: 64rem) calc((100vw - 6.5rem) / 3), (min-width: 40rem) calc((100vw - 4.75rem) / 2), calc(100vw - 3rem)" -%}
+<a class="writing-image {{ include.class }}{% if asset.fallback %} writing-image--fallback{% endif %}"
+   href="{{ include.post.url | relative_url }}" tabindex="-1" aria-hidden="true">
+  {%- if asset.fallback %}
+  <span class="writing-art-label">WT <span>/</span> FIELD NOTES</span>
+  {%- else %}
+  {% include blog/picture.html asset=asset variant="card" sizes=sizes decorative=true %}
+  {%- endif %}
+  {% include blog/series-badge.html post=include.post %}
+</a>
