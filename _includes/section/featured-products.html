@@ -54,12 +54,16 @@
     {% endcomment %}
     <div class="grid gap-4 lg:grid-cols-2">
       <div class="lg:aspect-square">
-        {% include product-tile.html product=slot1 shape="big" %}
+        {% if count == 2 %}
+          {% include product-tile.html product=slot1 shape="big" paired=true %}
+        {% else %}
+          {% include product-tile.html product=slot1 shape="big" %}
+        {% endif %}
       </div>
 
       {% if count == 2 %}
       <div class="lg:aspect-square">
-        {% include product-tile.html product=slot2 shape="big" %}
+        {% include product-tile.html product=slot2 shape="big" paired=true %}
       </div>
       {% else %}
       <div class="flex flex-col gap-4 lg:h-0 lg:min-h-full">
