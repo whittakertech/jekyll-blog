@@ -48,23 +48,29 @@
       {% include product-tile.html product=slot1 shape="big" %}
     {% elsif count > 1 %}
     {% comment %}
-      On large screens the big card is square and sets the row height; the right
-      column is taken out of height calculation (h-0 + min-h-full) so it fills
-      exactly that square instead of stretching it.
+      With two products, both cards are equal squares on large screens. With
+      three or more, the big card sets the row height and the right column is
+      taken out of height calculation so it fills that square exactly.
     {% endcomment %}
     <div class="grid gap-4 lg:grid-cols-2">
       <div class="lg:aspect-square">
-        {% include product-tile.html product=slot1 shape="big" %}
+        {% if count == 2 %}
+          {% include product-tile.html product=slot1 shape="big" paired=true %}
+        {% else %}
+          {% include product-tile.html product=slot1 shape="big" %}
+        {% endif %}
       </div>
 
+      {% if count == 2 %}
+      <div class="lg:aspect-square">
+        {% include product-tile.html product=slot2 shape="big" paired=true %}
+      </div>
+      {% else %}
       <div class="flex flex-col gap-4 lg:h-0 lg:min-h-full">
-        {% if count == 2 %}
+        {% if count == 3 %}
           <div class="min-h-0 flex-1">{% include product-tile.html product=slot2 shape="wide" %}</div>
+          <div class="min-h-0 flex-1">{% include product-tile.html product=slot3 shape="wide" %}</div>
         {% else %}
-          {% if count == 3 %}
-            <div class="min-h-0 flex-1">{% include product-tile.html product=slot2 shape="wide" %}</div>
-            <div class="min-h-0 flex-1">{% include product-tile.html product=slot3 shape="wide" %}</div>
-          {% else %}
           <div class="flex-none">{% include product-tile.html product=slot2 shape="wide" %}</div>
           <div class="grid min-h-0 flex-1 gap-4 sm:grid-cols-2">
             {% include product-tile.html product=slot3 shape="tall" %}
@@ -77,9 +83,9 @@
             </div>
             {% endif %}
           </div>
-          {% endif %}
         {% endif %}
       </div>
+      {% endif %}
     </div>
     {% endif %}
   </div>

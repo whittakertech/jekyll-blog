@@ -1,24 +1,74 @@
 ---
 layout: base
 ---
+{% comment %}
+  A product page: the product's card grammar expanded to a full page.
 
-<div class="container-custom section-padding animate-fade-in-up">
-  <article class="product-page">
-    <header class="product-header">
-      <h1>{{ page.title }}</h1>
-      {% if page.tagline %}
-      <p class="tagline">{{ page.tagline }}</p>
+    masthead  identity, proposition, explanation, actions, live metrics
+    body      authored Markdown ({{ content }}) beside the package facts rail
+    sections  optional structured front matter: features, install, use_cases
+    related   `related:` slugs, else other products; hidden when there are none
+
+  Live data comes from site.data.products[slug].stats (ProductSources), or
+  `stats:` in front matter for products without sources. Every metric and
+  fact is optional: with no data the page still reads
+  identity → proposition → explanation → docs.
+{% endcomment %}
+{% assign product_stats = site.data.products[page.slug].stats | default: page.stats %}
+{% if product_stats.version or product_stats.latest_release_at or product_stats.first_release_at or product_stats.release_count or product_stats.downloads or product_stats.stars or product_stats.license or product_stats.language or product_stats.repository_url or product_stats.package_url %}
+  {% assign has_facts = true %}
+{% else %}
+  {% assign has_facts = false %}
+{% endif %}
+
+{% assign related_products = "" | split: "" %}
+{% if page.related %}
+  {% for related_slug in page.related %}
+    {% assign related_match = site.products | where: "slug", related_slug | first %}
+    {% if related_match and related_match.url != page.url %}{% assign related_products = related_products | push: related_match %}{% endif %}
+  {% endfor %}
+{% else %}
+  {% for candidate in site.products %}
+    {% if candidate.url != page.url %}{% assign related_products = related_products | push: candidate %}{% endif %}
+  {% endfor %}
+{% endif %}
+{% assign related_products = related_products | slice: 0, 2 %}
+
+<article class="product-page">
+  {% include product/masthead.html product=page stats=product_stats %}
+
+  <div class="container-custom flex flex-col gap-14 py-12 md:py-16">
+    <div class="grid gap-10 {% if has_facts %}lg:grid-cols-[minmax(0,1fr)_20rem] lg:gap-16{% endif %}">
+      <div class="product-prose prose prose-lg max-w-3xl">
+        {{ content }}
+      </div>
+      {% if has_facts %}
+      <div class="lg:sticky lg:top-24 lg:self-start">
+        {% include product/facts.html stats=product_stats %}
+      </div>
       {% endif %}
-    </header>
+    </div>
 
-    <section class="product-body">
-      {{ content }}
-    </section>
+    {% if page.features.size > 0 %}
+      {% include product/features.html features=page.features %}
+    {% endif %}
 
-    <footer class="product-footer">
-      <p>
-        <a href="{{ '/products/' | relative_url }}">Back to Products</a>
-      </p>
-    </footer>
-  </article>
-</div>
+    {% if page.install.size > 0 %}
+      {% include product/install.html steps=page.install docs=page.links.docs %}
+    {% endif %}
+
+    {% if page.use_cases.size > 0 %}
+      {% include product/use-cases.html use_cases=page.use_cases %}
+    {% endif %}
+
+    {% if page.roadmap.size > 0 %}
+      {% include product/roadmap.html items=page.roadmap %}
+    {% endif %}
+
+    {% if related_products.size > 0 %}
+    <div class="grid gap-14">
+      {% include product/related.html products=related_products %}
+    </div>
+    {% endif %}
+  </div>
+</article>

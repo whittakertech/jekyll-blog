@@ -1,0 +1,75 @@
+{% comment %}
+  Package details rail for the product page, built only from normalized
+  stats (see _plugins/product_sources.rb) — never from a provider payload.
+  Rows without a value are omitted; the caller hides the rail when no row
+  has a value.
+  Params: stats
+  Variables are prefixed pf_ because include assigns leak into the caller.
+{% endcomment %}
+{% assign pf = include.stats %}
+{% assign pf_date = "%b %-d, %Y" %}
+<aside class="product-facts" aria-labelledby="package-details-heading">
+  <h2 id="package-details-heading" class="product-section-label">Package details</h2>
+  <dl class="m-0">
+    {% if pf.version %}
+    <div class="product-fact">
+      <dt>{% include icon.html name="package" size=4 class="flex-none opacity-70" %} Current version</dt>
+      <dd>v{{ pf.version }}</dd>
+    </div>
+    {% endif %}
+    {% if pf.latest_release_at %}
+    <div class="product-fact">
+      <dt>{% include icon.html name="calendar" size=4 class="flex-none opacity-70" %} Latest release</dt>
+      <dd><time datetime="{{ pf.latest_release_at }}">{{ pf.latest_release_at | date: pf_date }}</time></dd>
+    </div>
+    {% endif %}
+    {% if pf.first_release_at %}
+    <div class="product-fact">
+      <dt>{% include icon.html name="calendar" size=4 class="flex-none opacity-70" %} First release</dt>
+      <dd><time datetime="{{ pf.first_release_at }}">{{ pf.first_release_at | date: pf_date }}</time></dd>
+    </div>
+    {% endif %}
+    {% if pf.release_count %}
+    <div class="product-fact">
+      <dt>{% include icon.html name="layers" size=4 class="flex-none opacity-70" %} Total releases</dt>
+      <dd>{{ pf.release_count }}</dd>
+    </div>
+    {% endif %}
+    {% if pf.downloads %}
+    <div class="product-fact">
+      <dt>{% include icon.html name="download" size=4 class="flex-none opacity-70" %} Total downloads</dt>
+      <dd>{{ pf.downloads | number_with_delimiter }}</dd>
+    </div>
+    {% endif %}
+    {% if pf.stars %}
+    <div class="product-fact">
+      <dt>{% include icon.html name="star" size=4 class="flex-none opacity-70" %} GitHub stars</dt>
+      <dd>{{ pf.stars }}</dd>
+    </div>
+    {% endif %}
+    {% if pf.license %}
+    <div class="product-fact">
+      <dt>{% include icon.html name="scale" size=4 class="flex-none opacity-70" %} License</dt>
+      <dd>{{ pf.license }}</dd>
+    </div>
+    {% endif %}
+    {% if pf.language %}
+    <div class="product-fact">
+      <dt>{% include icon.html name="code" size=4 class="flex-none opacity-70" %} Language</dt>
+      <dd>{{ pf.language }}</dd>
+    </div>
+    {% endif %}
+    {% if pf.repository_url %}
+    <div class="product-fact">
+      <dt>{% include icon.html name="repo" size=4 class="flex-none opacity-70" %} Repository</dt>
+      <dd><a href="{{ pf.repository_url }}" class="product-fact-link" {% include product/link-target.html url=pf.repository_url %}>{{ pf.repository_name | default: "Source" }}</a></dd>
+    </div>
+    {% endif %}
+    {% if pf.package_url %}
+    <div class="product-fact">
+      <dt>{% include icon.html name="package" size=4 class="flex-none opacity-70" %} {{ pf.package_registry | default: "Package" }}</dt>
+      <dd><a href="{{ pf.package_url }}" class="product-fact-link" {% include product/link-target.html url=pf.package_url %}>{{ pf.package_name | default: "Package" }}</a></dd>
+    </div>
+    {% endif %}
+  </dl>
+</aside>

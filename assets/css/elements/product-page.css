@@ -1,0 +1,108 @@
+/* Product pages (_layouts/product.html): product identity lives in the
+   masthead; the editorial body uses WhittakerTech's brand accent. */
+
+@layer components {
+  .product-page {
+    --page-accent: var(--wt-color-brand);
+    --accent: var(--page-accent);
+  }
+
+  .product-masthead {
+    --accent: var(--product-accent);
+  }
+
+  /* The big tile at full page width: square corners, no floating shadow. */
+  .product-masthead {
+    @apply rounded-none border-x-0 border-t-0 shadow-none;
+  }
+
+  .product-masthead-image {
+    @apply pointer-events-none absolute inset-y-0 right-0 -z-10 h-full w-full object-cover opacity-40 md:w-3/5 md:opacity-100;
+    mask-image: linear-gradient(to right, transparent, black 45%);
+  }
+
+  .product-masthead-crumb {
+    color: color-mix(in srgb, var(--accent) 60%, currentColor);
+
+    &:hover {
+      @apply underline;
+    }
+  }
+
+  /* Small uppercase heading shared by every product-page section. */
+  .product-section-label {
+    @apply mb-4 mt-0 text-xs font-semibold uppercase leading-normal tracking-[0.18em];
+    color: color-mix(in srgb, var(--page-accent) 65%, var(--color-text));
+  }
+
+  .product-section {
+    @apply border-t border-text/10 pt-8;
+  }
+
+  .product-prose {
+    --tw-prose-links: color-mix(in srgb, var(--page-accent) 65%, var(--color-text));
+    --tw-prose-bullets: var(--page-accent);
+
+    & > :first-child {
+      @apply mt-0;
+    }
+  }
+
+  .product-facts {
+    @apply rounded-2xl border border-text/10 bg-text/[0.03] p-6;
+  }
+
+  .product-fact {
+    @apply flex items-baseline justify-between gap-4 border-b border-text/10 py-2.5 text-sm last:border-b-0;
+
+    & dt {
+      @apply flex items-center gap-2.5 opacity-75;
+    }
+
+    & dd {
+      @apply m-0 min-w-0 truncate text-right font-medium;
+    }
+  }
+
+  .product-fact-link {
+    color: color-mix(in srgb, var(--page-accent) 65%, var(--color-text));
+
+    &:hover {
+      @apply underline;
+    }
+  }
+
+  .product-card {
+    @apply rounded-2xl border border-text/10 bg-text/[0.03];
+  }
+
+  .product-card-icon {
+    @apply flex h-10 w-10 flex-none items-center justify-center rounded-xl;
+    background: color-mix(in srgb, var(--page-accent) 18%, transparent);
+    color: color-mix(in srgb, var(--page-accent) 75%, var(--color-text));
+  }
+
+  .product-check {
+    @apply flex h-5 w-5 flex-none items-center justify-center rounded-full;
+    background: color-mix(in srgb, var(--page-accent) 22%, transparent);
+    color: color-mix(in srgb, var(--page-accent) 75%, var(--color-text));
+  }
+
+  /* Code cards stay dark in both themes, like prose code blocks. */
+  .product-code {
+    @apply overflow-hidden rounded-2xl border border-white/10 bg-[#11151c] text-[#f5f2ec];
+    color-scheme: dark;
+
+    & pre {
+      @apply overflow-x-auto bg-transparent px-5 py-4 font-mono text-sm leading-relaxed;
+    }
+  }
+
+  .product-code-header {
+    @apply flex items-center justify-between gap-4 border-b border-white/10 px-5 py-2 text-xs font-medium opacity-80;
+  }
+
+  .product-code-copy {
+    @apply inline-flex items-center gap-1.5 rounded-md border border-white/15 px-2.5 py-1 transition-colors hover:bg-white/10;
+  }
+}

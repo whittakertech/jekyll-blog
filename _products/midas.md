@@ -17,68 +17,66 @@ card:
   kicker: Financial primitives
   headline: Turn complexity into clarity.
   theme: dark
+  wordmark: "https://brand.whittakertech.com/assets/v/0.1.8/logo/midas/wordmark-dark.svg"
 sources:
   rubygems: whittaker_tech-midas
   github: whittakertech/midas
+features:
+  - title: Polymorphic Coin ledger
+    text: One `Coin` model stores every monetary value, for any model.
+    icon: database
+  - title: Multi-currency support
+    text: Built on the `money` gem, with conversion between currencies.
+    icon: globe
+  - title: Declarative DSL
+    text: "`has_coin` and `has_coins` attach money to a model in one line."
+    icon: code
+  - title: Zero schema duplication
+    text: No more `price_cents` and currency columns repeated across tables.
+    icon: layers
+  - title: Headless currency input
+    text: A Stimulus-powered input field that leaves the markup to you.
+    icon: text-cursor
+  - title: Tested and documented
+    text: 90%+ test coverage, full API documentation and an architecture overview.
+    icon: shield-check
+  - title: Additive double-entry ledger
+    text: Record balanced, immutable postings when a monetary workflow needs an auditable trail.
+    icon: book-open
+install:
+  - label: Gemfile
+    language: ruby
+    code: gem "whittaker_tech-midas"
+  - label: Install Midas and run the migrations
+    language: bash
+    code: |
+      bin/rails generate whittaker_tech:midas:install
+      bin/rails db:migrate
+use_cases:
+  - Product catalogs and configurable pricing
+  - Multi-currency applications
+  - Invoices, billing, fees and payments
+  - Models with multiple independent monetary values
+roadmap:
+  - Exchange rate fetching
+  - Versioned coin histories
+  - ViewComponent integrations
+  - Billing integration examples (Stripe and LemonSqueezy)
 ---
 
 ## Overview
 
-Midas centralizes all monetary behavior in Rails applications using a polymorphic `Coin` ledger.  
-Instead of duplicating `price_cents` and currency columns across dozens of models, Midas stores every monetary value in a single, consistent system.
-
-This prevents rounding bugs, supports multi-currency conversion, and ensures financial logic remains predictable as your application grows.
-
-## Why Midas Exists
-
-As systems scale, currency logic becomes one of the most fragile parts of an application.  
-Teams often duplicate conversion, rounding, and formatting logic in dozens of places.
-
-Midas eliminates this entirely.
-
-## Key Features
-
-- Single polymorphic `Coin` model for all monetary values
-- Multi-currency support using the `money` gem
-- Declarative `has_coin` and `has_coins` DSL
-- Automatic conversion for integers, floats, and `Money` objects
-- Headless Stimulus-powered currency input field
-- Zero schema duplication
-- 90%+ test coverage
-- Full API documentation and architecture overview
-
-## Documentation
-
-Full documentation is available at:
-
-[{{ page.links.docs }}]({{ page.links.docs }})
-
-## Installation
+Give every model that handles money a consistent interface, without adding another pair of amount and currency columns to its table. Midas stores values in a shared, polymorphic `Coin` ledger:
 
 ```ruby
-gem "whittaker_tech-midas"
+class Product < ApplicationRecord
+  include WhittakerTech::Midas::Bankable
+  has_coin :price
+end
 ```
 
-Run migrations:
+Use the same approach for prices, fees, balances, or several independent values on one record. Midas handles currency-aware amounts and conversion, so money behavior can stay consistent as your application grows.
 
-```bash
-bin/rails railties:install:migrations FROM=whittaker_tech_midas
-bin/rails db:migrate
-```
+## From monetary values to auditable flows
 
-## Links
-
-- GitHub: [{{ page.links.github }}]({{ page.links.github }})
-- RubyGems: [{{ page.links.rubygems }}]({{ page.links.rubygems }})
-- Documentation: [{{ page.links.docs }}]({{ page.links.docs }})
-
-## Roadmap
-
-- Exchange rate fetching
-- Versioned coin histories
-- ViewComponent integrations
-- Billing integration examples (Stripe and LemonSqueezy)
-
-## License
-
-MIT License, © WhittakerTech.
+For everyday model attributes, `Coin` and `Bankable` are the core. When billing or payments also need a clear, auditable explanation of how balances changed, Midas adds a double-entry `Ledger` with balanced, immutable postings. The Ledger complements the simpler value model; it does not replace it. See the [documentation](https://midas.whittakertech.com) for the API and implementation details.

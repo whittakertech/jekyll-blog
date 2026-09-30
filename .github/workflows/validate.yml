@@ -15,6 +15,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+
+      - name: Build CSS with Tailwind 4
+        run: npm ci && npm run build:css-prod
+
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -102,6 +111,32 @@ jobs:
           echo "🏗️ Testing Jekyll build..."
           bundle exec jekyll build --strict_front_matter
           echo "✅ Jekyll build successful!"
+
+      - name: Verify rendered product links
+        run: |
+          ruby <<'RUBY'
+          %w[midas poly].each do |slug|
+            html = File.read("_site/products/#{slug}/index.html")
+            links = html.scan(/<a\b[^>]*>.*?<\/a>/m)
+            product_links = links.select do |link|
+              tag = link[/\A<a\b[^>]*>/]
+              tag.match?(/\bhref="https?:\/\//) &&
+                tag.match?(/\bclass="(?:product-tile-cta|product-fact-link|inline-flex items-center)/)
+            end
+            abort "No external product links found for #{slug}" if product_links.empty?
+
+            product_links.each do |link|
+              tag = link[/\A<a\b[^>]*>/]
+              abort "Missing external link attributes for #{slug}: #{tag}" unless tag.include?('target="_blank" rel="noopener noreferrer"')
+              abort "External link attributes in body for #{slug}: #{tag}" if link.delete_prefix(tag).include?('target="_blank"')
+            end
+
+            if slug == "midas"
+              docs_links = product_links.count { |link| link.start_with?('<a href="https://midas.whittakertech.com" class="product-tile-cta') }
+              abort "Expected masthead and installation documentation links" unless docs_links == 2
+            end
+          end
+          RUBY
 
       - name: Check for broken internal links
         run: |
