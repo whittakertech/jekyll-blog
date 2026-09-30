@@ -1,6 +1,6 @@
 .writing-section {
   padding: clamp(4rem, 8vw, 7rem) 0 2rem;
-  color: #f5f2ec;
+  color: var(--wt-color-editorial-ink);
 }
 
 .writing-heading {
@@ -10,7 +10,7 @@
 .writing-eyebrow,
 .writing-meta {
   margin: 0;
-  color: #22d3d3;
+  color: var(--wt-color-editorial-accent);
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.22em;
@@ -20,8 +20,8 @@
 
 .writing-heading h2 {
   margin: 0.35rem 0 0.25rem;
-  color: #f5f2ec;
-  font-family: Georgia, "Times New Roman", serif;
+  color: var(--wt-color-editorial-ink);
+  font-family: var(--wt-font-serif);
   font-size: clamp(2.5rem, 5vw, 3.75rem);
   font-weight: 400;
   letter-spacing: -0.035em;
@@ -30,7 +30,7 @@
 
 .writing-intro {
   margin: 0;
-  color: #a3adb8;
+  color: var(--wt-color-editorial-muted);
   font-size: clamp(1rem, 2vw, 1.25rem);
 }
 
@@ -49,24 +49,29 @@
   overflow: hidden;
   align-items: flex-end;
   justify-content: flex-start;
-  border: 1px solid rgb(255 255 255 / 12%);
+  border: 1px solid var(--wt-color-editorial-rule);
   border-radius: 0.5rem;
-  background:
-    radial-gradient(ellipse at 72% 35%, rgb(34 211 211 / 45%), transparent 32%),
-    radial-gradient(ellipse at 32% 80%, rgb(147 51 234 / 48%), transparent 38%),
-    linear-gradient(125deg, #0b2834 0%, #172a41 48%, #11121d 100%);
-  color: #f5f2ec;
+  background: var(--wt-color-editorial-art-3);
+  color: var(--wt-color-editorial-ink);
   text-decoration: none;
 }
 
-.writing-image::before,
-.writing-image::after {
+/* Brand artwork for posts still on the fallback image; photographs get no decoration */
+.writing-image--fallback {
+  background:
+    radial-gradient(ellipse at 72% 35%, rgb(34 211 211 / 45%), transparent 32%),
+    radial-gradient(ellipse at 32% 80%, rgb(147 51 234 / 48%), transparent 38%),
+    linear-gradient(125deg, var(--wt-color-editorial-art-1) 0%, var(--wt-color-editorial-art-2) 48%, var(--wt-color-editorial-art-3) 100%);
+}
+
+.writing-image--fallback::before,
+.writing-image--fallback::after {
   position: absolute;
   content: "";
   pointer-events: none;
 }
 
-.writing-image::before {
+.writing-image--fallback::before {
   inset: 0;
   background:
     linear-gradient(90deg, transparent 49.8%, rgb(255 255 255 / 8%) 50%, transparent 50.2%),
@@ -75,7 +80,7 @@
   mask-image: linear-gradient(135deg, transparent 15%, #000 100%);
 }
 
-.writing-image::after {
+.writing-image--fallback::after {
   width: 14rem;
   height: 14rem;
   top: 12%;
@@ -117,7 +122,7 @@
 }
 
 .writing-art-label span {
-  color: #22d3d3;
+  color: var(--wt-color-editorial-accent);
 }
 
 .writing-card-copy {
@@ -128,19 +133,19 @@
   display: flex;
   align-items: center;
   gap: 0.7rem;
-  color: #a3adb8;
+  color: var(--wt-color-editorial-muted);
   font-size: 0.65rem;
   letter-spacing: 0.18em;
 }
 
 .writing-meta span:first-child {
-  color: #22d3d3;
+  color: var(--wt-color-editorial-accent);
 }
 
 .writing-card h3 {
   margin: 0.35rem 0 0.25rem;
-  color: #f5f2ec;
-  font-family: Georgia, "Times New Roman", serif;
+  color: var(--wt-color-editorial-ink);
+  font-family: var(--wt-font-serif);
   font-size: clamp(1.35rem, 2.2vw, 1.8rem);
   font-weight: 400;
   line-height: 1.2;
@@ -151,9 +156,17 @@
   text-decoration: none;
 }
 
+.writing-card h3 .line-clamp-2 {
+  overflow-wrap: anywhere;
+}
+
+.writing-title-row h3 {
+  min-width: 0;
+}
+
 .writing-card h3 a:hover,
 .writing-footer a:hover {
-  color: #22d3d3;
+  color: var(--wt-color-editorial-accent);
 }
 
 .writing-description-row,
@@ -167,14 +180,14 @@
 .writing-description,
 .writing-description-row p {
   margin: 0;
-  color: #a3adb8;
+  color: var(--wt-color-editorial-muted);
   font-size: 0.9rem;
   line-height: 1.6;
 }
 
 .writing-arrow {
   flex: none;
-  color: #22d3d3;
+  color: var(--wt-color-editorial-accent);
   font-size: 1.5rem;
   line-height: 1;
   text-decoration: none;
@@ -190,6 +203,24 @@
   font-size: clamp(1.25rem, 1.8vw, 1.6rem);
 }
 
+.series-badge {
+  position: absolute;
+  z-index: 2;
+  top: 0.75rem;
+  left: 0.75rem;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid var(--wt-color-editorial-rule);
+  border-radius: 999px;
+  background: rgb(17 18 29 / 82%);
+  color: var(--wt-color-editorial-ink);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  backdrop-filter: blur(4px);
+}
+
 .writing-footer {
   margin-top: 1.25rem;
   padding: 0.75rem 0 0;
@@ -200,7 +231,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  color: #22d3d3;
+  color: var(--wt-color-editorial-accent);
   font-size: 1.1rem;
   text-decoration: none;
 }

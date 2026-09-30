@@ -1,0 +1,8 @@
+# Author metadata for string `author:` values, read by _includes/meta/post.html
+# (posts) and jekyll-seo-tag (other pages). seo-tag falls back to the author's
+# name for twitter:creator, so the handle is explicit; it mirrors
+# site.author.twitter in _config.yml.
+"Lee Whittaker":
+  name: "Lee Whittaker"
+  url: "https://lee-whittaker.com"
+  twitter: "whittakertech"

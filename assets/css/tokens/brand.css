@@ -23,6 +23,16 @@
   --wt-color-product-sesame-color-dark: #D8C08A;
   --wt-font-sans: Inter, system-ui, sans-serif;
   --wt-font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --wt-font-serif: Georgia, "Times New Roman", serif;
+
+  /* Editorial (blog) palette: always-dark surfaces, so not remapped by theme */
+  --wt-color-editorial-ink: #f5f2ec;
+  --wt-color-editorial-accent: #22d3d3;
+  --wt-color-editorial-muted: #a3adb8;
+  --wt-color-editorial-rule: rgb(255 255 255 / 12%);
+  --wt-color-editorial-art-1: #0b2834;
+  --wt-color-editorial-art-2: #172a41;
+  --wt-color-editorial-art-3: #11121d;
 }
 
 :root[data-theme='dark'] {

@@ -2,6 +2,7 @@
 layout: post
 date: 2025-11-26 09:00:00 -0600
 title: "From 9 Years Solo to Production-Ready in 4 Days: Scaling Architecture Through Team Leadership"
+card_title: "From Solo Developer to Team Multiplier"
 slug: "solo-to-team-sprint-velocity"
 canonical_url: "https://whittakertech.com/blog/solo-to-team-sprint-velocity/"
 description: >-

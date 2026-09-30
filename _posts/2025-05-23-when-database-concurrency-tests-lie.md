@@ -2,6 +2,7 @@
 layout: post
 date: 2025-05-23 10:00:00 -0600
 title: "Database Concurrency Tests: Fix PostgreSQL Race Conditions"
+card_title: "When Database Concurrency Tests Lie"
 slug: "when-database-concurrency-tests-lie"
 canonical_url: "https://whittakertech.com/blog/when-database-concurrency-tests-lie/"
 description: >-

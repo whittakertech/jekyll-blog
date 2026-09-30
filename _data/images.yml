@@ -1,0 +1,170 @@
+# Blog image manifest — the contract between the Aerie media workbench (producer)
+# and this site (consumer). Posts reference an entry with `image_key:`; posts with
+# no key (and no legacy `hero_image:`) use `fallback`. Resolved by _plugins/blog_images.rb.
+#
+# Entry shape:
+#   original:  { url, width, height }         untouched source on media.whittakertech.com
+#   variants:
+#     card:    { jpeg: [{url, width, height}], webp: [...], png: [...] }   16:10 crops, ascending width
+#     hero:    { jpeg: [...], webp: [...], png: [...] }                    2:1 crops, ascending width
+#   og:        { url, width: 1200, height: 630 }   JPEG or PNG; series badge baked in by Aerie
+#   alt:       description when the image conveys meaning; "" when decorative
+#   focal:     CSS object-position for crops, e.g. "35% 45%"
+#   credit:    { photographer, source_url, license, license_url }
+#
+# URL rules: originals live under .../originals/, processed output under .../processed/.
+# Replacing an image means a new versioned filename (…-v2.jpg), never overwriting a published URL.
+# `png` variants stay available for download but are never the default for photographic cards.
+# An entry without `variants` is pending: pages show the fallback artwork and fallback.og until
+# Aerie publishes processed output. Originals are never served. Without `og`, fallback.og is used.
+# The build validates this file: usable https:// or root-relative URLs, positive integer
+# dimensions, JPEG/PNG OG images, a jpeg list per variant, and one aspect ratio per variant set.
+
+fallback:
+  alt: "WhittakerTech — Ideas from the work."
+  focal: "50% 50%"
+  og:
+    url: "/assets/images/og/whittakertech-fallback-v1.jpg"
+    width: 1200
+    height: 630
+  credit:
+    photographer: WhittakerTech
+    license: "Owned; source in _media/og-fallback-v1.svg"
+
+processing-photos:
+  original:
+    url: https://media.whittakertech.com/whittakertech/blog/processing-photos.png
+    width: 4479
+    height: 2931
+  variants:
+    card:
+      jpeg:
+        - url: https://media.whittakertech.com/whittakertech/blog/processed/processing-photos/v1/processing-photos-card-480.jpg
+          width: 480
+          height: 300
+        - url: https://media.whittakertech.com/whittakertech/blog/processed/processing-photos/v1/processing-photos-card-800.jpg
+          width: 800
+          height: 500
+        - url: https://media.whittakertech.com/whittakertech/blog/processed/processing-photos/v1/processing-photos-card-1200.jpg
+          width: 1200
+          height: 750
+      webp:
+        - url: https://media.whittakertech.com/whittakertech/blog/processed/processing-photos/v1/processing-photos-card-480.webp
+          width: 480
+          height: 300
+        - url: https://media.whittakertech.com/whittakertech/blog/processed/processing-photos/v1/processing-photos-card-800.webp
+          width: 800
+          height: 500
+        - url: https://media.whittakertech.com/whittakertech/blog/processed/processing-photos/v1/processing-photos-card-1200.webp
+          width: 1200
+          height: 750
+      png:
+        - url: https://media.whittakertech.com/whittakertech/blog/processed/processing-photos/v1/processing-photos-card-1200.png
+          width: 1200
+          height: 750
+    hero:
+      jpeg:
+        - url: https://media.whittakertech.com/whittakertech/blog/processed/processing-photos/v1/processing-photos-hero-1200.jpg
+          width: 1200
+          height: 600
+        - url: https://media.whittakertech.com/whittakertech/blog/processed/processing-photos/v1/processing-photos-hero-1800.jpg
+          width: 1800
+          height: 900
+        - url: https://media.whittakertech.com/whittakertech/blog/processed/processing-photos/v1/processing-photos-hero-2400.jpg
+          width: 2400
+          height: 1200
+      webp:
+        - url: https://media.whittakertech.com/whittakertech/blog/processed/processing-photos/v1/processing-photos-hero-1200.webp
+          width: 1200
+          height: 600
+        - url: https://media.whittakertech.com/whittakertech/blog/processed/processing-photos/v1/processing-photos-hero-1800.webp
+          width: 1800
+          height: 900
+        - url: https://media.whittakertech.com/whittakertech/blog/processed/processing-photos/v1/processing-photos-hero-2400.webp
+          width: 2400
+          height: 1200
+      png:
+        - url: https://media.whittakertech.com/whittakertech/blog/processed/processing-photos/v1/processing-photos-hero-2400.png
+          width: 2400
+          height: 1200
+  og:
+    url: https://media.whittakertech.com/whittakertech/blog/processed/processing-photos/v1/processing-photos-og.jpg
+    width: 1200
+    height: 630
+  alt: A curled strip of film negatives against a blurred, glittering background.
+  focal: 35% 45%
+  credit:
+    photographer: David Bartus
+    source_url: https://www.pexels.com/photo/close-up-photography-of-hanging-decors-714926/
+    license: Pexels License
+    license_url: https://www.pexels.com/license/
+    checked_on: '2026-09-30'
+
+bridge-in-fog:
+  original:
+    url: https://media.whittakertech.com/whittakertech/blog/finishing-the-sentence-rails-started.png
+    width: 2954
+    height: 2283
+  variants:
+    card:
+      jpeg:
+        - url: https://media.whittakertech.com/whittakertech/blog/processed/bridge-in-fog/v1/bridge-in-fog-card-480.jpg
+          width: 480
+          height: 300
+        - url: https://media.whittakertech.com/whittakertech/blog/processed/bridge-in-fog/v1/bridge-in-fog-card-800.jpg
+          width: 800
+          height: 500
+        - url: https://media.whittakertech.com/whittakertech/blog/processed/bridge-in-fog/v1/bridge-in-fog-card-1200.jpg
+          width: 1200
+          height: 750
+      webp:
+        - url: https://media.whittakertech.com/whittakertech/blog/processed/bridge-in-fog/v1/bridge-in-fog-card-480.webp
+          width: 480
+          height: 300
+        - url: https://media.whittakertech.com/whittakertech/blog/processed/bridge-in-fog/v1/bridge-in-fog-card-800.webp
+          width: 800
+          height: 500
+        - url: https://media.whittakertech.com/whittakertech/blog/processed/bridge-in-fog/v1/bridge-in-fog-card-1200.webp
+          width: 1200
+          height: 750
+      png:
+        - url: https://media.whittakertech.com/whittakertech/blog/processed/bridge-in-fog/v1/bridge-in-fog-card-1200.png
+          width: 1200
+          height: 750
+    hero:
+      jpeg:
+        - url: https://media.whittakertech.com/whittakertech/blog/processed/bridge-in-fog/v1/bridge-in-fog-hero-1200.jpg
+          width: 1200
+          height: 600
+        - url: https://media.whittakertech.com/whittakertech/blog/processed/bridge-in-fog/v1/bridge-in-fog-hero-1800.jpg
+          width: 1800
+          height: 900
+        - url: https://media.whittakertech.com/whittakertech/blog/processed/bridge-in-fog/v1/bridge-in-fog-hero-2400.jpg
+          width: 2400
+          height: 1200
+      webp:
+        - url: https://media.whittakertech.com/whittakertech/blog/processed/bridge-in-fog/v1/bridge-in-fog-hero-1200.webp
+          width: 1200
+          height: 600
+        - url: https://media.whittakertech.com/whittakertech/blog/processed/bridge-in-fog/v1/bridge-in-fog-hero-1800.webp
+          width: 1800
+          height: 900
+        - url: https://media.whittakertech.com/whittakertech/blog/processed/bridge-in-fog/v1/bridge-in-fog-hero-2400.webp
+          width: 2400
+          height: 1200
+      png:
+        - url: https://media.whittakertech.com/whittakertech/blog/processed/bridge-in-fog/v1/bridge-in-fog-hero-2400.png
+          width: 2400
+          height: 1200
+  og:
+    url: https://media.whittakertech.com/whittakertech/blog/processed/bridge-in-fog/v1/bridge-in-fog-og.jpg
+    width: 1200
+    height: 630
+  alt: A suspension bridge disappearing into fog at night, its deck lights reflected in the water below.
+  focal: 45% 45%
+  credit:
+    photographer: RON JACOB LEONADOR
+    source_url: https://www.pexels.com/photo/golden-gate-bridge-during-nighttime-2859930/
+    license: Pexels License
+    license_url: https://www.pexels.com/license/
+    checked_on: '2026-09-30'

@@ -2,10 +2,14 @@
 layout: base
 ---
 
-<div class="container-custom section-padding animate-fade-in-up">
-    <header>
-        <h1>{{ page.title }}</h1>
-    </header>
+<div class="writing-section blog-section">
+    <div class="container-custom">
+        <header class="writing-heading">
+            <p class="writing-eyebrow">The Writing</p>
+            <h1>{{ page.title | escape }}</h1>
+            {% if page.description %}<p class="writing-intro">{{ page.description | escape }}</p>{% endif %}
+        </header>
 
-    {{ content }}
+        {{ content }}
+    </div>
 </div>

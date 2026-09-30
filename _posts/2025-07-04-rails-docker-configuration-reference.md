@@ -2,6 +2,9 @@
 layout: post
 date: 2025-07-04 09:00:00 -0600
 title: "Rails Docker Migration: Complete Configuration Reference"
+card_title: "Rails Docker Configuration Reference"
+series: "rails-docker-migration"
+series_role: "reference"
 slug: "rails-docker-configuration-reference"
 canonical_url: "https://whittakertech.com/blog/rails-docker-configuration-reference/"
 description: >-

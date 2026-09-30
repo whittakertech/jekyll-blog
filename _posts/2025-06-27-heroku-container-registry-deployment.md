@@ -2,6 +2,9 @@
 layout: post
 date: 2025-06-27 09:00:00 -0600
 title: "Production Docker Deployment: Heroku Container Registry Guide"
+card_title: "Deploying with Heroku Container Registry"
+series: "rails-docker-migration"
+series_part: 5
 slug: "heroku-container-registry-deployment"
 canonical_url: "https://whittakertech.com/blog/heroku-container-registry-deployment/"
 description: >-

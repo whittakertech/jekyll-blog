@@ -2,6 +2,9 @@
 layout: post
 date: 2025-05-30 09:00:00 -0600
 title: "Why We Migrated from Heroku Buildpacks to Docker: Performance & Cost Analysis"
+card_title: "Why We Left Heroku Buildpacks for Docker"
+series: "rails-docker-migration"
+series_part: 1
 slug: "why-migrate-heroku-buildpacks-docker"
 canonical_url: "https://whittakertech.com/blog/why-migrate-heroku-buildpacks-docker/"
 description: >-

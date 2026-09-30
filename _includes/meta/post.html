@@ -1,0 +1,67 @@
+{%- comment -%}
+  The single metadata path for posts (other pages use jekyll-seo-tag).
+  Title contract:
+    <title>, search      title
+    OG / Twitter         og_title, falling back to title
+    Article heading      headline, falling back to title   (_layouts/post.html)
+    Cards                card_title, falling back to title (_includes/blog/card-title.html)
+  page.image is resolved by _plugins/blog_images.rb.
+{%- endcomment -%}
+{%- assign social_title = page.og_title | default: page.title -%}
+{%- assign description = page.description | default: page.excerpt | strip_html | normalize_whitespace -%}
+{%- assign canonical = page.canonical_url | default: page.url | absolute_url -%}
+{%- assign image_url = page.image.path | absolute_url -%}
+{%- assign author = site.data.authors[page.author] -%}
+{%- assign author_name = author.name | default: page.author -%}
+{%- assign modified = page.last_modified_at | default: page.date -%}
+<title>{{ page.title | escape }} | {{ site.title | escape }}</title>
+<meta name="description" content="{{ description | escape }}">
+<meta name="author" content="{{ author_name | escape }}">
+<link rel="canonical" href="{{ canonical | escape }}">
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="{{ site.lang | default: 'en_US' | replace: '-', '_' }}">
+<meta property="og:site_name" content="{{ site.title | escape }}">
+<meta property="og:url" content="{{ canonical | escape }}">
+<meta property="og:title" content="{{ social_title | escape }}">
+<meta property="og:description" content="{{ description | escape }}">
+<meta property="og:image" content="{{ image_url | escape }}">
+<meta property="og:image:width" content="{{ page.image.width }}">
+<meta property="og:image:height" content="{{ page.image.height }}">
+<meta property="og:image:alt" content="{{ page.image.alt | escape }}">
+<meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
+<meta property="article:modified_time" content="{{ modified | date_to_xmlschema }}">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@{{ site.twitter.username | remove: '@' }}">
+{%- if author.twitter %}
+<meta name="twitter:creator" content="@{{ author.twitter | remove: '@' }}">
+{%- endif %}
+<meta name="twitter:title" content="{{ social_title | escape }}">
+<meta name="twitter:description" content="{{ description | escape }}">
+<meta name="twitter:image" content="{{ image_url | escape }}">
+<meta name="twitter:image:alt" content="{{ page.image.alt | escape }}">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": {{ page.title | jsonify }},
+  "description": {{ description | jsonify }},
+  "url": {{ canonical | jsonify }},
+  "mainEntityOfPage": { "@type": "WebPage", "@id": {{ canonical | jsonify }} },
+  "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
+  "dateModified": {{ modified | date_to_xmlschema | jsonify }},
+  "image": {
+    "@type": "ImageObject",
+    "url": {{ image_url | jsonify }},
+    "width": {{ page.image.width | jsonify }},
+    "height": {{ page.image.height | jsonify }}
+  },
+  "author": { "@type": "Person", "name": {{ author_name | jsonify }}{% if author.url %}, "url": {{ author.url | jsonify }}{% endif %} },
+  "publisher": { "@type": "Organization", "name": {{ site.name | jsonify }}, "url": {{ '/' | absolute_url | jsonify }} }
+  {%- if page.series_info %},
+  "isPartOf": { "@type": "CreativeWorkSeries", "name": {{ page.series_info.title | jsonify }} }
+  {%- endif %}
+}
+</script>

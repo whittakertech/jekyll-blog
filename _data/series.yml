@@ -1,0 +1,7 @@
+# Post series. Posts join with `series: <key>` plus `series_part: N` (1..total),
+# or `series_role: reference` for a companion reference. Validated at build time by
+# _plugins/blog_images.rb: parts must run 1..total with no gaps or duplicates.
+
+rails-docker-migration:
+  title: "Rails Docker Migration"
+  total: 5

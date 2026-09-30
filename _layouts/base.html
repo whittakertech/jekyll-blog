@@ -7,23 +7,17 @@
 
   {% include layout/favicon.html %}
 
+  {% if page.collection == "posts" %}
+  {% include meta/post.html %}
+  {% else %}
   {% seo %}
+  {% endif %}
 
   <!-- Additional custom meta tags -->
   {% if page.robots %}
   <meta name="robots" content="{{ page.robots }}">
   {% else %}
   <meta name="robots" content="index, follow">
-  {% endif %}
-
-  <!-- Custom Open Graph overrides if needed -->
-  {% if page.og_title %}
-  <meta property="og:title" content="{{ page.og_title }}">
-  {% endif %}
-
-  {% if page.og_image %}
-  <meta property="og:image" content="{{ site.url }}{{ page.og_image }}">
-  <meta name="twitter:image" content="{{ site.url }}{{ page.og_image }}">
   {% endif %}
 
   <!-- Preconnect for performance -->

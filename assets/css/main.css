@@ -10,6 +10,7 @@
   --color-canvas: var(--wt-color-neutral-0);
   --font-sans: var(--wt-font-sans);
   --font-mono: var(--wt-font-mono);
+  --font-serif: var(--wt-font-serif);
 }
 @theme {
   --animate-fade-in-up: fade-in-up 0.3s ease-out;
@@ -66,22 +67,6 @@
 
     &.current {
       @apply text-primary bg-primary/10 border-b-2 border-primary;
-    }
-  }
-
-  .post-card {
-    @apply card;
-
-    h3 {
-      @apply transition-colors duration-200;
-    }
-
-    &:hover {
-      @apply border-primary/30;
-    }
-
-    &:hover h3 {
-      @apply text-primary;
     }
   }
 }

@@ -1,74 +1,91 @@
 ---
 layout: base
 ---
+{%- assign asset = page.image_asset -%}
+{%- assign series = page.series_info -%}
 
-<div class="container-custom section-padding">
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <!-- Main content area -->
-        <div class="lg:col-span-2">
+<article class="article">
+    <header class="article-header container-custom">
+        <nav aria-label="Breadcrumb" class="article-breadcrumb">
+            <ol>
+                <li><a href="{{ '/' | relative_url }}">Home</a></li>
+                <li aria-hidden="true">›</li>
+                <li><a href="{{ '/blog/' | relative_url }}">Writing</a></li>
+                <li aria-hidden="true">›</li>
+                <li aria-current="page">{{ page.card_title | default: page.title | escape }}</li>
+            </ol>
+        </nav>
 
-            <article>
-                <header>
-                    <h1>{{ page.headline }}</h1>
-                    <p class="post-meta">
-                        <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %d, %Y" }}</time>
-                        {% if page.categories.size > 0 %}
-                        in {{ page.categories | join: ", " }}
-                        {% endif %}
-                        {% if page.author %}
-                            <br>
-                            Written By: {{ page.author }}
-                        {% endif %}
-                    </p>
-                </header>
+        {% if series %}
+        <p class="article-series">
+            {% include blog/series-badge.html post=page %}
+            <span>{{ series.title | escape }}</span>
+        </p>
+        {% endif %}
 
-                <div class="post-content">
-                    {{ content }}
-                </div>
-            </article>
+        <h1>{{ page.headline | default: page.title | escape }}</h1>
 
-            <nav class="post-navigation grid grid-cols-2 gap-8">
-                <div class="col-span-1">
-                    {% if page.previous.url %}
-                    <a href="{{ page.previous.url | relative_url }}">&laquo; {{ page.previous.title }}</a>
-                    {% endif %}
-                </div>
-                <div class="col-span-1">
-                    {% if page.next.url %}
-                    <a href="{{ page.next.url | relative_url }}">{{ page.next.title }} &raquo;</a>
-                    {% endif %}
-                </div>
-            </nav>
+        {% if page.description %}
+        <p class="article-dek">{{ page.description | escape }}</p>
+        {% endif %}
+
+        <p class="article-meta">
+            {% if page.categories.size > 0 %}<span class="article-category">{{ page.categories | first | escape }}</span><span aria-hidden="true">·</span>{% endif %}
+            {% if page.author %}<span>By {{ page.author | escape }}</span><span aria-hidden="true">·</span>{% endif %}
+            <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
+            <span aria-hidden="true">·</span>
+            <span>{% include blog/reading-time.html post=page %}</span>
+        </p>
+    </header>
+
+    {% unless asset.fallback %}
+    <figure class="article-hero container-custom">
+        <div class="article-hero-frame">
+            {% include blog/picture.html asset=asset variant="hero" sizes="(min-width: 72rem) 69rem, calc(100vw - 3rem)" priority=true %}
         </div>
-        <div class="lg:col-span-1">
-            {% include layout/sidebar.html %}
-        </div>
+        {% if asset.credit.photographer %}
+        <figcaption>
+            Photo:
+            {% if asset.credit.source_url %}<a href="{{ asset.credit.source_url | escape }}" rel="noopener">{{ asset.credit.photographer | escape }}</a>{% else %}{{ asset.credit.photographer | escape }}{% endif %}
+            {% if asset.credit.license %}· {{ asset.credit.license | escape }}{% endif %}
+        </figcaption>
+        {% endif %}
+    </figure>
+    {% endunless %}
+
+    <div class="article-body prose prose-lg">
+        {{ content }}
     </div>
-</div>
 
-<!-- Schema markup for better SEO -->
-<script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "headline": "{{ page.headline | default: page.title | escape }}",
-        "description": "{{ page.description | escape }}",
-        "image": "{{ site.url }}{{ page.hero_image | default: '/assets/images/default-blog.jpg' }}",
-        "datePublished": "{{ page.date | date_to_xmlschema }}",
-        "dateModified": "{{ page.last_modified_at | default: page.date | date_to_xmlschema }}",
-        "author": {
-            "@type": "Person",
-            "name": "{{ site.author.name }}",
-            "url": "{{ site.url }}/about/"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "{{ site.title }}",
-            "url": "{{ site.url }}"
-        },
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "{{ site.url }}{{ page.url }}"
-        }
-    }
-</script>
+    <footer class="article-footer container-custom">
+        {% include blog/series-nav.html %}
+
+        <section class="article-subscribe" aria-labelledby="subscribe-title">
+            <h2 id="subscribe-title">Get the next article by email</h2>
+            <p>New writing on Rails, architecture, and the products behind it. No spam, unsubscribe any time.</p>
+            {% include forms/newsletter-signup.html location="blog-article-end" %}
+        </section>
+
+        {% assign recent = site.posts | where_exp: "p", "p.url != page.url" | slice: 0, 3 %}
+        {% if recent.size > 0 %}
+        <section class="article-recent" aria-labelledby="recent-title">
+            <h2 id="recent-title">Recent Writing</h2>
+            <div class="blog-grid">
+                {% for post in recent %}
+                <article class="writing-card blog-card">
+                    {% include blog/card-image.html post=post class="writing-image--index" %}
+                    <div class="writing-card-copy">
+                        <p class="writing-meta">
+                            <span>{{ post.categories | first | default: "Writing" | escape }}</span>
+                            <span aria-hidden="true">·</span>
+                            <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time>
+                        </p>
+                        <h3>{% include blog/card-title.html post=post %}</h3>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+        </section>
+        {% endif %}
+    </footer>
+</article>
