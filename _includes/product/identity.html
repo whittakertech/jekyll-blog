@@ -15,18 +15,21 @@
     {% assign pi_icon_class = "h-9 w-9 rounded-lg text-base" %}
     {% assign pi_icon_size = 5 %}
     {% assign pi_title_class = "truncate font-semibold leading-tight text-lg" %}
+    {% assign pi_wordmark_class = "h-5 max-w-32" %}
     {% assign pi_kicker_class = "truncate text-[0.625rem] tracking-[0.12em]" %}
   {% when "lg" %}
     {% assign pi_gap = "gap-4 md:gap-5" %}
     {% assign pi_icon_class = "h-14 w-14 rounded-2xl text-2xl md:h-16 md:w-16 md:text-3xl" %}
     {% assign pi_icon_size = 8 %}
     {% assign pi_title_class = "text-4xl font-bold leading-none tracking-tight md:text-6xl" %}
+    {% assign pi_wordmark_class = "h-12 max-w-64 md:h-16" %}
     {% assign pi_kicker_class = "mt-2 md:text-sm md:tracking-[0.3em]" %}
   {% else %}
     {% assign pi_gap = "gap-4" %}
     {% assign pi_icon_class = "" %}
     {% assign pi_icon_size = 6 %}
     {% assign pi_title_class = "truncate font-semibold leading-tight text-2xl lg:text-3xl" %}
+    {% assign pi_wordmark_class = "h-8 max-w-48 lg:h-10" %}
     {% assign pi_kicker_class = "truncate" %}
 {% endcase %}
 <div class="flex min-w-0 items-center {{ pi_gap }}">
@@ -38,7 +41,13 @@
     {% endif %}
   </span>
   <div class="min-w-0">
-    <{{ pi_tag }} class="mb-0 {{ pi_title_class }}">{{ pi_product.title }}</{{ pi_tag }}>
+    <{{ pi_tag }} class="mb-0 {{ pi_title_class }}">
+      {% if pi_product.card.wordmark %}
+        <img src="{{ pi_product.card.wordmark }}" alt="{{ pi_product.title }}" class="w-auto {{ pi_wordmark_class }}">
+      {% else %}
+        {{ pi_product.title }}
+      {% endif %}
+    </{{ pi_tag }}>
     {% if pi_product.card.kicker %}
     <p class="product-tile-kicker {% unless include.size == 'lg' %}mt-0.5{% endunless %} {{ pi_kicker_class }}">{{ pi_product.card.kicker }}</p>
     {% endif %}
