@@ -47,6 +47,9 @@ install:
   - label: Gemfile
     language: ruby
     code: gem "whittaker_tech-midas"
+  - label: Install
+    language: bash
+    code: bundle install
   - label: Install Midas and run the migrations
     language: bash
     code: |
