@@ -18,9 +18,11 @@ tags: ["Midas", "Rails", "Ruby gems", "ActiveRecord", "Enums", "Migrations", "Co
 
 Midas 0.5.0 is tagged, and it does one main thing: it lowers the supported Rails floor from `>= 7.1.5.2` to `>= 6.1`.
 
-I want to be plain about why. The old pin was an end-of-life policy choice, not a technical constraint. Nothing in the engine needed Rails 7.1. I had simply drawn the line where Rails support windows were currently drawn. Then I had a real application on Rails 6.1.7.10 and Ruby 3.3.11 that wanted to adopt `Coin`, and a policy line is a poor reason to turn that away.
+I want to be plain about why. The changelog calls the old floor an end-of-life policy choice, not a technical constraint. Then I had a real application on Rails 6.1.7.10 and Ruby 3.3.11 that wanted to adopt `Coin`, and a policy line is a poor reason to turn that away.
 
-What follows is every change in the release, and the one place where behavior differs.
+Lowering the number was not the whole job, though. The ledger models used enum syntax that only exists in Rails 7.1, and those files load on boot, so Rails 6.1 could not even require the engine. The sections below cover what had to change to fix that.
+
+What follows are the changes that matter for Rails compatibility, and the one place where behavior differs.
 
 ## The dependency floors
 
@@ -29,7 +31,7 @@ Two lines in the gemspec moved:
 - `rails` from `>= 7.1.5.2` to `>= 6.1`
 - `poly` from `~> 1.0` to `~> 1.3`
 
-The Poly bump is not cosmetic. Poly 1.3 is the release that lowered Poly's own ActiveRecord floor, so Midas could not widen its Rails range without also asking for that version. At the tag, the gemspec reads `rails >= 6.1`, `poly ~> 1.3`, `money ~> 6.19.0`, and `required_ruby_version >= 3.2.0`.
+According to the changelog, Poly 1.3 is the release that lowered Poly's own ActiveRecord floor. At the tag, the gemspec reads `rails >= 6.1`, `poly ~> 1.3`, `money ~> 6.19.0`, and `required_ruby_version >= 3.2.0`.
 
 ## Enums that depend on the Rails version
 
@@ -70,10 +72,8 @@ Making that matrix work meant fixing the test app and a few development dependen
 - The `rspec-rails` development dependency went from `~> 7.0` to `>= 6.1`, because 7.x cannot resolve against Rails 6.1.
 - The 6.1 bundle lane pins `concurrent-ruby < 1.3.5` and `sqlite3 ~> 1.4`. Both live in the Gemfile only; neither is a runtime requirement of the gem.
 
-One more consequence: a single committed `Gemfile.lock` cannot serve a matrix that resolves to four different dependency sets, so the lockfile is no longer tracked.
-
 ## Where it stands
 
-If you are on Rails 6.1 or later and want the ledger engine, 0.5.0 is the version that supports you. Everything described here is in the 0.5.0 section of the changelog and in the repository at that tag.
+The 0.5.0 section of the changelog and the repository at the `v0.5.0` tag are the sources for everything above, apart from the enum motivation, which comes from the commit message of 5e88d07 on the integration branch.
 
 The product page is at [/products/midas/](/products/midas/), and the project site is at [midas.whittakertech.com](https://midas.whittakertech.com).
