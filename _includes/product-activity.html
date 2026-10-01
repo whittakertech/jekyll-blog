@@ -5,7 +5,7 @@
 {% assign activity = include.product %}
 <a href="{{ activity.url | relative_url }}"
    class="group flex items-center gap-4 px-6 py-3 text-text transition-colors hover:bg-text/5"
-   style="--accent: var(--wt-color-product-{{ activity.slug }}-color, var(--wt-color-brand));">
+   style="--accent: var(--wt-color-product-{{ activity.slug }}-color-dark, var(--wt-color-product-{{ activity.slug }}-color, var(--wt-color-brand)));">
   <span class="relative flex h-2.5 w-2.5 flex-none" aria-hidden="true">
     {% if include.kind == "newest" %}
     <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--wt-color-semantic-success)] opacity-60 motion-reduce:animate-none"></span>
