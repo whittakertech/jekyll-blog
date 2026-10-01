@@ -1,0 +1,17 @@
+# Site images that follow Workbench's published pointer at build time
+# (_plugins/site_images.rb). Mapping of image key => options. Only `pin` is
+# accepted; anything else fails the build with "site_images: <key>: ...".
+#
+#   mission-hero:           follow https://media.whittakertech.com/whittakertech/site/manifests/mission-hero/current.json
+#   mission-hero: { pin: 1 } force version 1 (manifests/mission-hero/v1.json)
+#
+# Rollback: set `pin: <N>` for the key, commit, and push. The site rebuilds on
+# push and hourly, so the bad version is replaced. Remove `pin:` to resume
+# following the pointer.
+#
+# _data/site_images.yml is the committed snapshot and the offline fallback: if
+# the manifest cannot be fetched or fails validation the build warns and keeps
+# the snapshot. Refresh it from `workbench manifest --yaml` when convenient; it
+# does not need to track every publish. Keys in site_images.yml that are not
+# listed here are rendered from the snapshot as-is.
+mission-hero:
