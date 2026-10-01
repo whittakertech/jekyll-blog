@@ -31,7 +31,7 @@ jobs:
           bundler-cache: true
 
       - name: Test site image resolver (offline)
-        run: ruby test/site_images_test.rb
+        run: bundle exec ruby test/site_images_test.rb
 
       - name: Check scheduled publishing behavior
         run: |
