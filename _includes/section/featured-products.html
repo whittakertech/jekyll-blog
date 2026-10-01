@@ -31,10 +31,7 @@
           Tools we build and maintain
         </h2>
       </div>
-      <a href="{{ '/products/' | relative_url }}"
-         class="inline-flex flex-none items-center gap-2 self-start rounded-xl bg-[color-mix(in_srgb,var(--color-primary)_45%,black)] px-5 py-2.5 font-semibold text-white transition-colors hover:bg-[color-mix(in_srgb,var(--color-primary)_60%,black)] md:self-auto">
-        View all products {% include icon.html name="arrow-right" size=4 %}
-      </a>
+      {% include links/view-all.html href="/products/" label="View all products" %}
     </header>
 
     {% if rankings.newest or rankings.latest_update %}

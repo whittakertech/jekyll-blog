@@ -1,0 +1,9 @@
+{%- comment -%}
+  The "see more" button that closes a home page section's heading row. One component so the
+  Products and Writing sections stay identical.
+  Params: href, label
+{%- endcomment -%}
+<a href="{{ include.href | relative_url }}"
+   class="inline-flex flex-none items-center gap-2 self-start rounded-xl bg-[color-mix(in_srgb,var(--color-primary)_45%,black)] px-5 py-2.5 font-semibold text-white transition-colors hover:bg-[color-mix(in_srgb,var(--color-primary)_60%,black)] md:self-auto">
+  {{ include.label }} {% include icon.html name="arrow-right" size=4 %}
+</a>
