@@ -1,0 +1,17 @@
+# Products built on WhittakerTech engines ("Powered by WhittakerTech").
+#
+# The About page shows this section only when the list has entries. Add a
+# product here when it launches publicly.
+#
+#   name:        product name
+#   summary:     one line
+#   url:         the product's own site
+#   case_study:  path to its case study on this site, once it exists
+#   logo:        optional image URL
+#
+# Example:
+# - name: Ensemblize
+#   summary: One line about what it does.
+#   url: https://example.com
+#   case_study: /portfolio/ensemblize/
+[]

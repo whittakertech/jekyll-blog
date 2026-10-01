@@ -1,0 +1,71 @@
+{% comment %}
+  About: the live workshop roster. Entries come from site.data.workshop_entries,
+  which WorkshopSources builds from the organization's public GitHub
+  repositories on every build. Hidden when the roster is empty.
+{% endcomment %}
+{% assign entries = site.data.workshop_entries %}
+{% if entries and entries.size > 0 %}
+{% assign released = entries | where: "released", true %}
+{% assign building = entries | where: "released", false %}
+<section id="workshop" class="relative overflow-hidden py-24 md:py-32 scroll-mt-24">
+  <div class="container-custom relative z-10">
+    <p class="mb-8 text-sm uppercase tracking-widest text-primary">In the workshop</p>
+    <div class="mb-12 grid gap-6 lg:grid-cols-2 lg:items-end">
+      <h2 class="text-3xl font-bold leading-tight tracking-tight text-text md:text-5xl">
+        What we're building, <em class="text-primary">live.</em>
+      </h2>
+      <p class="text-md opacity-80 lg:text-right">
+        Every public WhittakerTech repository, most recently active first.
+        Updated {{ site.time | date: "%b %-d, %Y" }}.
+      </p>
+    </div>
+
+    {% for group in (1..2) %}
+      {% if group == 1 %}{% assign list = released %}{% assign label = "Released" %}
+      {% else %}{% assign list = building %}{% assign label = "In development" %}{% endif %}
+      {% if list.size > 0 %}
+      <h3 class="mb-4 mt-10 text-xs font-semibold uppercase tracking-[0.18em] opacity-70 first:mt-0">
+        {{ label }}
+      </h3>
+      <ul class="grid gap-4 md:grid-cols-2">
+        {% for item in list %}
+        {% assign slug = item.repo | split: "/" | last %}
+        <li class="flex flex-col rounded-2xl border border-text/10 p-6 transition-colors hover:border-text/25"
+            style="--accent: var(--wt-color-product-{{ slug }}-color, var(--wt-color-brand));">
+          <div class="mb-2 flex items-baseline justify-between gap-4">
+            <p class="mb-0 inline-flex items-center gap-2 text-lg font-semibold text-text">
+              <span class="h-2 w-2 flex-none rounded-full bg-[var(--accent)]" aria-hidden="true"></span>
+              {{ item.name }}
+            </p>
+            {% if item.released %}
+              <span class="font-mono text-sm">v{{ item.version }}</span>
+            {% endif %}
+          </div>
+          {% if item.family %}
+            <p class="mb-2 text-xs uppercase tracking-widest opacity-60">{{ item.family }}</p>
+          {% endif %}
+          {% if item.tagline %}
+            <p class="mb-4 text-sm">{{ item.tagline }}</p>
+          {% endif %}
+          <div class="mt-auto flex flex-wrap items-center gap-x-4 gap-y-1 text-sm">
+            {% if item.last_push_at %}
+              <span class="font-mono opacity-70">Last commit {{ item.last_push_at | date: "%b %-d, %Y" }}</span>
+            {% endif %}
+            {% if item.product_url %}
+              <a class="font-medium underline-offset-4 hover:underline" href="{{ item.product_url | relative_url }}">
+                {{ item.name }} product page
+              </a>
+            {% endif %}
+            <a class="font-medium underline-offset-4 hover:underline" href="{{ item.url }}"
+               target="_blank" rel="noopener noreferrer">
+              {{ item.name }} on GitHub
+            </a>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
