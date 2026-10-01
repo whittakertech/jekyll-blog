@@ -1,6 +1,6 @@
 ---
 layout: post
-date: 2026-10-14 09:00:00 -0500
+date: 2026-10-01 07:00:00 -0600
 title: "Poly 1.3.0: Lowering the Rails Floor to 6.1 Without Changing the Library"
 card_title: "Poly 1.3.0: Rails 6.1 Support"
 slug: "poly-1-3-0-rails-6-1-support"
