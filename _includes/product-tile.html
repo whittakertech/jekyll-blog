@@ -19,7 +19,7 @@
 
 <article class="product-tile flex h-full min-h-0 flex-col {% if tile.card.theme == 'dark' %}product-tile--dark{% endif %}
                 {% if include.paired %}gap-4 p-7 lg:p-8{% elsif shape == 'big' %}gap-6 p-8 lg:p-10{% elsif include.dense %}gap-2 p-4{% elsif shape == 'small' %}gap-3 p-5{% else %}gap-3 p-6{% endif %}"
-         style="--accent: var(--wt-color-product-{{ tile.slug }}-color, var(--wt-color-brand));">
+         style="--accent: var(--wt-color-product-{{ tile.slug }}-color-dark, var(--wt-color-product-{{ tile.slug }}-color, var(--wt-color-brand)));">
   {% if tile.card.image %}
   <img src="{{ tile.card.image | relative_url }}" alt="" class="product-tile-image" loading="lazy">
   {% else %}
@@ -68,7 +68,7 @@
       View {{ tile.title }} {% include icon.html name="arrow-right" size=4 %}
     </a>
     {% if shape == "tall" %}{% assign only_link = "docs" %}{% else %}{% assign only_link = nil %}{% endif %}
-    {% include product/links.html links=tile.links only=only_link class="text-sm font-medium text-current opacity-80 hover:opacity-100 hover:underline" %}
+    {% include product/links.html links=tile.links product=tile.title only=only_link class="text-sm font-medium text-current opacity-80 hover:opacity-100 hover:underline" %}
   </div>
   {% endunless %}
 

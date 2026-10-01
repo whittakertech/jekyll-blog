@@ -21,7 +21,7 @@
 {% assign pm_primary_url = pm.links[pm_primary_key] %}
 
 <section class="product-tile product-masthead {% if pm.card.theme == 'dark' %}product-tile--dark{% endif %}"
-         style="--product-accent: var(--wt-color-product-{{ pm.slug }}-color, var(--wt-color-brand));">
+         style="--product-accent: var(--wt-color-product-{{ pm.slug }}-color-dark, var(--wt-color-product-{{ pm.slug }}-color, var(--wt-color-brand)));">
   {% if pm.card.image %}
   <img src="{{ pm.card.image | relative_url }}" alt="" class="product-masthead-image" fetchpriority="high">
   {% else %}
@@ -60,7 +60,7 @@
       <a href="{{ pm_primary_url }}" class="product-tile-cta" {% include product/link-target.html url=pm_primary_url %}>
         {% include product/link-label.html key=pm_primary_key long=true %} {% include icon.html name="arrow-right" size=4 %}
       </a>
-      {% include product/links.html links=pm.links except=pm_primary_key external=true
+      {% include product/links.html links=pm.links product=pm.title except=pm_primary_key external=true
          class="inline-flex items-center gap-1.5 font-medium text-current opacity-80 hover:opacity-100 hover:underline" %}
     </div>
     {% endif %}

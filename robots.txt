@@ -3,3 +3,5 @@ Allow: /
 
 User-agent: ChatGPT-User
 Allow: /
+
+Sitemap: https://whittakertech.com/sitemap.xml

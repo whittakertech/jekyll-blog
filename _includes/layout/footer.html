@@ -16,36 +16,16 @@
         <nav class="flex flex-col space-y-2">
           {% for item in site.data.navigation.main %}
           <a href="{{ item.url | relative_url }}"
-             class="text-text/70 hover:text-primary transition-colors">
+             class="inline-block py-1 text-text/70 hover:text-primary transition-colors">
             {{ item.name }}
           </a>
           {% endfor %}
         </nav>
       </div>
 
-      <!-- Services
-      <div class="space-y-4">
-        <h3 class="text-lg font-semibold text-primary">Services</h3>
-        <nav class="flex flex-col space-y-2">
-          <a href="/contact/" class="text-text/70 hover:text-primary transition-colors">
-            Rails Consulting
-          </a>
-          <a href="/contact/" class="text-text/70 hover:text-primary transition-colors">
-            Legacy System Upgrades
-          </a>
-          <a href="/contact/" class="text-text/70 hover:text-primary transition-colors">
-            Performance Optimization
-          </a>
-          <a href="/contact/" class="text-text/70 hover:text-primary transition-colors">
-            Technical Audits
-          </a>
-        </nav>
-      </div>
-      -->
-
       <div class="space-y-4">
         <h3 class="text-lg font-semibold text-primary">Newsletter</h3>
-        <p class="text-text/70">Get notified for new content.</p>
+        <p class="text-text/70">Leave your email to hear about new writing.</p>
         {% include forms/newsletter-signup.html location="footer" %}
       </div>
     </div>
@@ -55,6 +35,10 @@
       <p class="text-text/60 text-sm">
         &copy; {{ site.time | date: '%Y' }} {{ site.name }}. All rights reserved.
       </p>
+      <nav aria-label="Legal" class="flex items-center gap-6 text-sm">
+        <a href="{{ '/privacy/' | relative_url }}" class="inline-block py-1 text-text/70 hover:text-primary transition-colors">Privacy</a>
+        <button type="button" data-consent-open class="inline-block py-1 text-text/70 hover:text-primary transition-colors">Cookie settings</button>
+      </nav>
     </div>
   </div>
 </footer>

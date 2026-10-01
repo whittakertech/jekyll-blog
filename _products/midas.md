@@ -1,4 +1,5 @@
 ---
+last_modified_at: 2026-09-30
 layout: product
 title: "Midas"
 tagline: "Unified multi-currency monetary management for Rails"

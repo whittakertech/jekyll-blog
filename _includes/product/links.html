@@ -5,6 +5,7 @@
     only     - render only this key
     except   - skip this key (e.g. one already shown as the primary action)
     class    - classes for each link
+    product  - the product title; labels each link ("Midas on GitHub") for assistive tech
     external - true appends a north-east arrow
   Variables are prefixed pl_ because include assigns leak into the caller.
 {% endcomment %}
@@ -13,7 +14,9 @@
   {% assign pl_url = pl_link[1] %}
   {% if include.only and pl_key != include.only %}{% continue %}{% endif %}
   {% if include.except and pl_key == include.except %}{% continue %}{% endif %}
-  <a href="{{ pl_url }}" class="{{ include.class }}" {% include product/link-target.html url=pl_url %}>
+  {% capture pl_label %}{% include product/link-label.html key=pl_key %}{% endcapture %}
+  <a href="{{ pl_url }}" class="{{ include.class }}" {% include product/link-target.html url=pl_url %}
+     {%- if include.product %} aria-label="{% if pl_key == 'docs' %}{{ include.product | escape }} documentation{% else %}{{ include.product | escape }} on {{ pl_label | strip }}{% endif %}"{% endif %}>
     {%- include product/link-label.html key=pl_key -%}
     {%- if include.external %} {% include icon.html name="arrow-northeast" size=3 class="flex-none opacity-70" %}{% endif -%}
   </a>

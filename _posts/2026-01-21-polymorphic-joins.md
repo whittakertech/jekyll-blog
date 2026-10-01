@@ -298,3 +298,15 @@ Polymorphism doesn’t have to mean “escape hatch.”
 With explicit consent and a little reflection, it can be just another well-behaved part of your query layer.
 
 And once it’s encoded, it keeps paying dividends long after you’ve forgotten why you needed it in the first place.
+
+
+---
+
+## Use it without writing it
+
+This pattern ships as `Poly::Joins` in [Poly](/products/poly/), a small Rails toolkit for type-safe
+polymorphic joins, role and owner identity, and consistent migrations. Declare the joins you want with
+`define_polymorphic_joins!`, and Poly validates the target's reverse association for you.
+
+- [See what Poly does](/products/poly/)
+- [Read the Poly documentation](https://poly.whittakertech.com)
