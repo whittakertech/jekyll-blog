@@ -20,7 +20,7 @@ Midas 0.5.0 is tagged, and it does one main thing: it lowers the supported Rails
 
 I want to be plain about why. The changelog calls the old floor an end-of-life policy choice, not a technical constraint. Then I had a real application on Rails 6.1.7.10 and Ruby 3.3.11 that wanted to adopt `Coin`, and a policy line is a poor reason to turn that away.
 
-Lowering the number was not the whole job, though. The ledger models used enum syntax that only exists in Rails 7.1, and those files load on boot, so Rails 6.1 could not even require the engine. The sections below cover what had to change to fix that.
+Lowering the number was not the whole job, though. The commit that made the change says the ledger models declared their enums with the positional form and `validate: true`, neither of which exists in Rails 6.1, and that those files load on boot, so 6.1 could not even require the engine. The sections below cover what had to change to fix that.
 
 What follows are the changes that matter for Rails compatibility, and the one place where behavior differs.
 
@@ -35,7 +35,7 @@ According to the changelog, Poly 1.3 is the release that lowered Poly's own Acti
 
 ## Enums that depend on the Rails version
 
-The part that needed real thought was `Ledger::Account#kind` and `Ledger::Posting#direction`. Rails 7.1 introduced two things I was using: the positional form `enum :kind, values`, and the `validate: true` option, which turns an unknown value into a validation error. Rails 6.1 has neither.
+The part that needed real thought was `Ledger::Account#kind` and `Ledger::Posting#direction`. I was using two things Rails 6.1 does not have: the positional form `enum :kind, values`, and the `validate: true` option, which turns an unknown value into a validation error. Checking the released gems, `enum` in ActiveRecord 6.1.7.10 only takes a hash of definitions. The positional signature is already there in 7.0.8, and `validate:` first appears in 7.1.0. Only the version check in the code below uses 7.1, because that is where `validate:` begins.
 
 So each model now declares its enum conditionally on `ActiveRecord::VERSION::STRING`:
 
@@ -49,7 +49,7 @@ end
 
 On Rails 7.1 and later, behavior is exactly what it was. On 6.1 there is one difference you should know about. Assigning an unknown value raises `ArgumentError` at assignment time rather than producing a validation error.
 
-I accepted that because the direction of the difference matters. It is stricter on 6.1, never looser. For a double-entry ledger, a bad `kind` or `direction` being rejected earlier is a tolerable trade. A bad value slipping through would not be. ActiveRecord 6.1 offers no way to defer that check to validation, so there was no way to make the two behave identically.
+I accepted that because the direction of the difference matters. It is stricter on 6.1, never looser. For a double-entry ledger, a bad `kind` or `direction` being rejected earlier is a tolerable trade. A bad value slipping through would not be. ActiveRecord 6.1 has no `validate:` option on `enum`, which is what moves that check to validation on 7.1 and later.
 
 To make the allowed values easy to reach, the value maps are now exposed as constants: `Account::KINDS` and `Posting::DIRECTIONS`.
 
@@ -74,6 +74,6 @@ Making that matrix work meant fixing the test app and a few development dependen
 
 ## Where it stands
 
-The 0.5.0 section of the changelog and the repository at the `v0.5.0` tag are the sources for everything above, apart from the enum motivation, which comes from the commit message of 5e88d07 on the integration branch.
+The 0.5.0 section of the changelog and the repository at the `v0.5.0` tag are the sources for everything above, apart from two things. The reason 6.1 could not require the engine comes from the commit message of 5e88d07 on the integration branch. The statement about which ActiveRecord release introduced the positional form and `validate:` comes from the `enum.rb` source of the activerecord 6.1.7.10, 7.0.8 and 7.1.0 gems, not from the Midas changelog.
 
 The product page is at [/products/midas/](/products/midas/), and the project site is at [midas.whittakertech.com](https://midas.whittakertech.com).
