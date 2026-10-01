@@ -1,8 +1,6 @@
 main:
   - name: "Products"
     url: "/products/"
-  - name: "Case Studies"
-    url: "/portfolio/"
   - name: "Writing"
     url: "/blog/"
   - name: "About"
