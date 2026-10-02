@@ -1,0 +1,54 @@
+# Presentation for the About page's workshop roster.
+#
+# The roster itself comes from GitHub at build time: every public, unarchived,
+# non-fork repository in the organization appears automatically (see
+# _plugins/workshop_sources.rb). This file only dresses up repositories that
+# are ALREADY public. Never add a private repository here; this site's source
+# is public.
+
+organization: whittakertech
+
+# Public repositories that aren't WhittakerTech projects.
+exclude:
+  - jekyll-blog
+  - .github
+
+# Keyed by repository name. All fields are optional; a repository with no
+# entry uses its GitHub name and description.
+#   name:    display name
+#   family:  grouping label
+#   tagline: one line, plain language
+#   product: product slug, when it differs from the repository name
+projects:
+  poly:
+    name: Poly
+    family: Data primitives
+    tagline: Polymorphic associations with type-safe joins, roles, ownership, and history.
+  midas:
+    name: Midas
+    family: Data primitives
+    tagline: Money as a first-class value, with an auditable double-entry ledger.
+  oscar:
+    name: Oscar
+    family: Data primitives
+    tagline: Lifecycle states for records, from draft to purged, with declared transitions.
+  aeon:
+    name: Aeon
+    family: Data primitives
+    tagline: Recurring time spans and rescheduling that behave like a native column.
+  veritas:
+    name: Veritas
+    family: Data primitives
+    tagline: Model validation rules, shared with the browser instead of rewritten by hand.
+  codex:
+    name: Codex
+    family: Tooling
+    tagline: The documentation builder behind every engine's API docs.
+  virgil:
+    name: Virgil
+    family: Tooling
+    tagline: Headless rendering for Open Graph images.
+  mosaic_js:
+    name: MosaicJS
+    family: Tooling
+    tagline: Snapshot-based drag-and-drop for the browser.

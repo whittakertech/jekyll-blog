@@ -14,7 +14,7 @@
 {% if ps.stars == 1 %}{% assign ps_stars_label = "GitHub star" %}{% else %}{% assign ps_stars_label = "GitHub stars" %}{% endif %}
 {% if ps.release_count == 1 %}{% assign ps_releases_label = "Release" %}{% else %}{% assign ps_releases_label = "Releases" %}{% endif %}
 {% if ps.downloads %}{% include product-stat.html icon="download" value=ps_downloads label="Downloads" size=include.size %}{% endif %}
-{% if ps.stars %}{% include product-stat.html icon="star" value=ps_stars label=ps_stars_label size=include.size %}{% endif %}
+{% if ps.stars and ps.stars > 0 %}{% include product-stat.html icon="star" value=ps_stars label=ps_stars_label size=include.size %}{% endif %}
 {% if ps.version and include.hide_version != true %}
   {% assign ps_version = "v" | append: ps.version %}
   {% include product-stat.html icon="package" value=ps_version label="Latest release" dot=ps.recent_release size=include.size %}

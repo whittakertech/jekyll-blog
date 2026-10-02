@@ -1,4 +1,5 @@
 ---
+last_modified_at: 2026-10-01
 layout: product
 title: "Poly"
 tagline: "Structural identity for polymorphic associations in Rails"
@@ -11,6 +12,7 @@ categories:
 links:
   github: "https://github.com/whittakertech/poly"
   rubygems: "https://rubygems.org/gems/poly"
+  docs: "https://poly.whittakertech.com"
 card:
   kicker: Rails primitives
   headline: Make polymorphism predictable.

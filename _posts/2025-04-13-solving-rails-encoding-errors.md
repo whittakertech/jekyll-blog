@@ -37,9 +37,6 @@ extended, and deployment confidence erodes when "simple" data operations become 
 targeting European or Latin American markets, proper character encoding isn't optional – it's fundamental to market
 viability.
 
-{::nomarkdown}
-{% include testimonial.html person="jennifer" quote="communication" %}
-{:/nomarkdown}
 
 ## The Obstacles
 
@@ -254,9 +251,6 @@ international datasets, with search operations completing in under 2 seconds ins
 issues: Unicode-based SQL injection attempts, directory traversal attacks through malformed filenames, and data
 corruption that could expose sensitive information through encoding conversion errors.
 
-{::nomarkdown}
-{% include testimonial.html person="amylynn" quote="technical" %}
-{:/nomarkdown}
 
 **Global Market Readiness**: Applications properly handle international user data from day one, enabling confident
 expansion into European and Latin American markets. A SaaS platform successfully onboarded 10,000 Spanish-speaking
