@@ -1,0 +1,41 @@
+name: Mirror to GitHub
+
+# Gitea is the workshop; GitHub is the storefront. GitHub Pages deploys this site
+# from GitHub's `master`, so every publish (tea -> master on Gitea) must reach
+# GitHub. Only `master` is mirrored: never `tea` or claude/* branches
+# (see meta/branch-vocabulary.md in the Brain). This site has no release tags.
+#
+# Redmine WhittakerTech Site #236. Pattern: the fleet's mirror.yml, with the
+# remote-tracking-ref fix from Galaxy #206/#209 (push refs/remotes/origin/master,
+# which exists in every checkout context; a local refs/heads/master does not).
+#
+# Deliberately NOT a force push: GitHub-only commits (this repo was developed on
+# GitHub before the Gitea pipeline existed) must never be silently overwritten. If
+# GitHub master has diverged the push is rejected and this run fails loudly; fix
+# the divergence by hand, then re-run.
+
+on:
+  push:
+    branches: ["master"]
+
+concurrency:
+  group: mirror-github
+  cancel-in-progress: false
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch remote-tracking refs
+        run: git fetch --prune --force origin "+refs/heads/*:refs/remotes/origin/*"
+
+      - name: Push master to GitHub mirror
+        run: |
+          git push "https://x-access-token:${WHITTAKER_TECH_GITHUB_KEY}@github.com/whittakertech/${{ github.event.repository.name }}.git" \
+            refs/remotes/origin/master:refs/heads/master
+        env:
+          WHITTAKER_TECH_GITHUB_KEY: ${{ secrets.WHITTAKER_TECH_GITHUB_KEY }}
