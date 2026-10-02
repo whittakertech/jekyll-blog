@@ -168,3 +168,71 @@ bridge-in-fog:
     license: Pexels License
     license_url: https://www.pexels.com/license/
     checked_on: '2026-09-30'
+fiber-lights:
+  original:
+    url: https://media.whittakertech.com/whittakertech/blog/originals/fiber-lights-v1.png
+    width: 4255
+    height: 2837
+  variants:
+    card:
+      jpeg:
+        - url: https://media.whittakertech.com/whittakertech/blog/processed/fiber-lights/v1/fiber-lights-card-480.jpg
+          width: 480
+          height: 300
+        - url: https://media.whittakertech.com/whittakertech/blog/processed/fiber-lights/v1/fiber-lights-card-800.jpg
+          width: 800
+          height: 500
+        - url: https://media.whittakertech.com/whittakertech/blog/processed/fiber-lights/v1/fiber-lights-card-1200.jpg
+          width: 1200
+          height: 750
+      webp:
+        - url: https://media.whittakertech.com/whittakertech/blog/processed/fiber-lights/v1/fiber-lights-card-480.webp
+          width: 480
+          height: 300
+        - url: https://media.whittakertech.com/whittakertech/blog/processed/fiber-lights/v1/fiber-lights-card-800.webp
+          width: 800
+          height: 500
+        - url: https://media.whittakertech.com/whittakertech/blog/processed/fiber-lights/v1/fiber-lights-card-1200.webp
+          width: 1200
+          height: 750
+      png:
+        - url: https://media.whittakertech.com/whittakertech/blog/processed/fiber-lights/v1/fiber-lights-card-1200.png
+          width: 1200
+          height: 750
+    hero:
+      jpeg:
+        - url: https://media.whittakertech.com/whittakertech/blog/processed/fiber-lights/v1/fiber-lights-hero-1200.jpg
+          width: 1200
+          height: 600
+        - url: https://media.whittakertech.com/whittakertech/blog/processed/fiber-lights/v1/fiber-lights-hero-1800.jpg
+          width: 1800
+          height: 900
+        - url: https://media.whittakertech.com/whittakertech/blog/processed/fiber-lights/v1/fiber-lights-hero-2400.jpg
+          width: 2400
+          height: 1200
+      webp:
+        - url: https://media.whittakertech.com/whittakertech/blog/processed/fiber-lights/v1/fiber-lights-hero-1200.webp
+          width: 1200
+          height: 600
+        - url: https://media.whittakertech.com/whittakertech/blog/processed/fiber-lights/v1/fiber-lights-hero-1800.webp
+          width: 1800
+          height: 900
+        - url: https://media.whittakertech.com/whittakertech/blog/processed/fiber-lights/v1/fiber-lights-hero-2400.webp
+          width: 2400
+          height: 1200
+      png:
+        - url: https://media.whittakertech.com/whittakertech/blog/processed/fiber-lights/v1/fiber-lights-hero-2400.png
+          width: 2400
+          height: 1200
+  og:
+    url: https://media.whittakertech.com/whittakertech/blog/processed/fiber-lights/v1/fiber-lights-og.jpg
+    width: 1200
+    height: 630
+  alt: ''
+  focal: 50% 50%
+  credit:
+    photographer: Georgie Devlin
+    source_url: https://www.pexels.com/photo/glowing-blue-neons-8640331/
+    license: Pexels
+    license_url: https://www.pexels.com/license/
+    checked_on: '2026-10-02'
