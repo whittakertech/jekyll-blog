@@ -95,6 +95,24 @@ defaults:
       schema_type: "SoftwareApplication"
       robots: "index, follow"
       sitemap: true
+  # Default social preview image (og:image / twitter:image) for non-post pages.
+  # jekyll-seo-tag reads only the per-page `image` (not a site-level one), so the
+  # default is applied via these scopes; a page's own `image` front matter wins.
+  # Placeholder until real OG art exists.
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      image: /assets/images/og/whittakertech-site-v1.jpg
+  - scope:
+      path: "blog"
+    values:
+      image: /assets/images/og/whittakertech-site-v1.jpg
+  - scope:
+      path: ""
+      type: "products"
+    values:
+      image: /assets/images/og/whittakertech-site-v1.jpg
 
 # Pagination for blog index
 paginate: 10
