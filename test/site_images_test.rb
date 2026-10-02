@@ -83,7 +83,7 @@ end
 
 class SiteImagesTest < TestCase
   FIXTURES = File.expand_path("fixtures/site_images", __dir__)
-  SNAPSHOT = YAML.safe_load_file(File.expand_path("../_data/site_images.yml", __dir__))["mission-hero"]
+  SNAPSHOT = YAML.safe_load_file(File.expand_path("fixtures/snapshot_v1.yml", __dir__))["mission-hero"]
   Site = Struct.new(:data)
   SI = WhittakerTech::SiteImages
   PREFIX = SI::PREFIX

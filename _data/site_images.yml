@@ -5,22 +5,22 @@
 # validated by _plugins/blog_images.rb.
 mission-hero:
   original:
-    url: https://media.whittakertech.com/whittakertech/site/originals/mission-hero-v1.png
+    url: https://media.whittakertech.com/whittakertech/site/originals/mission-hero-v2.png
     width: 1536
     height: 1024
   variants:
     mission:
       webp:
-        - url: https://media.whittakertech.com/whittakertech/site/processed/mission-hero/v1/mission-hero-mission-400.webp
+        - url: https://media.whittakertech.com/whittakertech/site/processed/mission-hero/v2/mission-hero-mission-400.webp
           width: 400
           height: 267
-        - url: https://media.whittakertech.com/whittakertech/site/processed/mission-hero/v1/mission-hero-mission-800.webp
+        - url: https://media.whittakertech.com/whittakertech/site/processed/mission-hero/v2/mission-hero-mission-800.webp
           width: 800
           height: 533
-        - url: https://media.whittakertech.com/whittakertech/site/processed/mission-hero/v1/mission-hero-mission-1200.webp
+        - url: https://media.whittakertech.com/whittakertech/site/processed/mission-hero/v2/mission-hero-mission-1200.webp
           width: 1200
           height: 800
-        - url: https://media.whittakertech.com/whittakertech/site/processed/mission-hero/v1/mission-hero-mission-1536.webp
+        - url: https://media.whittakertech.com/whittakertech/site/processed/mission-hero/v2/mission-hero-mission-1536.webp
           width: 1536
           height: 1024
   alt: ''
