@@ -9,7 +9,7 @@ description: >-
   How 9 years of solo full-stack experience translated into 2.5x team velocity through systemic architectural prep.
   First sprint planning delivered production code in 4 days for VA's CaseFlow system.
 og_title: "9 Years Solo Developer to 4-Day Team Sprint: Architecture That Scales"
-image-key: "fiber-lights"
+image_key: "fiber-lights"
 headline: >-
   From Solo Practitioner to Team Multiplier: How Nine Years of Full-Stack Mastery Became a Four-Day Sprint That
   Changed How I Think About Technical Leadership
