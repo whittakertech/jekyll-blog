@@ -1,0 +1,29 @@
+{
+  "key": "bad-no-output",
+  "version": 2,
+  "profile": "whittakertech-site",
+  "workbench": "0.1.0",
+  "processed_at": "2026-10-02T01:00:00+00:00",
+  "original": {
+    "url": "https://media.whittakertech.com/whittakertech/site/originals/mission-hero-v2.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "abababababababababababababababababababababababababababababababab"
+  },
+  "alt": "",
+  "focal": "50% 50%",
+  "credit": {
+    "photographer": "WhittakerTech"
+  },
+  "variants": {
+    "other": {
+      "webp": [
+        {
+          "url": "https://media.whittakertech.com/whittakertech/site/processed/bad-no-output/v2/x-400.webp",
+          "width": 400,
+          "height": 267
+        }
+      ]
+    }
+  }
+}

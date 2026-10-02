@@ -21,9 +21,23 @@
       </div>
 
       <div>
-        <img alt=""
-             src="/assets/images/missioin-hero.png"
-             class="w-full object-cover object-center">
+        {%- comment -%}
+          Published by Workbench; resolved at build time by _plugins/site_images.rb (snapshot: _data/site_images.yml). WebP only: the artwork is transparent.
+          Sizes: one column below 1024px (page gutter 1.5rem), half the 72rem container above it.
+        {%- endcomment -%}
+        {% assign mission = site.data.site_images["mission-hero"] %}
+        {% assign mission_set = mission.variants.mission.webp | site_image_set: "mission-hero.variants.mission.webp" %}
+        {% capture mission_srcset %}{% for v in mission_set %}{{ v.url | escape }} {{ v.width }}w{% unless forloop.last %}, {% endunless %}{% endfor %}{% endcapture %}
+        <img alt="{{ mission.alt | escape }}"
+             data-image-version="{{ mission.version }}"
+             data-image-source="{{ mission.source }}"
+             src="{% if mission_set[1] %}{{ mission_set[1].url | escape }}{% else %}{{ mission_set[0].url | escape }}{% endif %}"
+             srcset="{{ mission_srcset }}"
+             sizes="(min-width: 1024px) 34rem, calc(100vw - 3rem)"
+             width="{{ mission_set.last.width }}"
+             height="{{ mission_set.last.height }}"
+             decoding="async"
+             class="h-auto w-full object-cover object-center">
       </div>
     </div>
 
