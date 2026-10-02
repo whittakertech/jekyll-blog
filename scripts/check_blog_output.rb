@@ -10,6 +10,8 @@
 #   - no malformed image URLs (e.g. "https://site.comhttps://media...")
 #   - local image URLs exist in _site; fallback asset exists
 #   - unique OG titles and descriptions across posts
+#   - the homepage mission image (resolved by _plugins/site_images.rb) serves only
+#     versioned processed URLs, matching its data-image-version, and never an original
 #   - series posts render their badge; blog index carries no full-content payload
 #
 # Usage: ruby scripts/check_blog_output.rb [site_dir]
@@ -148,7 +150,41 @@ Dir[File.join(SITE_DIR, "blog", "{index.html,page/*/index.html}")].each do |inde
   html.scan(MALFORMED).each { |bad| errors << "#{index}: malformed URL near #{bad.inspect}" }
 end
 
+# --- Site images (homepage mission image) ---------------------------------------
+SITE_PROCESSED = "https://media.whittakertech.com/whittakertech/site/processed/"
+site_image_urls = []
+home = File.join(SITE_DIR, "index.html")
+if File.exist?(home)
+  home_html = File.read(home)
+  mission = home_html[%r{<img\b[^>]*data-image-version[^>]*>}m]
+  if mission.nil?
+    errors << "index.html: mission <img> with data-image-version not found"
+  else
+    version = mission[/data-image-version="([^"]*)"/, 1].to_s
+    errors << "index.html: data-image-version #{version.inspect} is not a positive integer" unless version.match?(/\A[1-9]\d*\z/)
+    srcs = [mission[/\ssrc="([^"]*)"/, 1]] + mission[/\ssrcset="([^"]*)"/, 1].to_s.split(",").map { |c| c.strip.split(/\s+/).first }
+    errors << "index.html: mission <img> has no src/srcset" if srcs.compact.empty?
+    srcs.each do |url|
+      if url.nil? || url.empty?
+        errors << "index.html: mission <img> has an empty src/srcset URL"
+        next
+      end
+      site_image_urls << url
+      errors << "index.html: mission image #{url} is not under #{SITE_PROCESSED}" unless url.start_with?(SITE_PROCESSED)
+      errors << "index.html: mission image #{url} has a query string" if url.include?("?")
+      errors << "index.html: malformed mission image URL #{url}" if url.match?(MALFORMED)
+      errors << "index.html: mission image #{url} is not under /v#{version}/" unless url.include?("/v#{version}/")
+    end
+  end
+  site_originals = YAML.safe_load_file("_data/site_images.yml").values.filter_map { |entry| entry.dig("original", "url") }
+  site_originals.each { |url| errors << "index.html serves original #{url}" if home_html.include?(url) }
+  errors << "index.html serves a site-image original (#{home_html[%r{[^"'\s]*/whittakertech/site/originals/[^"'\s]*}]})" if home_html.include?("/whittakertech/site/originals/")
+else
+  errors << "#{home} not found"
+end
+
 if ENV["CHECK_REMOTE"] == "1"
+  remote_urls.concat(site_image_urls)
   manifest.each_value do |entry|
     remote_urls << entry.dig("original", "url")
     (entry["variants"] || {}).each_value { |formats| formats.each_value { |list| list.each { |v| remote_urls << v["url"] } } }

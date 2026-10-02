@@ -1,8 +1,8 @@
 name: "WhittakerTech"
-tagline: "Software Development & Technical Services"
-title: "WhittakerTech - Software Development & Technical Services"
+tagline: "Ruby and Rails tools"
+title: "WhittakerTech"
 description: >-
-  A technology blog covering web development, DevOps, and software engineering.
+  Ruby and Rails tools, engineering writing, and the work behind WhittakerTech.
 baseurl: ""
 url: "https://whittakertech.com"
 
@@ -32,7 +32,6 @@ permalink: /blog/:title/
 trackers:
   clarity_id: "rww60qbk1z"
   ga_id: "G-MSFXKRLPJL"
-  hotjar_id: "6429836"
 
 # Feed configuration for better SEO
 feed:
@@ -55,9 +54,6 @@ collections:
   posts:
     output: true
     permalink: /blog/:title/  # Redundant but explicit
-  portfolio:
-    output: true
-    permalink: /portfolio/:title/
   products:
     output: true
     permalink: /products/:slug/
@@ -79,6 +75,8 @@ defaults:
       type: "pages"
     values:
       layout: "page"
+      seo:
+        type: "WebPage"
       robots: "index, follow"
       sitemap: true
   - scope:
@@ -89,19 +87,32 @@ defaults:
       sitemap: true
   - scope:
       path: ""
-      type: "portfolio"
+      type: "products"
     values:
-      layout: "case_study"
+      layout: "product"
+      seo:
+        type: "SoftwareApplication"
+      schema_type: "SoftwareApplication"
       robots: "index, follow"
       sitemap: true
+  # Default social preview image (og:image / twitter:image) for non-post pages.
+  # jekyll-seo-tag reads only the per-page `image` (not a site-level one), so the
+  # default is applied via these scopes; a page's own `image` front matter wins.
+  # Placeholder until real OG art exists.
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      image: /assets/images/og/whittakertech-site-v1.jpg
+  - scope:
+      path: "blog"
+    values:
+      image: /assets/images/og/whittakertech-site-v1.jpg
   - scope:
       path: ""
       type: "products"
     values:
-      layout: "product"
-      schema_type: "SoftwareApplication"
-      robots: "index, follow"
-      sitemap: true
+      image: /assets/images/og/whittakertech-site-v1.jpg
 
 # Pagination for blog index
 paginate: 10

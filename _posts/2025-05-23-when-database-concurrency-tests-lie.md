@@ -39,9 +39,6 @@ logic was completely broken. Tasks weren't being assigned at all, despite the me
 created the most dangerous scenario in software development—broken code protected by passing tests, ready to fail
 spectacularly in production.
 
-{::nomarkdown}
-{% include testimonial.html person="matthew" quote="technical" %}
-{:/nomarkdown}
 
 ## The Obstacles
 
@@ -450,9 +447,6 @@ The enhanced method responses now include meaningful metrics (`tasks_assigned`, 
 enabling calling code to make informed decisions about system behavior and alerting operators to potential issues
 before they impact production workflows.
 
-{::nomarkdown}
-{% include testimonial.html person="clayton" quote="leadership" %}
-{:/nomarkdown}
 
 ## Key Principles
 

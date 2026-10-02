@@ -164,8 +164,7 @@
   min-width: 0;
 }
 
-.writing-card h3 a:hover,
-.writing-footer a:hover {
+.writing-card h3 a:hover {
   color: var(--wt-color-editorial-accent);
 }
 
@@ -219,25 +218,6 @@
   line-height: 1.2;
   text-transform: uppercase;
   backdrop-filter: blur(4px);
-}
-
-.writing-footer {
-  margin-top: 1.25rem;
-  padding: 0.75rem 0 0;
-  border-top: 1px solid rgb(255 255 255 / 8%);
-}
-
-.writing-footer a {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  color: var(--wt-color-editorial-accent);
-  font-size: 1.1rem;
-  text-decoration: none;
-}
-
-.writing-footer a span {
-  font-size: 1.4rem;
 }
 
 @media (min-width: 48rem) {

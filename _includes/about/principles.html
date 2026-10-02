@@ -1,0 +1,39 @@
+{% comment %}About: how WhittakerTech builds. Reuses the homepage's principle tiles.{% endcomment %}
+<section class="relative overflow-hidden border-y border-text/10 bg-text/[0.02] py-24 md:py-32">
+  <div class="container-custom relative z-10">
+    <p class="mb-8 text-sm uppercase tracking-widest text-primary">How we build</p>
+    <h2 class="mb-16 max-w-3xl text-3xl font-bold leading-tight tracking-tight text-text md:text-5xl">
+      Standard protocols, <em class="text-primary">opinionated assembly.</em>
+    </h2>
+
+    <div class="grid gap-12 md:grid-cols-2">
+      {% include mission-principle.html
+        icon="layers"
+        title="Bricks and instructions"
+        heading="The standards are the bricks"
+        copy="Devise, Stripe, KMS APIs, and plain Rails conventions are the bricks. Our engines are the instructions nobody else prints."
+      %}
+
+      {% include mission-principle.html
+        icon="modular"
+        title="Decoupled"
+        heading="Engines don't know about each other"
+        copy="Your application connects them, never the engines themselves. Adopt one without taking on the rest."
+      %}
+
+      {% include mission-principle.html
+        icon="book"
+        title="Documented"
+        heading="Documentation is infrastructure"
+        copy="We build our own documentation tooling and give engines documentation sites of their own. Docs get the same care as the code."
+      %}
+
+      {% include mission-principle.html
+        icon="shield-check"
+        title="Admission test"
+        heading="What does everyone integrate wrong here?"
+        copy="Before we build an engine, we answer that question crisply. If we can't, it's a library, not a WhittakerTech engine."
+      %}
+    </div>
+  </div>
+</section>
