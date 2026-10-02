@@ -1,6 +1,6 @@
 <div class="flex justify-evenly gap-4">
   <a href="mailto:{{ site.author.email }}"
-     class="text-text/60 hover:text-primary transition-colors"
+     class="inline-flex items-center justify-center p-2 text-text/60 hover:text-primary transition-colors"
      aria-label="Mail">
     {% include icon.html name="mail" %}
   </a>
@@ -9,8 +9,8 @@
 
   {% for link in site.data.navigation.social %}
     <a href="{{ link.url | absolute_url }}"
-       class="text-text/60 hover:text-primary transition-colors"
-       target="_blank"
+       class="inline-flex items-center justify-center p-2 text-text/60 hover:text-primary transition-colors"
+       target="_blank" rel="noopener noreferrer"
        aria-label="{{ link.account }} on {{ link.icon | capitalize }}">
       {% include icon.html name=link.icon %}
     </a>

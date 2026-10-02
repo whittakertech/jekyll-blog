@@ -4,10 +4,13 @@
 {% if recent_posts.size > 0 %}
 <section class="writing-section">
   <div class="container-custom">
-    <header class="writing-heading">
-      <p class="writing-eyebrow">The Writing</p>
-      <h2>Ideas from the work.</h2>
-      <p class="writing-intro">Notes on Rails, architecture, and building software that becomes boring for the right reasons.</p>
+    <header class="writing-heading flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+      <div>
+        <p class="writing-eyebrow">The Writing</p>
+        <h2>Ideas from the work.</h2>
+        <p class="writing-intro">Notes on Rails, architecture, and building software that becomes boring for the right reasons.</p>
+      </div>
+      {% include links/view-all.html href="/blog/" label="View all writing" %}
     </header>
 
     <div class="writing-grid">
@@ -48,9 +51,6 @@
       </div>
     </div>
 
-    <footer class="writing-footer">
-      <a href="{{ '/blog/' | relative_url }}">View all writing <span aria-hidden="true">→</span></a>
-    </footer>
   </div>
 </section>
 {% endif %}

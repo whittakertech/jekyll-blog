@@ -1,26 +1,34 @@
+{%- comment -%}
+  Analytics (Google Analytics 4 and Microsoft Clarity) load only after the visitor accepts
+  them in the consent banner (_includes/consent.html), and only in production.
+  Cloudflare Web Analytics is injected at the edge, is cookieless, and is not gated here.
+{%- endcomment -%}
 {% if jekyll.environment == "production" %}
 <script>
-  window.addEventListener('load', function() {
-    // Load GA4 after page load
+  window.wtLoadAnalytics = function () {
+    if (window.wtAnalyticsLoaded) return;
+    window.wtAnalyticsLoaded = true;
+
+    // Google Analytics 4
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', '{{ site.trackers.ga_id }}');
-
-    // Create GA4 script element
-    const gaScript = document.createElement('script');
+    var gaScript = document.createElement('script');
     gaScript.async = true;
     gaScript.src = 'https://www.googletagmanager.com/gtag/js?id={{ site.trackers.ga_id }}';
     document.head.appendChild(gaScript);
 
-    // Load Clarity after page load
-    (function(c,l,a,r,i,t,y){
-      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    // Microsoft Clarity
+    (function (c, l, a, r, i, t, y) {
+      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+      t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
     })(window, document, "clarity", "script", "{{ site.trackers.clarity_id }}");
+  };
 
-    console.log('📊 Analytics loaded after page complete');
+  window.addEventListener('load', function () {
+    if (window.wtConsent && window.wtConsent.get() === 'granted') window.wtLoadAnalytics();
   });
 </script>
 {% endif %}

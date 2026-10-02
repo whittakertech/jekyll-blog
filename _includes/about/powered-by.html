@@ -1,0 +1,35 @@
+{% comment %}
+  About: products built on WhittakerTech engines. Reads _data/powered_by.yml;
+  hidden until there is at least one entry.
+{% endcomment %}
+{% assign products = site.data.powered_by %}
+{% if products and products.size > 0 %}
+<section class="relative overflow-hidden border-t border-text/10 py-24 md:py-32">
+  <div class="container-custom relative z-10">
+    <p class="mb-8 text-sm uppercase tracking-widest text-primary">Powered by WhittakerTech</p>
+    <h2 class="mb-12 max-w-3xl text-3xl font-bold leading-tight tracking-tight text-text md:text-5xl">
+      Products assembled from <em class="text-primary">our own engines.</em>
+    </h2>
+    <ul class="grid gap-4 md:grid-cols-2">
+      {% for product in products %}
+      <li class="flex flex-col rounded-2xl border border-text/10 p-6">
+        {% if product.logo %}
+          <img src="{{ product.logo }}" alt="{{ product.name }}" class="mb-4 h-8 w-auto self-start">
+        {% else %}
+          <p class="mb-2 text-lg font-semibold text-text">{{ product.name }}</p>
+        {% endif %}
+        <p class="mb-4 text-sm">{{ product.summary }}</p>
+        <div class="mt-auto flex flex-wrap gap-4 text-sm">
+          {% if product.case_study %}
+            <a class="font-medium underline-offset-4 hover:underline" href="{{ product.case_study | relative_url }}">Read the {{ product.name }} case study</a>
+          {% endif %}
+          {% if product.url %}
+            <a class="font-medium underline-offset-4 hover:underline" href="{{ product.url }}" target="_blank" rel="noopener noreferrer">Visit {{ product.name }}</a>
+          {% endif %}
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endif %}

@@ -1,0 +1,46 @@
+{
+  "key": "mission-hero",
+  "version": 1,
+  "profile": "whittakertech-site",
+  "workbench": "0.1.0",
+  "processed_at": "2026-10-02T01:00:00+00:00",
+  "original": {
+    "url": "https://media.whittakertech.com/whittakertech/site/originals/mission-hero-v1.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "abababababababababababababababababababababababababababababababab"
+  },
+  "alt": "",
+  "focal": "50% 50%",
+  "credit": {
+    "photographer": "WhittakerTech",
+    "source_url": "https://whittakertech.com",
+    "license": "Owned"
+  },
+  "variants": {
+    "mission": {
+      "webp": [
+        {
+          "url": "https://media.whittakertech.com/whittakertech/site/processed/mission-hero/v1/mission-hero-mission-400.webp",
+          "width": 400,
+          "height": 267
+        },
+        {
+          "url": "https://media.whittakertech.com/whittakertech/site/processed/mission-hero/v1/mission-hero-mission-800.webp",
+          "width": 800,
+          "height": 533
+        },
+        {
+          "url": "https://media.whittakertech.com/whittakertech/site/processed/mission-hero/v1/mission-hero-mission-1200.webp",
+          "width": 1200,
+          "height": 800
+        },
+        {
+          "url": "https://media.whittakertech.com/whittakertech/site/processed/mission-hero/v1/mission-hero-mission-1536.webp",
+          "width": 1536,
+          "height": 1024
+        }
+      ]
+    }
+  }
+}

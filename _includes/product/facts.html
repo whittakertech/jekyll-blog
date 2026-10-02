@@ -41,7 +41,7 @@
       <dd>{{ pf.downloads | number_with_delimiter }}</dd>
     </div>
     {% endif %}
-    {% if pf.stars %}
+    {% if pf.stars and pf.stars > 0 %}
     <div class="product-fact">
       <dt>{% include icon.html name="star" size=4 class="flex-none opacity-70" %} GitHub stars</dt>
       <dd>{{ pf.stars }}</dd>

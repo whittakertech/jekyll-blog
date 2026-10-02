@@ -1,0 +1,56 @@
+{% comment %}
+  About: the gap WhittakerTech works in. Static thesis copy; every engine
+  named here must have a public repository.
+{% endcomment %}
+{% assign rows = "Polymorphism|belongs_to polymorphic:|Joins, roles, ownership, and history|Poly;
+Money|Money columns and the money gem|Duplicated columns, currency handling, auditable balances|Midas;
+Record lifecycle|Soft-delete gems and status columns|Draft, archived, and trashed states with no rules between them|Oscar;
+Time|Date and time columns|Recurring spans, rescheduling, and the history of what moved|Aeon;
+Validation|ActiveRecord validations|The same rules rewritten by hand for the browser|Veritas" | split: ";" %}
+<section class="relative overflow-hidden py-24 md:py-32">
+  <div class="container-custom relative z-10">
+    <p class="mb-8 text-sm uppercase tracking-widest text-primary">The gap we work in</p>
+
+    <div class="mb-16 grid gap-12 lg:grid-cols-2 lg:gap-25">
+      <h2 class="text-3xl font-bold leading-tight tracking-tight text-text md:text-5xl">
+        Great tools stay unopinionated. <em class="text-primary">Someone has to have the opinions.</em>
+      </h2>
+
+      <div>
+        <p class="mb-6 text-xl">
+          Good libraries stay neutral so they can serve everyone. That's the right call for them,
+          and it leaves every team to reinvent the same integration decisions, usually under deadline
+          and usually slightly wrong.
+        </p>
+        <p class="text-md">
+          Each Whittaker<span class="text-primary">Tech</span> engine picks one of those domains and
+          ships the missing opinions as a gem you can install.
+        </p>
+      </div>
+    </div>
+
+    <div class="overflow-hidden rounded-2xl border border-text/10">
+      <div class="hidden grid-cols-[1fr_1.2fr_1.6fr_0.7fr] gap-6 border-b border-text/10 bg-text/5 px-6 py-3 text-xs font-semibold uppercase tracking-[0.18em] opacity-70 md:grid">
+        <span>Domain</span>
+        <span>The primitive that works</span>
+        <span>What teams get wrong</span>
+        <span>Our engine</span>
+      </div>
+      <ul class="divide-y divide-text/10">
+        {% for row in rows %}
+          {% assign cells = row | strip | split: "|" %}
+          {% assign slug = cells[3] | downcase %}
+          <li class="grid gap-1 px-6 py-4 md:grid-cols-[1fr_1.2fr_1.6fr_0.7fr] md:gap-6"
+              style="--accent: var(--wt-color-product-{{ slug }}-color, var(--wt-color-brand));">
+            <span class="font-semibold text-text">{{ cells[0] }}</span>
+            <span class="text-sm opacity-80"><span class="md:hidden opacity-60">Works: </span>{{ cells[1] }}</span>
+            <span class="text-sm"><span class="md:hidden opacity-60">Gets wrong: </span>{{ cells[2] }}</span>
+            <span class="inline-flex items-center gap-2 font-semibold text-text">
+              <span class="h-2 w-2 flex-none rounded-full bg-[var(--accent)]" aria-hidden="true"></span>{{ cells[3] }}
+            </span>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,31 @@
+# Site-only imagery for www.whittakertech.com, published by Workbench's
+# `whittakertech-site` profile (media bucket prefix whittakertech/site/).
+# Entries are pasted verbatim from `workbench publish` / `workbench manifest --yaml`.
+# This file is separate from images.yml, which is the blog's contract and is
+# validated by _plugins/blog_images.rb.
+mission-hero:
+  original:
+    url: https://media.whittakertech.com/whittakertech/site/originals/mission-hero-v1.png
+    width: 1536
+    height: 1024
+  variants:
+    mission:
+      webp:
+        - url: https://media.whittakertech.com/whittakertech/site/processed/mission-hero/v1/mission-hero-mission-400.webp
+          width: 400
+          height: 267
+        - url: https://media.whittakertech.com/whittakertech/site/processed/mission-hero/v1/mission-hero-mission-800.webp
+          width: 800
+          height: 533
+        - url: https://media.whittakertech.com/whittakertech/site/processed/mission-hero/v1/mission-hero-mission-1200.webp
+          width: 1200
+          height: 800
+        - url: https://media.whittakertech.com/whittakertech/site/processed/mission-hero/v1/mission-hero-mission-1536.webp
+          width: 1536
+          height: 1024
+  alt: ''
+  focal: 50% 50%
+  credit:
+    photographer: WhittakerTech
+    source_url: https://whittakertech.com
+    license: Owned

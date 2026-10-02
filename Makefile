@@ -1,7 +1,7 @@
 # Jekyll Development Makefile with Tailwind CSS Support
 # Usage: make <target>
 
-.PHONY: help install build serve stop clean restart logs shell bundle-install bundle-update new-post new-case-study deploy status build-css watch-css
+.PHONY: help install build serve stop clean restart logs shell bundle-install bundle-update new-post deploy status build-css watch-css
 
 # Default target
 help: ## Show this help message
@@ -113,35 +113,6 @@ new-post: ## Create a new blog post (usage: make new-post TITLE="Post Title")
 	echo "" >> $$FILENAME; \
 	echo "Your post content goes here..." >> $$FILENAME; \
 	echo "✅ Post created: $$FILENAME"
-
-new-case-study: ## Create a new case study (usage: make new-case-study TITLE="Project Name")
-	@if [ -z "$(TITLE)" ]; then \
-		echo "❌ Please specify a title: make new-case-study TITLE=\"Project Name\""; \
-		exit 1; \
-	fi
-	@SLUG=$$(echo "$(TITLE)" | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g' | sed 's/[^a-z0-9-]//g'); \
-	FILENAME="_portfolio/$$SLUG.md"; \
-	echo "📁 Creating new case study: $$FILENAME"; \
-	mkdir -p _portfolio; \
-	echo "---" > $$FILENAME; \
-	echo "layout: case_study" >> $$FILENAME; \
-	echo "title: \"$(TITLE)\"" >> $$FILENAME; \
-	echo "subtitle: \"\"" >> $$FILENAME; \
-	echo "description: \"\"" >> $$FILENAME; \
-	echo "slug: \"$$SLUG\"" >> $$FILENAME; \
-	echo "permalink: \"/portfolio/$$SLUG/\"" >> $$FILENAME; \
-	echo "date: $$(date +%Y-%m-%d)" >> $$FILENAME; \
-	echo "# project_url: \"https://...\"" >> $$FILENAME; \
-	echo "featured: false" >> $$FILENAME; \
-	echo "technologies: []" >> $$FILENAME; \
-	echo "categories: []" >> $$FILENAME; \
-	echo "tags: []" >> $$FILENAME; \
-	echo "# hero_image: \"/assets/images/portfolios/$$SLUG/<file-without-extension>\"" >> $$FILENAME; \
-	echo "# hero_image_suffix: \".png\"" >> $$FILENAME; \
-	echo "---" >> $$FILENAME; \
-	echo "" >> $$FILENAME; \
-	echo "Your case study content goes here..." >> $$FILENAME; \
-	echo "✅ Case study created: $$FILENAME"
 
 new-page: ## Create a new page (usage: make new-page TITLE="Page Title" PERMALINK="/page-url/")
 	@if [ -z "$(TITLE)" ]; then \

@@ -174,9 +174,6 @@ The systematic architectural preparation delivered results that exceeded every e
 The architectural prep work didn't just accelerate development&mdash;it aligned the entire cross-functional team around 
 a shared understanding.
 
-{::nomarkdown}
-{% include testimonial.html person="jennifer" quote="communication" %}
-{:/nomarkdown}
 
 Business Analysts could write clear user stories because they understood the system model. QA knew exactly what to 
 validate because the scenarios were documented. Developers could execute independently because the patterns were 
@@ -213,9 +210,6 @@ velocity degrades.
 
 We hit production-ready in 40% of planned time. On the first sprint. With a new team.
 
-{::nomarkdown}
-{% include testimonial.html person="matthew" quote="impact" %}
-{:/nomarkdown}
 
 ### The Economics
 
@@ -242,9 +236,6 @@ crystal clear. Polish was fast because the design was right the first time.
 
 **Zero rework. Zero architectural pivots. Zero "we need to refactor this" moments.**
 
-{::nomarkdown}
-{% include testimonial.html person="clayton" quote="leadership" %}
-{:/nomarkdown}
 
 ### By Sprint 2, I Asked for the Next Epic
 
@@ -291,9 +282,6 @@ Within my first year at J-Mack Technologies, I'd:
 - Established systematic methodology that enabled team independence
 - Made what HR leadership called "a lasting impact"
 
-{::nomarkdown}
-{% include testimonial.html person="jennifer" quote="impact" %}
-{:/nomarkdown}
 
 Then organizational changes ended the contract during Sprint 4.
 

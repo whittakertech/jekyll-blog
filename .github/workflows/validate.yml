@@ -30,6 +30,9 @@ jobs:
           ruby-version: '3.2'
           bundler-cache: true
 
+      - name: Test site image resolver (offline)
+        run: bundle exec ruby test/site_images_test.rb
+
       - name: Check scheduled publishing behavior
         run: |
           tmp=$(mktemp -d)

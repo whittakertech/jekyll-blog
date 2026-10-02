@@ -1,6 +1,7 @@
 ---
 layout: home
-title: Home
+title: Ruby and Rails tools
+last_modified_at: 2026-10-01
 description: >
   Ruby and Rails tools, engineering writing, and the work behind WhittakerTech.
 permalink: /
