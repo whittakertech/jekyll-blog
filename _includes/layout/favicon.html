@@ -1,2 +1,20 @@
-<link rel="icon" href="https://brand.whittakertech.com/assets/v/0.1.8/favicon.svg" sizes="32x32">
-<meta name="theme-color" content="#14b8a6">
+{%- comment -%}
+  Favicon set, rendered from _data/favicon.json (a copy of the Workbench-published
+  favicon.json on media.whittakertech.com; icons are versioned and immutable).
+
+  To update: run `workbench favicon` for a new version, then refresh from
+  https://media.whittakertech.com/whittakertech/favicon/processed/whittakertech/latest/
+  (favicon.json, plus favicon.ico and site.webmanifest at the repo root).
+
+  The manifest is served from this origin, not the media host: crawlers request
+  /favicon.ico and /site.webmanifest on the site's own origin, and a same-origin
+  manifest stays inside the CSP's default-src 'self' (manifest-src).
+{%- endcomment -%}
+{%- for tag in site.data.favicon.links -%}
+  {%- if tag.rel == "manifest" -%}
+<link rel="manifest" href="{{ '/site.webmanifest' | relative_url }}">
+  {%- else -%}
+<link rel="{{ tag.rel }}" href="{{ tag.href }}"{% if tag.type %} type="{{ tag.type }}"{% endif %}{% if tag.sizes %} sizes="{{ tag.sizes }}"{% endif %}>
+  {%- endif %}
+{% endfor -%}
+<meta name="theme-color" content="{{ site.data.favicon.brand.theme_color }}">
