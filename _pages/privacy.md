@@ -3,7 +3,7 @@ layout: page
 title: Privacy
 permalink: /privacy/
 description: What whittakertech.com collects, which third parties see it, and how to opt out.
-last_modified_at: 2026-10-01
+last_modified_at: 2026-10-03
 ---
 
 This page describes what happens to your data when you visit whittakertech.com. It covers the site
@@ -28,6 +28,7 @@ If you decline, or your browser sends a Global Privacy Control signal, neither l
 
 - **Cloudflare.** The site is served through Cloudflare, which processes requests (including your IP address) to deliver the pages and protect against abuse. I also use **Cloudflare Web Analytics**, which measures page views without cookies or tracking you across sites.
 - **GitHub Pages.** The site is hosted on GitHub Pages, which keeps standard server logs.
+- **Security reports.** The site tells your browser which sources it may load content from (a content security policy). If your browser sees something that breaks that policy, it may send a short technical report to an error-tracking service (GlitchTip) that I run on my own server. The report contains the page address, the address of the blocked item and your browser's user agent, and your IP address may be recorded with it. I use these reports only to find and fix problems with the site, and I don't share them. They are sent whether or not you accepted analytics, because they are a security measure, not tracking.
 
 ### Forms
 
@@ -40,7 +41,7 @@ If you decline, or your browser sends a Global Privacy Control signal, neither l
 
 ## Retention
 
-Analytics data is kept according to each provider's retention settings. Form submissions are kept until you ask me to delete them.
+Analytics data is kept according to each provider's retention settings. Security reports are kept only as long as needed to fix the problem they point to. Form submissions are kept until you ask me to delete them.
 
 ## Your choices
 
