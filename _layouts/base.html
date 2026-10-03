@@ -70,9 +70,13 @@
 </button>
 
 <!-- Alpine.js for interactive components -->
-<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"
+        integrity="sha384-X9kJyAubVxnP0hcA+AMMs21U445qsnqhnUF8EBlEpP3a42Kh/JwWjlv2ZcvGfphb"
+        crossorigin="anonymous"></script>
 <script defer src="{{ '/assets/js/script.js' | relative_url }}"></script>
 {% include consent.html %}
 {% include trackers.html %}
+<script defer src="{{ '/assets/js/consent.js' | relative_url }}"></script>
+<script defer src="{{ '/assets/js/trackers.js' | relative_url }}"></script>
 </body>
 </html>
