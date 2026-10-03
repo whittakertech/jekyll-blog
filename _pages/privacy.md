@@ -41,7 +41,7 @@ If you decline, or your browser sends a Global Privacy Control signal, neither l
 
 ## Retention
 
-Analytics data is kept according to each provider's retention settings. Security reports are kept only as long as needed to fix the problem they point to. Form submissions are kept until you ask me to delete them.
+Analytics data is kept according to each provider's retention settings. Security reports are automatically deleted after 90 days. Form submissions are kept until you ask me to delete them.
 
 ## Your choices
 
@@ -51,4 +51,4 @@ Analytics data is kept according to each provider's retention settings. Security
 
 ## Changes
 
-I'll update this page when the site's tracking changes. Last updated: 1 October 2026.
+I'll update this page when the site's tracking changes. Last updated: 3 October 2026.
