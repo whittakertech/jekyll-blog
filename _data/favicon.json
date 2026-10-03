@@ -1,0 +1,43 @@
+{
+  "key": "whittakertech",
+  "version": 1,
+  "brand": {
+    "name": "WhittakerTech",
+    "short_name": "WhittakerTech",
+    "theme_color": "#11151c",
+    "background_color": "#11151c"
+  },
+  "links": [
+    {
+      "rel": "icon",
+      "href": "https://media.whittakertech.com/whittakertech/favicon/processed/whittakertech/v1/favicon.ico",
+      "sizes": "48x48"
+    },
+    {
+      "rel": "icon",
+      "href": "https://media.whittakertech.com/whittakertech/favicon/processed/whittakertech/v1/icon.svg",
+      "type": "image/svg+xml"
+    },
+    {
+      "rel": "icon",
+      "href": "https://media.whittakertech.com/whittakertech/favicon/processed/whittakertech/v1/favicon-32x32.png",
+      "type": "image/png",
+      "sizes": "32x32"
+    },
+    {
+      "rel": "icon",
+      "href": "https://media.whittakertech.com/whittakertech/favicon/processed/whittakertech/v1/favicon-16x16.png",
+      "type": "image/png",
+      "sizes": "16x16"
+    },
+    {
+      "rel": "apple-touch-icon",
+      "href": "https://media.whittakertech.com/whittakertech/favicon/processed/whittakertech/v1/apple-touch-icon.png",
+      "sizes": "180x180"
+    },
+    {
+      "rel": "manifest",
+      "href": "https://media.whittakertech.com/whittakertech/favicon/processed/whittakertech/v1/site.webmanifest"
+    }
+  ]
+}
