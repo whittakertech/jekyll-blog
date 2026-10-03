@@ -68,17 +68,17 @@
           fill="currentColor">
     <path d="M19,3H5C3.895,3,3,3.895,3,5v14c0,1.105,0.895,2,2,2h14c1.105,0,2-0.895,2-2V5C21,3.895,20.105,3,19,3z M9,17H6.477v-7H9 V17z M7.694,8.717c-0.771,0-1.286-0.514-1.286-1.2s0.514-1.2,1.371-1.2c0.771,0,1.286,0.514,1.286,1.2S8.551,8.717,7.694,8.717z M18,17h-2.442v-3.826c0-1.058-0.651-1.302-0.895-1.302s-1.058,0.163-1.058,1.302c0,0.163,0,3.826,0,3.826h-2.523v-7h2.523v0.977 C13.93,10.407,14.581,10,15.802,10C17.023,10,18,10.977,18,13.174V17z" />
   </symbol>
-  <symbol id="mail" viewBox="0 0 24 24"
-          fill="none" stroke="currentColor"
-          stroke-linecap="round" stroke-linejoin="round"
-          stroke-width="2">
-    <path d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-  </symbol>
   <symbol id="hamburger-menu" viewBox="0 0 24 24"
           fill="none" stroke="currentColor"
           stroke-linecap="round" stroke-linejoin="round"
           stroke-width="2">
     <path d="M4 6h16M4 12h16M4 18h16" />
+  </symbol>
+  <symbol id="mail" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor"
+          stroke-linecap="round" stroke-linejoin="round"
+          stroke-width="2">
+    <path d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
   </symbol>
   <symbol id="layers" viewBox="0 0 24 24"
           fill="none" stroke="currentColor"
@@ -87,7 +87,7 @@
     <path d="M12 3l9 5-9 5-9-5 9-5zM3 12.5l9 5 9-5M3 17l9 5 9-5" />
   </symbol>
   <symbol id="modular" fill="none"
-          stroke="currentColor" viewBox="5 5 54 54"
+          stroke="currentColor" viewBox="5 0 54 49"
           stroke-linecap="round" stroke-linejoin="round"
           stroke-width="1.25" vector-effect="non-scaling-stroke">
     <path d="M21.5 9 32 3l10.5 6-10.5 6-10.5-6v12L32 27l10.5-6V9M4 38l14-8 14 8-14 8-14-8v2l14 8 14-8v-2m0-6v-5m0 5-5.2 3M32 32l9.5 5.428M30 44l18.648-10.656 9.324 5.328-18.648 10.656L30 44v6l9.324 5.328 18.648-10.656v-6"/>
