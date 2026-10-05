@@ -18,7 +18,7 @@ card:
   kicker: Financial primitives
   headline: Turn complexity into clarity.
   theme: dark
-  wordmark: "https://brand.whittakertech.com/assets/v/0.1.8/logo/midas/wordmark-dark.svg"
+  wordmark: "https://media.whittakertech.com/brand/Midas/logo/wordmark-dark.svg"
 sources:
   rubygems: whittaker_tech-midas
   github: whittakertech/midas
