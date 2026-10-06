@@ -12,9 +12,9 @@ author:
   twitter: "whittakertech"
   linkedin: "lee-whittaker-dev"
 
-repository: whittakertech/jekyll-blog
+repository: whittakertech/www
 github:
-  repository_name: jekyll-blog
+  repository_name: www
   owner_name: whittakertech
 
 plugins:
