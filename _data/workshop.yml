@@ -10,7 +10,7 @@ organization: whittakertech
 
 # Public repositories that aren't WhittakerTech projects.
 exclude:
-  - jekyll-blog
+  - www
   - .github
 
 # Keyed by repository name. All fields are optional; a repository with no
